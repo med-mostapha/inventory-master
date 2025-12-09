@@ -5,10 +5,11 @@ type Props = {};
 
 const SummaryCard = () => {
   return (
-    <View className="bg-white w-[45%] rounded-2xl  flex flex-row items-center justify-between p-4 ">
+    <View className="bg-white  rounded-2xl  flex flex-row items-center justify-between p-4 ">
       <Ionicons
         name="shapes"
         size={24}
+        color="blue"
         className="bg-gray-300  p-2 rounded-full"
       />
       <View>

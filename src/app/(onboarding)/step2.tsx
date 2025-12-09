@@ -27,7 +27,7 @@ export default function OnboardingStepOne() {
         <View className="flex-[0.7] items-center justify-center gap-1">
           <NavPoint total={3} active={2} />
 
-          <Button title="Next" onPress={() => router.replace("/(tabs)")} />
+          <Button title="Start" onPress={() => router.replace("/(tabs)")} />
           <Button
             title="back"
             thems="second"
