@@ -8,7 +8,7 @@ import { Text, View } from "react-native";
 export default function OnboardingIndex() {
   const imgSource = require("../../../assets/utils/image.png");
   return (
-    <View className="flex-1  bg-[#263a96c4]">
+    <View className="flex-1 flex-colo  bg-[#263a96c4]">
       <View className="flex-[0.45] items-center justify-center">
         <ImageView imgSource={imgSource} width={300} height={190} />
       </View>
