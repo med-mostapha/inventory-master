@@ -18,6 +18,9 @@ export default function TabsLayout() {
           tabBarIcon: ({ size, color }) => (
             <Ionicons name="home" size={size} color={color} />
           ),
+          headerRight: () => (
+            <Ionicons className="mx-4" name="notifications-outline" size={22} />
+          ),
         }}
       />
 

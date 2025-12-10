@@ -1,23 +1,40 @@
-import { Link } from "expo-router";
-import { Text, View } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
+import { Pressable, Text, View } from "react-native";
 
 const Header = () => {
-  const links = [
-    { name: "Add", href: "/products/add" },
-    { name: "Edit ", href: "/products/edit" },
-    { name: "Product", href: "/product/sdetails" },
-
-    { name: "Add", href: "/categories/add" },
-    { name: "View All", href: "/categories" },
-  ] as const;
-
+  const router = useRouter();
+  const styles = {
+    link: "bg-white/90 mx-1 shadow-sm shadow-gray-00 w-[0.5]  font-bold text-black/80 rounded-xl px-2 py-5 flex-1 items-center",
+    icon: "",
+    text: "font-bold text-black/90",
+  };
   return (
-    <View className="w-full flex flex-row justify-around items-center">
-      {links.map((link, i) => (
-        <Link key={i} href={"/products/add"}>
-          <Text className="text-sm">{link.name}</Text>
-        </Link>
-      ))}
+    <View className="w-full flex flex-row justify-around items-center p-4">
+      <Pressable
+        className={styles.link}
+        onPress={() => router.push("/products/add")}
+      >
+        <Ionicons
+          className={styles.icon}
+          name="add-circle-outline"
+          color={"blue"}
+          size={30}
+        />
+        <Text className={styles.text}>New products</Text>
+      </Pressable>
+      <Pressable
+        className={styles.link}
+        onPress={() => router.push("/categories/add")}
+      >
+        <Ionicons
+          className={styles.icon}
+          name="add-circle-outline"
+          color={"blue"}
+          size={30}
+        />
+        <Text className={styles.text}>New gategories</Text>
+      </Pressable>
     </View>
   );
 };
