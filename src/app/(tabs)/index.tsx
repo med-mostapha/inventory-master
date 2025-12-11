@@ -6,11 +6,11 @@ import { ScrollView, View } from "react-native";
 
 export default function Index() {
   return (
-    <ScrollView>
+    <ScrollView className="py-1">
       {/* Header */}
       <Header />
       {/* <Text className=" text-2xl font-bold">Dashboard home Screen</Text> */}
-      <View className="flex-row flex-wrap space-x-2">
+      <View className="flex-row flex-wrap gap-3">
         <SummaryCard
           title={"Total"}
           result={230}
@@ -39,7 +39,7 @@ export default function Index() {
       </View>
       {/* Chart */}
 
-      <View className="">
+      <View className="mt-4">
         <CharView />
       </View>
 

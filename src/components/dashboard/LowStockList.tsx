@@ -38,7 +38,7 @@ const LowStockList = () => {
       )}
       ListHeaderComponent={
         <Text className=" p-4 text-xl text-black/80 font-medium">
-          Low Products Stock
+          Low Quantity
         </Text>
       }
     />
