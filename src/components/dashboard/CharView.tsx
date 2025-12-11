@@ -12,7 +12,9 @@ const CharView = () => {
   };
   return (
     <View className="">
-      <Text>Bezier Line Chart</Text>
+      <Text className="text-bold text-black/80 ml-4 font-medium text-xl">
+        Bezier Line Chart
+      </Text>
       <LineChart
         data={{
           labels: ["January", "February", "March", "April", "May", "June"],

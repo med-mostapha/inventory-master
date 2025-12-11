@@ -1,5 +1,6 @@
 import CharView from "@/src/components/dashboard/CharView";
 import Header from "@/src/components/dashboard/Header";
+import LowStockList from "@/src/components/dashboard/LowStockList";
 import SummaryCard from "@/src/components/dashboard/SummaryCard";
 import { ScrollView, View } from "react-native";
 
@@ -35,10 +36,15 @@ export default function Index() {
           iconName={"arrow-back-outline"}
           color="red"
         />
+      </View>
+      {/* Chart */}
 
-        {/* Chart */}
+      <View className="">
         <CharView />
       </View>
+
+      {/* Low List */}
+      <LowStockList />
     </ScrollView>
   );
 }
