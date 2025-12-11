@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { FlatList, Text, View } from "react-native";
+import { FlatList, Text, TouchableOpacity, View } from "react-native";
 
 const LowStockList = () => {
   const lowProducts = [
@@ -23,18 +23,18 @@ const LowStockList = () => {
 
   return (
     <FlatList
-      className=" mx-1 px-3 py-2 rounded-2xl bg-white shadow-md shadow-black/50"
+      className=" mx-1 px-3 py-2 rounded-2xl bg-white shadow-md shadow-black/50 mb-4 "
       data={lowProducts}
       scrollEnabled={false}
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
-        <View className="flex flex-row justify-between p-4 rounded-xl border-b-[1px] border-white">
+        <TouchableOpacity className="flex flex-row justify-between p-4 rounded-xl border-b-[1px] border-zinc-100">
           <Text className="">{item.name}</Text>
           <View className="flex flex-row gap-2 items-center">
             <Text>{item.quantity}</Text>
             <Ionicons name="arrow-down" size={14} color={"red"} />
           </View>
-        </View>
+        </TouchableOpacity>
       )}
       ListHeaderComponent={
         <Text className=" p-4 text-xl text-black/80 font-medium">

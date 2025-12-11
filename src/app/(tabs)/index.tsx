@@ -44,7 +44,9 @@ export default function Index() {
       </View>
 
       {/* Low List */}
-      <LowStockList />
+      <View className="shadow-xl shadow-black/10">
+        <LowStockList />
+      </View>
     </ScrollView>
   );
 }

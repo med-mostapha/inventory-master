@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import { Pressable, Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 
 const Header = () => {
   const router = useRouter();
@@ -11,7 +11,7 @@ const Header = () => {
   };
   return (
     <View className="w-full flex flex-row justify-around items-center p-4">
-      <Pressable
+      <TouchableOpacity
         className={styles.link}
         onPress={() => router.push("/products/add")}
       >
@@ -22,8 +22,8 @@ const Header = () => {
           size={30}
         />
         <Text className={styles.text}>New products</Text>
-      </Pressable>
-      <Pressable
+      </TouchableOpacity>
+      <TouchableOpacity
         className={styles.link}
         onPress={() => router.push("/categories/add")}
       >
@@ -34,7 +34,7 @@ const Header = () => {
           size={30}
         />
         <Text className={styles.text}>New gategories</Text>
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 };
