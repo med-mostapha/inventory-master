@@ -1,9 +1,14 @@
-import { Text, View } from "react-native";
+import SearchBar from "@/src/components/ui/SearchBar";
+import React from "react";
+import { ScrollView, Text, View } from "react-native";
 
-export default function ProductIndex() {
+export default function ProductScreen() {
   return (
-    <View className="flex-1 justify-center items-center ">
-      <Text className=" text-2xl font-bold">Product index Screen</Text>
-    </View>
+    <ScrollView className="p-2">
+      <View className="">
+        <SearchBar placeholder="products..." onChange={() => {}} />
+      </View>
+      <Text className=" text-2xl font-bold">Product List</Text>
+    </ScrollView>
   );
 }

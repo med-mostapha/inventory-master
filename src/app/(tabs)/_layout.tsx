@@ -8,6 +8,9 @@ export default function TabsLayout() {
         headerShown: true,
         tabBarActiveTintColor: "#007AFF",
         tabBarInactiveTintColor: "#999",
+        headerRight: () => (
+          <Ionicons className="mx-4" name="notifications-outline" size={22} />
+        ),
       }}
     >
       {/* Dashboard */}
@@ -17,9 +20,6 @@ export default function TabsLayout() {
           title: "Dashboard",
           tabBarIcon: ({ size, color }) => (
             <Ionicons name="home" size={size} color={color} />
-          ),
-          headerRight: () => (
-            <Ionicons className="mx-4" name="notifications-outline" size={22} />
           ),
         }}
       />
