@@ -1,8 +1,9 @@
+import ProductCard from "@/src/components/ProductCard";
 import SearchBar from "@/src/components/ui/SearchBar";
 import { products } from "@/src/data/products";
 import { useRouter } from "expo-router";
 import React from "react";
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, View } from "react-native";
 
 export default function ProductScreen() {
   const router = useRouter();
@@ -20,19 +21,7 @@ export default function ProductScreen() {
           keyExtractor={(item) => item.id}
           columnWrapperStyle={{ gap: 10 }}
           contentContainerStyle={{ padding: 10 }}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              className="bg-white w-[49%] h-40 mt-2 p-4 rounded-2xl elevation-md shadow-md shadow-black/15"
-              onPress={() =>
-                router.push({
-                  pathname: "/products/details",
-                  params: { id: item.id },
-                })
-              }
-            >
-              <Text className="">{item.name}</Text>
-            </TouchableOpacity>
-          )}
+          renderItem={({ item }) => <ProductCard product={item} />}
         />
       </View>
     </View>
