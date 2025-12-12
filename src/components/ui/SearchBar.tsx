@@ -8,7 +8,7 @@ type Props = {
 
 const SearchBar = ({ placeholder, onChange }: Props) => {
   return (
-    <View className="rounded-full bg-white shadow-sm shadow-black/10 px-4 flex flex-row items-center  my-2 ">
+    <View className="rounded-full bg-white shadow-inner shadow-black/15 px-4 flex flex-row items-center  my-2 ">
       <Ionicons name="search" size={18} color={"gray"} />
       <TextInput
         // style={styles.input}
