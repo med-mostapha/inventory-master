@@ -29,10 +29,9 @@ export default function ProductScreen() {
         />
       </View>
       {/* <Text className="text-2xl left-3 font-bold">Product List</Text> */}
-      <View className="flex-1 justify-center p">
-        -2
+      <View className="flex-1 justify-center ">
         <FlatList
-          className=""
+          className="p-3"
           data={products}
           numColumns={2}
           keyExtractor={(item) => item.id}

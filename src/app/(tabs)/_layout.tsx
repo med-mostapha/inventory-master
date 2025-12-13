@@ -1,16 +1,26 @@
 import { Ionicons } from "@expo/vector-icons";
-import { Tabs } from "expo-router";
+import { Tabs, useRouter } from "expo-router";
 
 export default function TabsLayout() {
+  const router = useRouter();
   return (
     <Tabs
       screenOptions={{
         headerShown: true,
         tabBarActiveTintColor: "#007AFF",
         tabBarInactiveTintColor: "#999",
+
         headerRight: () => (
-          <Ionicons className="mx-4" name="notifications-outline" size={22} />
+          <Ionicons className="mr-3" name="notifications-outline" size={22} />
         ),
+        // headerLeft: () => (
+        //   <TouchableOpacity
+        //     onPress={() => router.push("/profile")}
+        //     className="bg-slate-600 ml-3 w-9 h-9 rounded-full flex items-center justify-center"
+        //   >
+        //     <Ionicons name="person-outline" size={20} color={"white"} />
+        //   </TouchableOpacity>
+        // ),
       }}
     >
       {/* Dashboard */}

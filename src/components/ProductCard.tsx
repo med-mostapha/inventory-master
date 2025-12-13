@@ -1,6 +1,6 @@
 import { Product } from "@/src/types/product";
-import React from "react";
-import { Image, Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import { Animated, Image, Text, TouchableOpacity, View } from "react-native";
 
 type Props = {
   product: Product;
@@ -8,16 +8,45 @@ type Props = {
 };
 
 const ProductCard = ({ product, onPress }: Props) => {
+  const [loading, setLoading] = useState(true);
+  const pulseAnim = new Animated.Value(0.3);
+
+  Animated.loop(
+    Animated.sequence([
+      Animated.timing(pulseAnim, {
+        toValue: 1,
+        duration: 600,
+        useNativeDriver: true,
+      }),
+      Animated.timing(pulseAnim, {
+        toValue: 0.3,
+        duration: 900,
+        useNativeDriver: true,
+      }),
+    ])
+  ).start();
+
   return (
     <TouchableOpacity
       className="bg-white p-2 mb-2 w-1/2 rounded-2xl shadow-inner shadow-black/15"
       onPress={onPress}
     >
-      <Image
-        source={{ uri: product.image }}
-        className="w-full aspect-square rounded-xl"
-        resizeMode="cover"
-      />
+      <View className="w-full aspect-square rounded-xl overflow-hidden relative">
+        {loading && (
+          <Animated.View
+            style={{ opacity: pulseAnim }}
+            className="absolute inset-0 bg-gray-200"
+          />
+        )}
+
+        <Image
+          source={{ uri: product.image }}
+          className="w-full h-full rounded-xl"
+          resizeMode="cover"
+          onLoadStart={() => setLoading(true)}
+          onLoadEnd={() => setLoading(false)}
+        />
+      </View>
 
       <View className="mt-2 flex-1 justify-between">
         <View className="gap-1">

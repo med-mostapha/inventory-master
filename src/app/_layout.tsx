@@ -11,7 +11,10 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <StatusBar />
       <Stack
-        screenOptions={{ headerShown: false, animation: "slide_from_right" }}
+        screenOptions={{
+          headerShown: false,
+          animation: "slide_from_right",
+        }}
       ></Stack>
     </SafeAreaProvider>
   );
