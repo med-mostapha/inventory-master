@@ -10,7 +10,7 @@ type Props = {
 const ProductCard = ({ product }: Props) => {
   return (
     <TouchableOpacity
-      className="bg-white p-1 mt-2 max-w-[50%] rounded-2xl elevation-md shadow-md shadow-black/15"
+      className="bg-white p-2 mt-2 w-1/2 rounded-2xl shadow-md shadow-black/15"
       onPress={() =>
         router.push({
           pathname: "/products/details",
@@ -21,17 +21,23 @@ const ProductCard = ({ product }: Props) => {
       <Image
         source={{ uri: product.image }}
         className="w-full aspect-square rounded-xl"
-        width={180}
-        height={180}
         resizeMode="cover"
       />
-      <View className="p-1">
-        <View className="py-2 flex flex-col gap-2">
-          <Text className="font-bold text-black/80">{product.name}</Text>
-          <Text className="text-sm text-gray-500">{product.description}</Text>
+
+      <View className="mt-2 flex-1 justify-between">
+        <View className="gap-1">
+          <Text className="font-bold text-black/80" numberOfLines={1}>
+            {product.name}
+          </Text>
+          <Text className="text-sm text-gray-500" numberOfLines={2}>
+            {product.description}
+          </Text>
         </View>
-        <View className="flex flex-end">
-          <Text className=" text-black/80">quantity : {product.quantity}</Text>
+
+        <View className="mt-2">
+          <Text className="text-sm font-semibold text-black/80">
+            Quantity: {product.quantity}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>
