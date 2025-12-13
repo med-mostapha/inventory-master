@@ -5,7 +5,11 @@ type Props = {
 };
 const ProductsFilterNav = ({ types }: Props) => {
   return (
-    <ScrollView horizontal className="flex flex-row">
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      className="flex flex-row"
+    >
       {types.map(({ name, count }, i) => (
         <TouchableOpacity
           className={`${name === "All" ? "bg-black/90" : "bg-zinc-100"} mx-3 px-3 py-2 my-2 rounded-full flex flex-row items-center justify-around text-center gap-2 `}

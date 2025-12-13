@@ -1,3 +1,4 @@
+import AddProductButton from "@/src/components/products/AddProductButton";
 import ProductCard from "@/src/components/products/ProductCard";
 import ProductsFilterNav from "@/src/components/products/ProductsFilterNav";
 import SearchBar from "@/src/components/ui/SearchBar";
@@ -13,20 +14,29 @@ export default function ProductScreen() {
       <View className="px-3 pt-3">
         <SearchBar placeholder="products..." onChange={() => {}} />
 
-        <ProductsFilterNav
-          // this info just for test
-          types={[
-            { name: "All", count: products.length },
-            { name: "Électronique", count: 12 },
-            { name: "Maison", count: 8 },
-            { name: "Bureau", count: 6 },
-            { name: "Jardin", count: 4 },
-            { name: "Vêtements", count: 10 },
-            { name: "Accessoires", count: 7 },
-            { name: "Sport", count: 5 },
-            { name: "Beauté", count: 3 },
-          ]}
-        />
+        <View className="flex flex-row items-center rounded-xl">
+          <View className="">
+            <AddProductButton
+              onPress={() => {
+                router.push("/products/add");
+              }}
+            />
+          </View>
+          <ProductsFilterNav
+            // this info just for test
+            types={[
+              { name: "All", count: products.length },
+              { name: "Électronique", count: 12 },
+              { name: "Maison", count: 8 },
+              { name: "Bureau", count: 6 },
+              { name: "Jardin", count: 4 },
+              { name: "Vêtements", count: 10 },
+              { name: "Accessoires", count: 7 },
+              { name: "Sport", count: 5 },
+              { name: "Beauté", count: 3 },
+            ]}
+          />
+        </View>
       </View>
       {/* <Text className="text-2xl left-3 font-bold">Product List</Text> */}
       <View className="flex-1 justify-center ">
