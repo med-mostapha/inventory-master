@@ -2,6 +2,11 @@ import { products } from "./products";
 
 export const categories = [
   {
+    id: "c4",
+    name: "Electronics",
+    count: products.filter((p) => p.categoryId === "c4").length,
+  },
+  {
     id: "c1",
     name: "Shoes",
     count: products.filter((p) => p.categoryId === "c1").length,
@@ -11,11 +16,7 @@ export const categories = [
     name: "Accessories",
     count: products.filter((p) => p.categoryId === "c2").length,
   },
-  {
-    id: "c4",
-    name: "Electronics",
-    count: products.filter((p) => p.categoryId === "c4").length,
-  },
+
   {
     id: "c5",
     name: "Home",

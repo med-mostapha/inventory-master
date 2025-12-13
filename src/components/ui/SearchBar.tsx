@@ -3,7 +3,7 @@ import { TextInput, TouchableOpacity, View } from "react-native";
 
 type Props = {
   placeholder: string;
-  onChange: () => void;
+  onChange: (text: string) => void;
 };
 
 const SearchBar = ({ placeholder, onChange }: Props) => {
@@ -12,7 +12,7 @@ const SearchBar = ({ placeholder, onChange }: Props) => {
       <Ionicons name="search" size={18} color={"gray"} />
       <TextInput
         // style={styles.input}
-        onChange={onChange}
+        onChangeText={(text) => onChange(text)}
         className=" shadow-sm flex flex-grow rounded-full p-4"
         placeholder={placeholder}
         placeholderTextColor={"gray"}
