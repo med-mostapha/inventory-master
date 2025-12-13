@@ -20,7 +20,7 @@ const ProductCard = ({ product, onPress }: Props) => {
       }),
       Animated.timing(pulseAnim, {
         toValue: 0.3,
-        duration: 900,
+        duration: 1500,
         useNativeDriver: true,
       }),
     ])
