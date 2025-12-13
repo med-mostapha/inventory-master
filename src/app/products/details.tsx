@@ -63,14 +63,43 @@ const DetalisProductsScreen = () => {
 
         <View className="h-[1px] bg-zinc-200" />
 
-        {/* Price */}
         <View className="gap-2">
+          {/* Date */}
+
+          <View className="flex-row justify-between my-1">
+            <Text className="text-zinc-600">Create At</Text>
+            <Text className="">
+              {new Date(item.createdAt).toLocaleDateString("fr-FR", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+              {", "}
+              <Text>{new Date(item.updatedAt).toLocaleTimeString()}</Text>
+            </Text>
+          </View>
+
+          <View className="flex-row justify-between my-1">
+            <Text className="text-zinc-600">Last Update</Text>
+            <Text>
+              {new Date(item.createdAt).toLocaleDateString("fr-FR", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+              {", "}
+              <Text>{new Date(item.createdAt).toLocaleTimeString()}</Text>
+            </Text>
+          </View>
+
           <View className="flex-row justify-between my-1">
             <Text className="text-zinc-600">Category</Text>
             <Text className="font-semibold text-zinc-900">
               {item.categoryName}
             </Text>
           </View>
+
+          {/* Price Quantity */}
           <View className="flex-row justify-between my-1">
             <Text className="text-zinc-600">Quantity</Text>
             <View
