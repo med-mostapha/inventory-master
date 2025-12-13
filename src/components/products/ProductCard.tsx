@@ -59,7 +59,9 @@ const ProductCard = ({ product, onPress }: Props) => {
         </View>
 
         <View className="mt-2">
-          <Text className="text-sm font-semibold text-black/80">
+          <Text
+            className={`${product.quantity <= 5 ? "text-red-500" : ""} text-sm font-semibold text-black/80`}
+          >
             Quantity: {product.quantity}
           </Text>
         </View>

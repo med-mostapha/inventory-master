@@ -32,7 +32,7 @@ export default function ProductScreen() {
       <View className="flex-1 justify-center ">
         <FlatList
           className="p-3"
-          data={products}
+          data={products.slice(0, 20)}
           numColumns={2}
           keyExtractor={(item) => item.id}
           columnWrapperStyle={{ gap: 10 }}

@@ -1,5 +1,6 @@
 import { products } from "@/src/data/products";
 import { Product } from "@/src/types/product";
+import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
 import { Animated, Image, ScrollView, Text, View } from "react-native";
@@ -72,11 +73,22 @@ const DetalisProductsScreen = () => {
           </View>
           <View className="flex-row justify-between my-1">
             <Text className="text-zinc-600">Quantity</Text>
-            <Text
-              className={`${item.quantity <= 5 ? "text-red-500" : "text-zinc-900"} font-semibold `}
+            <View
+              className={`${item.quantity <= 5 ? "text-red-500" : "text-zinc-900"} font-semibold flex flex-row gap-2`}
             >
-              {item.quantity}
-            </Text>
+              {item.quantity <= 5 && (
+                <View className="flex flex-row gap-2 items-center ">
+                  <Ionicons name="warning-sharp" size={14} color={"orange"} />
+
+                  <Text className="text-red-500 font-medium pr-5">
+                    Low Stock
+                  </Text>
+                </View>
+              )}
+              <Text className={`${item.quantity <= 5 ? "text-red-500" : ""}`}>
+                {item.quantity}
+              </Text>
+            </View>
           </View>
 
           <View className="flex-row justify-between">
