@@ -1,22 +1,17 @@
 import { Product } from "@/src/types/product";
-import { router } from "expo-router";
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 
 type Props = {
   product: Product;
+  onPress: () => void;
 };
 
-const ProductCard = ({ product }: Props) => {
+const ProductCard = ({ product, onPress }: Props) => {
   return (
     <TouchableOpacity
-      className="bg-white p-2 mt-2 w-1/2 rounded-2xl shadow-md shadow-black/15"
-      onPress={() =>
-        router.push({
-          pathname: "/products/details",
-          params: { id: product.id },
-        })
-      }
+      className="bg-white p-2 mb-2 w-1/2 rounded-2xl shadow-inner shadow-black/15"
+      onPress={onPress}
     >
       <Image
         source={{ uri: product.image }}
