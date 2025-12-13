@@ -1,5 +1,5 @@
-import { Ionicons } from "@expo/vector-icons";
-import React from "react";
+import { Entypo, Ionicons } from "@expo/vector-icons";
+import React, { useState } from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 
 const LowStockList = () => {
@@ -20,11 +20,12 @@ const LowStockList = () => {
       quantity: 4,
     },
   ];
+  const [showLowList, setShowLowList] = useState(false);
 
   return (
     <FlatList
-      className=" mx-1 px-3 py-2 rounded-2xl bg-white shadow-md shadow-black/50 mb-4 "
-      data={lowProducts}
+      className=" mx-1 px-3 py-2 rounded-2xl bg-white shadow-inner shadow-gray-300 mb-8 "
+      data={showLowList ? lowProducts : []}
       scrollEnabled={false}
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
@@ -37,9 +38,17 @@ const LowStockList = () => {
         </TouchableOpacity>
       )}
       ListHeaderComponent={
-        <Text className=" p-4 text-xl text-black/80 font-medium">
-          Low Quantity
-        </Text>
+        <TouchableOpacity
+          onPress={() => setShowLowList(!showLowList)}
+          className=" p-4 text-xl flex flex-row justify-between items-center text-black/80 font-medium "
+        >
+          <Text>Low Quantity</Text>
+          <Entypo
+            name={showLowList ? "chevron-down" : "chevron-right"}
+            size={22}
+            color="gray"
+          />
+        </TouchableOpacity>
       }
     />
   );

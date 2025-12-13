@@ -1,4 +1,4 @@
-import ProductCard from "@/src/components/ProductCard";
+import ProductCard from "@/src/components/products/ProductCard";
 import ProductsFilterNav from "@/src/components/products/ProductsFilterNav";
 import SearchBar from "@/src/components/ui/SearchBar";
 import { products } from "@/src/data/products";

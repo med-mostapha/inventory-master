@@ -41,7 +41,7 @@ const SummaryCard = ({
   }, []);
 
   return (
-    <View className="bg-white w-5/12 flex-grow rounded-2xl flex flex-row items-center justify-between p-6 shadow-sm shadow-black/50">
+    <View className="bg-white w-5/12 flex-grow rounded-2xl flex flex-row items-center justify-between p-6 shadow-inner shadow-gray-200">
       <Ionicons
         name={iconName}
         size={size}

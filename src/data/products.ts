@@ -9,7 +9,7 @@ export const products: Product[] = [
     price: 79.99,
     quantity: 12,
     image:
-      "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=",
     description: "Chaussure blanche élégante.",
     createdAt: "2025-12-01T10:00:00Z",
     updatedAt: "2025-12-05T12:00:00Z",
@@ -22,7 +22,7 @@ export const products: Product[] = [
     price: 149.99,
     quantity: 10,
     image:
-      "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/190819/pexels-photo-190819.jpeg?auto=compress&cs=tinysrgb&w=",
     description: "Montre élégante simple.",
     createdAt: "2025-12-02T11:00:00Z",
     updatedAt: "2025-12-06T13:00:00Z",
@@ -35,7 +35,7 @@ export const products: Product[] = [
     price: 59.99,
     quantity: 25,
     image:
-      "https://images.pexels.com/photos/46710/pexels-photo-46710.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/46710/pexels-photo-46710.jpeg?auto=compress&cs=tinysrgb&w=",
     description: "Lunettes de soleil classiques.",
     createdAt: "2025-12-03T09:30:00Z",
     updatedAt: "2025-12-07T10:45:00Z",
@@ -48,7 +48,7 @@ export const products: Product[] = [
     price: 89.99,
     quantity: 22,
     image:
-      "https://images.pexels.com/photos/3394664/pexels-photo-3394664.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/3394664/pexels-photo-3394664.jpeg?auto=compress&cs=tinysrgb&w=",
     description: "Haut‑parleur portable puissant.",
     createdAt: "2025-12-05T08:15:00Z",
     updatedAt: "2025-12-09T09:20:00Z",
@@ -61,7 +61,7 @@ export const products: Product[] = [
     price: 24.99,
     quantity: 28,
     image:
-      "https://images.pexels.com/photos/594613/pexels-photo-594613.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/594613/pexels-photo-594613.jpeg?auto=compress&cs=tinysrgb&w=",
     description: "Support pour smartphone fiable.",
     createdAt: "2025-12-09T11:20:00Z",
     updatedAt: "2025-12-11T12:00:00Z",
@@ -74,7 +74,7 @@ export const products: Product[] = [
     price: 15.99,
     quantity: 40,
     image:
-      "https://images.pexels.com/photos/4050425/pexels-photo-4050425.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/4050425/pexels-photo-4050425.jpeg?auto=compress&cs=tinysrgb&w=",
     description: "Tasse à café simple et élégante.",
     createdAt: "2025-12-06T12:30:00Z",
     updatedAt: "2025-12-10T14:00:00Z",
@@ -87,7 +87,7 @@ export const products: Product[] = [
     price: 129.99,
     quantity: 8,
     image:
-      "https://images.pexels.com/photos/3394659/pexels-photo-3394659.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/3394659/pexels-photo-3394659.jpeg?auto=compress&cs=tinysrgb&w=",
     description: "Casque sans fil confortable.",
     createdAt: "2025-12-07T10:00:00Z",
     updatedAt: "2025-12-10T15:00:00Z",
@@ -100,7 +100,7 @@ export const products: Product[] = [
     price: 49.99,
     quantity: 18,
     image:
-      "https://images.pexels.com/photos/3771087/pexels-photo-3771087.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/3771087/pexels-photo-3771087.jpeg?auto=compress&cs=tinysrgb&w=",
     description: "Lampe de bureau moderne.",
     createdAt: "2025-12-08T09:00:00Z",
     updatedAt: "2025-12-11T10:30:00Z",
@@ -113,7 +113,7 @@ export const products: Product[] = [
     price: 24.99,
     quantity: 28,
     image:
-      "https://images.pexels.com/photos/594613/pexels-photo-594613.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/594613/pexels-photo-594613.jpeg?auto=compress&cs=tinysrgb&w=",
     description: "Support pour smartphone fiable.",
     createdAt: "2025-12-09T11:20:00Z",
     updatedAt: "2025-12-11T12:00:00Z",
@@ -126,7 +126,7 @@ export const products: Product[] = [
     price: 74.99,
     quantity: 10,
     image:
-      "https://images.pexels.com/photos/296883/pexels-photo-296883.jpeg?auto=compress&cs=tinysrgb&w=800",
+      "https://images.pexels.com/photos/296883/pexels-photo-296883.jpeg?auto=compress&cs=tinysrgb&w=",
 
     description: "Sac à dos minimaliste.",
     createdAt: "2025-12-10T14:00:00Z",

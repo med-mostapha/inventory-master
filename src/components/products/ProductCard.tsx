@@ -40,7 +40,7 @@ const ProductCard = ({ product, onPress }: Props) => {
         )}
 
         <Image
-          source={{ uri: product.image }}
+          source={{ uri: `${product.image}400` }}
           className="w-full h-full rounded-xl"
           resizeMode="cover"
           onLoadStart={() => setLoading(true)}

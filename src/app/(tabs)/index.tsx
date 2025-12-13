@@ -6,7 +6,7 @@ import { ScrollView, View } from "react-native";
 
 export default function Index() {
   return (
-    <ScrollView className="py-1">
+    <ScrollView className="py-1 bg-white/80">
       {/* Header */}
       <Header />
       {/* <Text className=" text-2xl font-bold">Dashboard home Screen</Text> */}
@@ -15,7 +15,7 @@ export default function Index() {
           title={"Total"}
           result={230}
           iconName={"car-outline"}
-          color="blue"
+          color="#0284c7"
         />
         <SummaryCard
           title={"Low price"}

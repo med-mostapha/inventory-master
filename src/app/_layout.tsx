@@ -1,11 +1,13 @@
-import { Stack, useLocalSearchParams } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import React from "react";
-import { StatusBar } from "react-native";
+import { StatusBar, TouchableOpacity } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import "../global.css";
 
 export default function RootLayout() {
-  const params = useLocalSearchParams<{ id: string; name: string }>();
+  const router = useRouter();
+  const params = useLocalSearchParams<{ id: string }>();
 
   return (
     <SafeAreaProvider>
@@ -14,8 +16,16 @@ export default function RootLayout() {
         screenOptions={{
           headerShown: false,
           animation: "slide_from_right",
+          title: "details",
+          headerLeft: () => (
+            <TouchableOpacity className="" onPress={() => router.back()}>
+              <Ionicons className="mr-3" name="arrow-back" size={24} />
+            </TouchableOpacity>
+          ),
         }}
-      ></Stack>
+      >
+        <Stack.Screen name="products/details" options={{ headerShown: true }} />
+      </Stack>
     </SafeAreaProvider>
   );
 }
