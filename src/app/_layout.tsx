@@ -16,7 +16,6 @@ export default function RootLayout() {
         screenOptions={{
           headerShown: false,
           animation: "slide_from_right",
-          title: "details",
           headerLeft: () => (
             <TouchableOpacity className="" onPress={() => router.back()}>
               <Ionicons className="mr-3" name="arrow-back" size={24} />
@@ -24,7 +23,14 @@ export default function RootLayout() {
           ),
         }}
       >
-        <Stack.Screen name="products/details" options={{ headerShown: true }} />
+        <Stack.Screen
+          name="products/add"
+          options={{ headerShown: true, title: "Add Product" }}
+        />
+        <Stack.Screen
+          name="products/details"
+          options={{ headerShown: true, title: "Product Detalis" }}
+        />
       </Stack>
     </SafeAreaProvider>
   );
