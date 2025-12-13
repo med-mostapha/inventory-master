@@ -1,9 +1,10 @@
 import { products } from "@/src/data/products";
 import { Product } from "@/src/types/product";
 import { Ionicons } from "@expo/vector-icons";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
-import { Animated, Image, ScrollView, Text, View } from "react-native";
+import { Alert, Animated, Image, ScrollView, Text, View } from "react-native";
+import PrButton from "./PrButton";
 
 const DetalisProductsScreen = () => {
   // const testimageurl = require("../../../assets/products/test.jpg");
@@ -36,24 +37,23 @@ const DetalisProductsScreen = () => {
     );
   }
   return (
-    <ScrollView className="flex-1 p-1 bg-white/80 ">
-      <View className="w-full aspect-square rounded-xl overflow-hidden relative">
+    <ScrollView className="flex-1  bg-white/80 ">
+      <View className="w-full aspect-square  overflow-hidden relative">
         {loading && (
           <Animated.View
             style={{ opacity: pulseAnim }}
-            className="absolute inset-0 bg-gray-300 rounded-xl"
+            className="absolute inset-0 bg-gray-300 "
           />
         )}
 
         <Image
           source={{ uri: `${item.image}800` }}
-          className="w-full h-full rounded-xl"
+          className="w-full h-full "
           resizeMode="cover"
           onLoadStart={() => setLoading(true)}
           onLoadEnd={() => setLoading(false)}
         />
       </View>
-
       <View className="p-4 my-3 bg-white rounded-2xl shadow-sm gap-4">
         {/*  Info */}
         <View className="gap-1">
@@ -103,7 +103,7 @@ const DetalisProductsScreen = () => {
           <View className="flex-row justify-between my-1">
             <Text className="text-zinc-600">Quantity</Text>
             <View
-              className={`${item.quantity <= 5 ? "text-red-500" : "text-zinc-900"} font-semibold flex flex-row gap-2`}
+              className={`${item.quantity <= 5 ? "text-red-500" : "text-zinc-900"} font-semibold flex flex-row `}
             >
               {item.quantity <= 5 && (
                 <View className="flex flex-row gap-2 items-center ">
@@ -134,6 +134,41 @@ const DetalisProductsScreen = () => {
             </Text>
           </View>
         </View>
+      </View>
+      {/* Action */}
+      <View className="flex flex-row gap-2 px-2">
+        <PrButton
+          title="Edit"
+          onPress={() => {
+            router.push({
+              pathname: "/products/edit",
+              params: { id: params.id },
+            });
+          }}
+        />
+        <PrButton
+          title="delete"
+          thems={"delete"}
+          onPress={() => {
+            Alert.alert(
+              "Delete",
+              `delete product ${item.name}`,
+              [
+                {
+                  text: "Cancel",
+                  onPress: () => console.log("Cancel Pressed"),
+                  style: "cancel",
+                },
+                {
+                  text: "delete",
+                  onPress: () => router.back(),
+                  style: "destructive",
+                },
+              ],
+              { cancelable: true }
+            );
+          }}
+        />
       </View>
     </ScrollView>
   );

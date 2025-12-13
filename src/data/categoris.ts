@@ -3,32 +3,32 @@ import { products } from "./products";
 export const categories = [
   {
     id: "c1",
-    name: "Chaussures",
+    name: "Shoes",
     count: products.filter((p) => p.categoryId === "c1").length,
   },
   {
     id: "c2",
-    name: "Accessoires",
+    name: "Accessories",
     count: products.filter((p) => p.categoryId === "c2").length,
   },
   {
     id: "c4",
-    name: "Électronique",
+    name: "Electronics",
     count: products.filter((p) => p.categoryId === "c4").length,
   },
   {
     id: "c5",
-    name: "Maison",
+    name: "Home",
     count: products.filter((p) => p.categoryId === "c5").length,
   },
   {
     id: "c8",
-    name: "Vêtements",
+    name: "Clothing",
     count: products.filter((p) => p.categoryId === "c8").length,
   },
   {
     id: "c9",
-    name: "Bureau",
+    name: "Office",
     count: products.filter((p) => p.categoryId === "c9").length,
   },
 ];

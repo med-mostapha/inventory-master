@@ -1,23 +1,22 @@
+import { categories } from "@/src/types/  categori";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 type Props = {
-  types: { name: string; count: number }[];
+  categoris: categories[];
 };
-const ProductsFilterNav = ({ types }: Props) => {
+const ProductsFilterNav = ({ categoris }: Props) => {
   return (
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
       className="flex flex-row"
     >
-      {types.map(({ name, count }, i) => (
+      {categoris.map(({ id, name, count }) => (
         <TouchableOpacity
-          className={`${name === "All" ? "bg-black/90" : "bg-zinc-100"} mx-3 px-3 py-2 my-2 rounded-full flex flex-row items-center justify-around text-center gap-2 `}
-          key={i}
+          className={`bg-zinc-100 mx-3 px-3 py-2 my-2 rounded-full flex flex-row items-center justify-around text-center gap-2 `}
+          key={id}
         >
-          <Text className={`${name === "All" ? "text-white" : ""}`}>
-            {name}
-          </Text>
+          <Text className={`text-zinc-500`}>{name}</Text>
           <View
             className={`${name === "All" ? "bg-white" : "bg-zinc-200"}  rounded-full  w-5 h-5 justify-center items-center`}
           >

@@ -2,6 +2,7 @@ import AddProductButton from "@/src/components/products/AddProductButton";
 import ProductCard from "@/src/components/products/ProductCard";
 import ProductsFilterNav from "@/src/components/products/ProductsFilterNav";
 import SearchBar from "@/src/components/ui/SearchBar";
+import { categories } from "@/src/data/categoris";
 import { products } from "@/src/data/products";
 import { useRouter } from "expo-router";
 import React from "react";
@@ -22,20 +23,7 @@ export default function ProductScreen() {
               }}
             />
           </View>
-          <ProductsFilterNav
-            // this info just for test
-            types={[
-              { name: "All", count: products.length },
-              { name: "Électronique", count: 12 },
-              { name: "Maison", count: 8 },
-              { name: "Bureau", count: 6 },
-              { name: "Jardin", count: 4 },
-              { name: "Vêtements", count: 10 },
-              { name: "Accessoires", count: 7 },
-              { name: "Sport", count: 5 },
-              { name: "Beauté", count: 3 },
-            ]}
-          />
+          <ProductsFilterNav categoris={categories} />
         </View>
       </View>
       {/* <Text className="text-2xl left-3 font-bold">Product List</Text> */}
