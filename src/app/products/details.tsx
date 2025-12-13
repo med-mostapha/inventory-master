@@ -2,10 +2,10 @@ import { products } from "@/src/data/products";
 import { Product } from "@/src/types/product";
 import { useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
-import { Animated, Image, Text, View } from "react-native";
+import { Animated, Image, ScrollView, Text, View } from "react-native";
 
 const DetalisProductsScreen = () => {
-  const testimageurl = require("../../../assets/products/test.jpg");
+  // const testimageurl = require("../../../assets/products/test.jpg");
   const params = useLocalSearchParams<{ id: string }>();
   const item: Product | undefined = products.find((p) => p.id === params.id);
 
@@ -35,16 +35,7 @@ const DetalisProductsScreen = () => {
     );
   }
   return (
-    <View className="flex-1 p-3 ">
-      {/* <View className="flex items-center ">
-        <Image
-          className="rounded-md"
-          resizeMode="cover"
-          source={!item.image ? testimageurl : { url: `${item.image}800` }}
-          width={400}
-          height={350}
-        />
-      </View> */}
+    <ScrollView className="flex-1 p-1 bg-white/80 ">
       <View className="w-full aspect-square rounded-xl overflow-hidden relative">
         {loading && (
           <Animated.View
@@ -62,18 +53,48 @@ const DetalisProductsScreen = () => {
         />
       </View>
 
-      <View className="">
-        <View className=" gap-2 mt-3">
-          <Text className="text-xl font-semibold ">{item.name}</Text>
-          <Text className="text-zinc-500">{item.description} </Text>
-          <Text className="font-semibold mt-2">{item.price} MRU</Text>
+      <View className="p-4 my-3 bg-white rounded-2xl shadow-sm gap-4">
+        {/*  Info */}
+        <View className="gap-1">
+          <Text className="text-2xl font-bold text-zinc-900">{item.name}</Text>
+          <Text className="text-zinc-500 leading-5">{item.description}</Text>
         </View>
 
-        <View className="h-[1px] bg-gray-300 my-3" />
+        <View className="h-[1px] bg-zinc-200" />
 
-        <View className=""></View>
+        {/* Price */}
+        <View className="gap-2">
+          <View className="flex-row justify-between my-1">
+            <Text className="text-zinc-600">Category</Text>
+            <Text className="font-semibold text-zinc-900">
+              {item.categoryName}
+            </Text>
+          </View>
+          <View className="flex-row justify-between my-1">
+            <Text className="text-zinc-600">Quantity</Text>
+            <Text
+              className={`${item.quantity <= 5 ? "text-red-500" : "text-zinc-900"} font-semibold `}
+            >
+              {item.quantity}
+            </Text>
+          </View>
+
+          <View className="flex-row justify-between">
+            <Text className="text-zinc-600">Price / unit</Text>
+            <Text className="font-semibold text-zinc-900">
+              {item.price} MRU
+            </Text>
+          </View>
+
+          <View className="flex-row justify-between mt-2 pt-2 border-t border-zinc-100">
+            <Text className="text-base font-semibold text-zinc-800">Total</Text>
+            <Text className="text-lg font-bold text-green-600">
+              {(item.price * item.quantity).toFixed(2)} MRU
+            </Text>
+          </View>
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
