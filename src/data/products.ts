@@ -2,7 +2,7 @@ import { Product } from "../types/product";
 
 export const products: Product[] = [
   {
-    id: "1",
+    id: "product-001",
     name: "White Shoe",
     categoryId: "c1",
     categoryName: "Shoes",
@@ -15,7 +15,7 @@ export const products: Product[] = [
     updatedAt: "2025-12-05T12:00:00Z",
   },
   {
-    id: "2",
+    id: "product-002",
     name: "Minimalist Watch",
     categoryId: "c2",
     categoryName: "Accessories",
@@ -28,7 +28,7 @@ export const products: Product[] = [
     updatedAt: "2025-12-06T13:00:00Z",
   },
   {
-    id: "3",
+    id: "product-003",
     name: "Classic Sunglasses",
     categoryId: "c1",
     categoryName: "Accessories",
@@ -41,7 +41,7 @@ export const products: Product[] = [
     updatedAt: "2025-12-07T10:45:00Z",
   },
   {
-    id: "4",
+    id: "product-004",
     name: "Portable Speaker",
     categoryId: "c4",
     categoryName: "Electronics",
@@ -54,7 +54,7 @@ export const products: Product[] = [
     updatedAt: "2025-12-09T09:20:00Z",
   },
   {
-    id: "5",
+    id: "product-005",
     name: "Smartphone Stand",
     categoryId: "c4",
     categoryName: "Electronics",
@@ -67,7 +67,7 @@ export const products: Product[] = [
     updatedAt: "2025-12-11T12:00:00Z",
   },
   {
-    id: "6",
+    id: "product-006",
     name: "Coffee Mug",
     categoryId: "c5",
     categoryName: "Home",
@@ -80,7 +80,7 @@ export const products: Product[] = [
     updatedAt: "2025-12-10T14:00:00Z",
   },
   {
-    id: "7",
+    id: "product-007",
     name: "Wireless Headphones",
     categoryId: "c4",
     categoryName: "Electronics",
@@ -93,7 +93,7 @@ export const products: Product[] = [
     updatedAt: "2025-12-10T15:00:00Z",
   },
   {
-    id: "8",
+    id: "product-008",
     name: "Desk Lamp",
     categoryId: "c6",
     categoryName: "Home",
@@ -106,7 +106,7 @@ export const products: Product[] = [
     updatedAt: "2025-12-11T10:30:00Z",
   },
   {
-    id: "9",
+    id: "product-009",
     name: "Smartphone Stand",
     categoryId: "c4",
     categoryName: "Electronics",
@@ -118,19 +118,7 @@ export const products: Product[] = [
     createdAt: "2025-12-09T11:20:00Z",
     updatedAt: "2025-12-11T12:00:00Z",
   },
-  {
-    id: "10",
-    name: "Minimal Backpack",
-    categoryId: "c7",
-    categoryName: "Accessories",
-    price: 74.99,
-    quantity: 3,
-    image:
-      "https://images.pexels.com/photos/296883/pexels-photo-296883.jpeg?auto=compress&cs=tinysrgb&w=",
-    description: "Minimalist everyday backpack.",
-    createdAt: "2025-12-10T14:00:00Z",
-    updatedAt: "2025-12-11T15:00:00Z",
-  },
+
   {
     id: "11",
     name: "Men Casual T-Shirt",
@@ -146,7 +134,7 @@ export const products: Product[] = [
     updatedAt: "2025-12-12T12:00:00Z",
   },
   {
-    id: "12",
+    id: "product-0012",
     name: "Leather Wallet",
     categoryId: "c2",
     categoryName: "Accessoires",
@@ -160,7 +148,7 @@ export const products: Product[] = [
     updatedAt: "2025-12-12T13:10:00Z",
   },
   {
-    id: "13",
+    id: "product-0013",
     name: "Wireless Mouse",
     categoryId: "c4",
     categoryName: "Électronique",
@@ -174,7 +162,7 @@ export const products: Product[] = [
     updatedAt: "2025-12-12T14:00:00Z",
   },
   {
-    id: "14",
+    id: "product-0014",
     name: "Mechanical Keyboard",
     categoryId: "c4",
     categoryName: "Électronique",
@@ -188,7 +176,7 @@ export const products: Product[] = [
     updatedAt: "2025-12-12T15:00:00Z",
   },
   {
-    id: "15",
+    id: "product-0015",
     name: "Office Notebook",
     categoryId: "c9",
     categoryName: "Bureau",
@@ -202,7 +190,7 @@ export const products: Product[] = [
     updatedAt: "2025-12-12T16:00:00Z",
   },
   {
-    id: "16",
+    id: "product-0016",
     name: "Power Bank 10000mAh",
     categoryId: "c4",
     categoryName: "Électronique",
@@ -216,7 +204,7 @@ export const products: Product[] = [
     updatedAt: "2025-12-12T17:00:00Z",
   },
   {
-    id: "17",
+    id: "product-0017",
     name: "Men Casual Shirt",
     categoryId: "c8",
     categoryName: "Vêtements",
@@ -230,7 +218,7 @@ export const products: Product[] = [
     updatedAt: "2025-12-12T18:00:00Z",
   },
   {
-    id: "18",
+    id: "product-0018",
     name: "Electric Kettle",
     categoryId: "c5",
     categoryName: "Maison",
@@ -244,7 +232,7 @@ export const products: Product[] = [
     updatedAt: "2025-12-12T19:00:00Z",
   },
   {
-    id: "19",
+    id: "product-0019",
     name: "Bluetooth Earbuds",
     categoryId: "c4",
     categoryName: "Électronique",
@@ -258,7 +246,7 @@ export const products: Product[] = [
     updatedAt: "2025-12-12T20:00:00Z",
   },
   {
-    id: "20",
+    id: "product-0020",
     name: "Wall Clock",
     categoryId: "c6",
     categoryName: "Maison",

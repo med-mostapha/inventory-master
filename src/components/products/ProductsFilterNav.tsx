@@ -23,7 +23,7 @@ const ProductsFilterNav = ({
           key={id}
           onPress={() => onSelectCategory(id)}
           className={`mx-3 px-3 py-2 my-2 rounded-full flex flex-row items-center gap-2 ${
-            selectedCategory === id ? "bg-black" : "bg-zinc-100"
+            selectedCategory === id ? "bg-black/80" : "bg-zinc-100"
           }`}
         >
           <Text
@@ -34,11 +34,11 @@ const ProductsFilterNav = ({
             {name}
           </Text>
           <View
-            className={`rounded-full w-5 h-5 justify-center items-center ${
+            className={`rounded-full w-4 h-4 justify-center items-center ${
               selectedCategory === id ? "bg-white" : "bg-zinc-200"
             }`}
           >
-            <Text className="text-xs">{count}</Text>
+            <Text className="text-[9px]">{count}</Text>
           </View>
         </TouchableOpacity>
       ))}

@@ -8,10 +8,10 @@ const AddProductButton = ({ onPress }: Props) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      className="rounded-xl bg-blue-500  py-2 fixed flex flex-row px-4 items-center  justify-center"
+      className="rounded-3xl bg-transparent border-[1px] border-black/70 py-2 fixed flex flex-row px-3 items-center gap-1"
     >
-      <Text className="text-white  text-sm font-medium">Add</Text>
-      <Ionicons name="add" size={16} color={"white"} />
+      <Text className="text-black/90  text-sm font-medium">Add</Text>
+      <Ionicons name="add" size={16} color={"black"} />
     </TouchableOpacity>
   );
 };

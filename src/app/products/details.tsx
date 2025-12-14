@@ -37,7 +37,7 @@ const DetalisProductsScreen = () => {
     );
   }
   return (
-    <ScrollView className="flex-1  bg-white/80 ">
+    <ScrollView className="flex-1  bg-white/80  ">
       <View className="w-full aspect-square  overflow-hidden relative">
         {loading && (
           <Animated.View
@@ -136,7 +136,7 @@ const DetalisProductsScreen = () => {
         </View>
       </View>
       {/* Action */}
-      <View className="flex flex-row gap-2 px-2">
+      <View className="flex flex-row gap-2 px-2 mb-20">
         <PrButton
           title="Edit"
           onPress={() => {
