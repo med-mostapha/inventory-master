@@ -40,7 +40,7 @@ const LowStockList = ({ title, data }: Props) => {
       renderItem={({ item }) => (
         <TouchableOpacity
           onPress={() =>
-            router.push({
+            router.dismissTo({
               pathname: "/products/details",
               params: { id: item.id },
             })

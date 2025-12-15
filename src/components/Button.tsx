@@ -22,15 +22,3 @@ const Button = ({ title, onPress, thems = "first" }: ButtonProps) => {
 };
 
 export default Button;
-
-// const styles = StyleSheet.create({
-//   button: {
-//     color: "white",
-//     fontWeight: "bold",
-//     borderRadius: 10,
-//     width: "90%",
-//     textAlign: "center",
-//     paddingVertical: 10,
-//     marginVertical: 2,
-//   },
-// });

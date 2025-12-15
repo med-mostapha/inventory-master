@@ -3,11 +3,10 @@ import { Product } from "@/src/types/product";
 import { Ionicons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
-import { Alert, Animated, Image, ScrollView, Text, View } from "react-native";
-import PrButton from "./PrButton";
+import { Animated, Image, ScrollView, Text, View } from "react-native";
+import PrButton from "../../components/products/PrButton";
 
 const DetalisProductsScreen = () => {
-  // const testimageurl = require("../../../assets/products/test.jpg");
   const params = useLocalSearchParams<{ id: string }>();
   const item: Product | undefined = products.find((p) => p.id === params.id);
 
@@ -146,29 +145,7 @@ const DetalisProductsScreen = () => {
             });
           }}
         />
-        <PrButton
-          title="delete"
-          thems={"delete"}
-          onPress={() => {
-            Alert.alert(
-              "Delete",
-              `delete product ${item.name}`,
-              [
-                {
-                  text: "Cancel",
-                  onPress: () => console.log("Cancel Pressed"),
-                  style: "cancel",
-                },
-                {
-                  text: "delete",
-                  onPress: () => router.back(),
-                  style: "destructive",
-                },
-              ],
-              { cancelable: true }
-            );
-          }}
-        />
+        <PrButton title="Delete" thems={"delete"} onPress={() => {}} />
       </View>
     </ScrollView>
   );

@@ -3,6 +3,7 @@ import Header from "@/src/components/dashboard/Header";
 import LowStockList from "@/src/components/dashboard/LowStockList";
 import SummaryCard from "@/src/components/dashboard/SummaryCard";
 import { analytics } from "@/src/utils/detailedAnalysis";
+import { router } from "expo-router";
 import { ScrollView, View } from "react-native";
 import colors from "tailwindcss/colors";
 
@@ -18,6 +19,7 @@ export default function Index() {
           result={analytics.totalProducts}
           iconName={"file-tray-stacked-outline"}
           color={colors.violet[600]}
+          //
         />
         <SummaryCard
           title={"Gategoris"}
@@ -37,6 +39,7 @@ export default function Index() {
           result={analytics.lowStockCount}
           iconName={"trending-down-sharp"}
           color={colors.red[500]}
+          onPress={() => router.push("/modal")}
         />
         <SummaryCard
           title={"Total products prices"}
