@@ -7,7 +7,7 @@ export const products: Product[] = [
     categoryId: "c1",
     categoryName: "Shoes",
     price: 79.99,
-    quantity: 12,
+    quantity: 3,
     image:
       "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=",
     description: "Elegant white shoe.",
@@ -85,7 +85,7 @@ export const products: Product[] = [
     categoryId: "c4",
     categoryName: "Electronics",
     price: 129.99,
-    quantity: 8,
+    quantity: 3,
     image:
       "https://images.pexels.com/photos/3394659/pexels-photo-3394659.jpeg?auto=compress&cs=tinysrgb&w=",
     description: "Comfortable wireless headphones.",
@@ -139,7 +139,7 @@ export const products: Product[] = [
     categoryId: "c2",
     categoryName: "Accessoires",
     price: 1300,
-    quantity: 20,
+    quantity: 2,
     image:
       "https://images.pexels.com/photos/4452342/pexels-photo-4452342.jpeg?auto=compress&cs=tinysrgb&w=",
     description:

@@ -2,7 +2,9 @@ import CharView from "@/src/components/dashboard/CharView";
 import Header from "@/src/components/dashboard/Header";
 import LowStockList from "@/src/components/dashboard/LowStockList";
 import SummaryCard from "@/src/components/dashboard/SummaryCard";
+import { data } from "@/src/utils/detailedAnalysis";
 import { ScrollView, View } from "react-native";
+import colors from "tailwindcss/colors";
 
 export default function Index() {
   return (
@@ -12,29 +14,36 @@ export default function Index() {
       {/* <Text className=" text-2xl font-bold">Dashboard home Screen</Text> */}
       <View className="flex-row flex-wrap gap-3">
         <SummaryCard
-          title={"Total"}
-          result={230}
-          iconName={"home"}
-          color="#0284c7"
+          title={"Products"}
+          result={data.totalProducts}
+          iconName={"file-tray-stacked-outline"}
+          color={colors.sky[600]}
         />
         <SummaryCard
-          title={"Low price"}
-          result={65}
-          iconName={"play"}
-          color="orange"
+          title={"Gategoris"}
+          result={data.totalGategoris}
+          iconName={"pricetags-outline"}
+          color={colors.green[600]}
         />
+
         <SummaryCard
-          title={"Total cars"}
-          result={54}
-          iconName={"information-circle-outline"}
-          color="green"
-        />
-        <SummaryCard
-          title={"Avrege "}
-          result={87.78}
-          avrege={true}
+          title={"Total stock"}
+          result={data.totalStock}
           iconName={"arrow-back-outline"}
           color="red"
+        />
+        <SummaryCard
+          title={"Low stock"}
+          result={data.lowStockCount}
+          iconName={"trending-down-outline"}
+          color={colors.red[500]}
+        />
+        <SummaryCard
+          title={"Total products prices"}
+          result={data.totalPrice}
+          iconName={"trending-down-outline"}
+          color={colors.red[500]}
+          unit={"MRU"}
         />
       </View>
       {/* Chart */}
