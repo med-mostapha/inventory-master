@@ -1,8 +1,15 @@
+import { Product } from "@/src/types/product";
 import { Entypo, Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import React, { useState } from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 
-const LowStockList = () => {
+type Props = {
+  title: string;
+  data: Product[];
+};
+
+const LowStockList = ({ title, data }: Props) => {
   const lowProducts = [
     {
       id: 1,
@@ -22,14 +29,24 @@ const LowStockList = () => {
   ];
   const [showLowList, setShowLowList] = useState(false);
 
+  if (!data) return null;
+
   return (
     <FlatList
-      className=" mx-1 px-3 py-2 rounded-2xl bg-white shadow-inner shadow-gray-300 mb-8 "
-      data={showLowList ? lowProducts : []}
+      className=" mx-1 px-3 py-2 rounded-2xl bg-white  shadow-gray-300 mb-8 "
+      data={showLowList ? data : []}
       scrollEnabled={false}
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
-        <TouchableOpacity className="flex flex-row justify-between p-4 rounded-xl border-b-[1px] border-zinc-100">
+        <TouchableOpacity
+          onPress={() =>
+            router.push({
+              pathname: "/products/details",
+              params: { id: item.id },
+            })
+          }
+          className="flex flex-row justify-between p-4 rounded-xl border-b-[1px] border-zinc-100"
+        >
           <Text className="">{item.name}</Text>
           <View className="flex flex-row gap-2 items-center">
             <Text>{item.quantity}</Text>
@@ -42,7 +59,7 @@ const LowStockList = () => {
           onPress={() => setShowLowList(!showLowList)}
           className=" p-4 text-xl flex flex-row justify-between items-center text-black/80 font-medium "
         >
-          <Text>Low Quantity</Text>
+          <Text>{title}</Text>
           <Entypo
             name={showLowList ? "chevron-down" : "chevron-right"}
             size={22}

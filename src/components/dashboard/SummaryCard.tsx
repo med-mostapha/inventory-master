@@ -1,11 +1,12 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useRef, useState } from "react";
-import { Animated, Text, View } from "react-native";
+import { Animated, Text, TouchableOpacity, View } from "react-native";
 
 type Props = {
   title: string;
   result: number;
   iconName: keyof typeof Ionicons.glyphMap;
+  onPress?: () => void;
   color?: string;
   unit?: string;
   size?: number;
@@ -15,6 +16,7 @@ const SummaryCard = ({
   title,
   result,
   iconName,
+  onPress,
   unit = "",
   color = "gray",
   size = 24,
@@ -41,7 +43,10 @@ const SummaryCard = ({
   }, []);
 
   return (
-    <View className="bg-white w-5/12 flex-grow rounded-2xl flex flex-row items-center justify-between px-6 py-5 shadow-inner shadow-gray-200">
+    <TouchableOpacity
+      onPress={onPress}
+      className="bg-white w-5/12 flex-grow rounded-2xl flex flex-row items-center justify-between px-6 py-5 shadow-inner shadow-gray-200"
+    >
       <Ionicons
         name={iconName}
         size={size}
@@ -55,7 +60,7 @@ const SummaryCard = ({
         </View>
         <Text className="text-sm text-gray-500">{title}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

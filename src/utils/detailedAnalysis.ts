@@ -26,10 +26,26 @@ export const analytics = {
       )
       .toFixed(2)
   ),
+  LowProductsStock: products.filter((p) => p.quantity <= 5),
 };
 
 export const categoriesLabels: string[] = categories.map((cat: Categorie) =>
   cat.name.trim()
+);
+
+const getCategoryTotalStock = (categoryName: string) => {
+  const total = products.reduce(
+    (sum: number, product: Product) =>
+      product.categoryName?.trim() === categoryName
+        ? sum + product.quantity
+        : sum,
+    0
+  );
+
+  return total;
+};
+export const categoriesStock: number[] = categoriesLabels.map(
+  getCategoryTotalStock
 );
 
 export const getCategoryTotalPrice = (categoryName: string): number => {
@@ -43,7 +59,6 @@ export const getCategoryTotalPrice = (categoryName: string): number => {
 
   return Number(total.toFixed(2));
 };
-
 export const categoriesData: number[] = categoriesLabels.map(
   getCategoryTotalPrice
 );

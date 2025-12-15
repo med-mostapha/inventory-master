@@ -54,8 +54,10 @@ export default function Index() {
 
       {/* Low List */}
       <View className="shadow-xl shadow-black/10">
-        <LowStockList />
-        <LowStockList />
+        <LowStockList
+          title={"Low Quantity Pruducts"}
+          data={analytics.LowProductsStock}
+        />
       </View>
     </ScrollView>
   );
