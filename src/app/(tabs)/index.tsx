@@ -8,7 +8,7 @@ import colors from "tailwindcss/colors";
 
 export default function Index() {
   return (
-    <ScrollView className="py-1 bg-white/80">
+    <ScrollView className="p-2 bg-white/80">
       {/* Header */}
       <Header />
       {/* <Text className=" text-2xl font-bold">Dashboard home Screen</Text> */}
@@ -17,32 +17,32 @@ export default function Index() {
           title={"Products"}
           result={data.totalProducts}
           iconName={"file-tray-stacked-outline"}
-          color={colors.sky[600]}
+          color={colors.violet[600]}
         />
         <SummaryCard
           title={"Gategoris"}
           result={data.totalGategoris}
           iconName={"pricetags-outline"}
-          color={colors.green[600]}
+          color={colors.stone[600]}
         />
-
+        {/* <ion-icon name="invert-mode-outline"></ion-icon> */}
         <SummaryCard
           title={"Total stock"}
           result={data.totalStock}
-          iconName={"arrow-back-outline"}
-          color="red"
+          iconName={"invert-mode-outline"}
+          color={colors.orange[400]}
         />
         <SummaryCard
           title={"Low stock"}
           result={data.lowStockCount}
-          iconName={"trending-down-outline"}
+          iconName={"trending-down-sharp"}
           color={colors.red[500]}
         />
         <SummaryCard
           title={"Total products prices"}
           result={data.totalPrice}
-          iconName={"trending-down-outline"}
-          color={colors.red[500]}
+          iconName={"cash-outline"}
+          color={colors.green[600]}
           unit={"MRU"}
         />
       </View>
