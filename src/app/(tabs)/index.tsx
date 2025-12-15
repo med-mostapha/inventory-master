@@ -14,7 +14,7 @@ export default function Index() {
         <SummaryCard
           title={"Total"}
           result={230}
-          iconName={"car-outline"}
+          iconName={"home"}
           color="#0284c7"
         />
         <SummaryCard
