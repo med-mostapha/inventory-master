@@ -6,7 +6,7 @@ import { categories } from "@/src/data/categoris";
 import { products } from "@/src/data/products";
 import { useRouter } from "expo-router";
 import React, { useMemo, useState } from "react";
-import { FlatList, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 
 export default function ProductScreen() {
   const router = useRouter();
@@ -63,7 +63,7 @@ export default function ProductScreen() {
       {/* <Text className="text-2xl left-3 font-bold">Product List</Text> */}
       <View className="flex-1 justify-center ">
         <FlatList
-          className="p-3"
+          className="p-2"
           data={filteredProducts}
           numColumns={2}
           keyExtractor={(item) => item.id}
@@ -80,6 +80,11 @@ export default function ProductScreen() {
               }
             />
           )}
+          ListEmptyComponent={
+            <View className="flex-1 items-center">
+              <Text className="text-zinc-500/50 ">No products found!</Text>
+            </View>
+          }
         />
       </View>
     </View>
