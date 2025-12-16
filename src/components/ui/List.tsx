@@ -24,7 +24,7 @@ const List = ({ title, data }: Props) => {
           onPress={() =>
             router.dismissTo({
               pathname: "/products/details",
-              params: { id: item.id },
+              params: { id: item.id, name: item.name },
             })
           }
           className="flex flex-row justify-between p-4 rounded-xl border-b-[1px] border-zinc-100"
@@ -39,12 +39,12 @@ const List = ({ title, data }: Props) => {
       ListHeaderComponent={
         <View className=" px-4 py-6 text-xl flex flex-row justify-between items-center text-black/80 font-medium ">
           <Text className="font-medium">{title}</Text>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             className="bg-zinc-50 p-1 rounded-full"
             onPress={() => router.back()}
           >
             <Ionicons name="close" size={24} color={"black"} />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       }
     />

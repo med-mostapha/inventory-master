@@ -18,7 +18,7 @@ function HeaderCard({ title, icon, NavigateTo }: headerCardProps) {
   return (
     <TouchableOpacity
       className={
-        "bg-white mx-1 shadow-inner shadow-gray-200 rounded-xl px-2 py-5 flex-1 items-center"
+        "bg-white mx-1 rounded-xl px-2 py-5 flex-1 items-center elevation-lg shadow-sm"
       }
       onPress={handleOnPress}
     >

@@ -28,7 +28,7 @@ const ProductCard = ({ product, onPress }: Props) => {
 
   return (
     <TouchableOpacity
-      className="bg-white p-2 mb-2 w-1/2 rounded-2xl shadow-inner shadow-black/15"
+      className="bg-white p-2 mb-2 w-1/2 rounded-2xl elevation-lg shadow-sm"
       onPress={onPress}
     >
       <View className="w-full aspect-square rounded-xl overflow-hidden relative">

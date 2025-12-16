@@ -39,7 +39,7 @@ export default function Index() {
           result={analytics.lowStockCount}
           iconName={"trending-down-sharp"}
           color={colors.red[500]}
-          onPress={() => router.push("/modal")}
+          onPress={() => router.push("/fastview")}
         />
         <SummaryCard
           title={"Total products prices"}

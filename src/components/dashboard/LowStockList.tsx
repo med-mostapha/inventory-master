@@ -16,7 +16,7 @@ const LowStockList = ({ title, data }: Props) => {
 
   return (
     <FlatList
-      className=" mx-1 px-3 py-2 rounded-2xl bg-white  shadow-gray-300 mb-8 "
+      className=" mx-1 px-3 py-2 rounded-2xl bg-white  elevation-lg shadow-sm"
       data={showLowList ? data : []}
       scrollEnabled={false}
       keyExtractor={(item) => item.id.toString()}

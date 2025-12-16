@@ -45,7 +45,7 @@ const SummaryCard = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      className="bg-white w-5/12 flex-grow rounded-2xl flex flex-row items-center justify-between px-6 py-5 shadow-inner shadow-gray-200"
+      className="bg-white w-5/12 flex-grow rounded-2xl flex flex-row items-center justify-between px-6 py-5 elevation-lg shadow-sm"
     >
       <Ionicons
         name={iconName}

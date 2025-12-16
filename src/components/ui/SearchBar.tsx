@@ -23,7 +23,7 @@ const SearchBar = ({ placeholder, onChange }: Props) => {
   };
 
   return (
-    <View className="rounded-full bg-white shadow-inner shadow-black/15 px-4 flex flex-row items-center  my-2 ">
+    <View className="rounded-full bg-white px-4 flex flex-row items-center  my-2 elevation-lg shadow-sm">
       <Ionicons name="search" size={18} color={"gray"} />
       <TextInput
         ref={inputRef}

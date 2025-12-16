@@ -12,24 +12,35 @@ export default function RootLayout() {
       <StatusBar />
       <Stack
         screenOptions={{
-          headerShown: true,
           animation: "slide_from_right",
+          headerTitleAlign: "center",
         }}
       >
         <Stack.Screen
-          name="products/add"
-          options={{ headerShown: true, title: "Add Product" }}
+          name="(tabs)"
+          options={{ headerShown: false, title: "Add Product" }}
         />
+        {/* Products */}
+        <Stack.Screen name="products/add" options={{ title: "Add Product" }} />
         <Stack.Screen
           name="products/edit"
-          options={{ headerShown: true, title: "Edit Product" }}
+          options={{ title: "Edit Product" }}
         />
         <Stack.Screen
           name="products/details"
-          options={{ headerShown: true, title: "Product Detalis" }}
+          options={({ route }) => ({
+            title: (route.params as any)?.name ?? "Details",
+          })}
         />
+
+        {/* Categories */}
         <Stack.Screen
-          name="modal"
+          name="categories/add"
+          options={{ title: "Add Category" }}
+        />
+
+        <Stack.Screen
+          name="fastview"
           options={{ presentation: "modal", title: "lowlist" }}
         />
       </Stack>

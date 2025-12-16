@@ -9,18 +9,11 @@ export default function TabsLayout() {
         headerShown: true,
         tabBarActiveTintColor: "#007AFF",
         tabBarInactiveTintColor: "#999",
+        headerTitleAlign: "center",
 
         headerRight: () => (
           <Ionicons className="mr-3" name="notifications-outline" size={22} />
         ),
-        // headerLeft: () => (
-        //   <TouchableOpacity
-        //     onPress={() => router.push("/profile")}
-        //     className="bg-slate-600 ml-3 w-9 h-9 rounded-full flex items-center justify-center"
-        //   >
-        //     <Ionicons name="person-outline" size={20} color={"white"} />
-        //   </TouchableOpacity>
-        // ),
       }}
     >
       {/* Dashboard */}
