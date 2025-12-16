@@ -48,7 +48,7 @@ const ProductCard = ({ product, onPress }: Props) => {
         />
       </View>
 
-      <View className="mt-2 flex-1 justify-between">
+      <View className="mt-2 flex-1 p-2 justify-between">
         <View className="gap-1">
           <Text className="font-bold text-black/80" numberOfLines={1}>
             {product.name}
@@ -58,11 +58,14 @@ const ProductCard = ({ product, onPress }: Props) => {
           </Text>
         </View>
 
-        <View className="mt-2">
+        <View className="mt-2 flex gap-1">
           <Text
             className={`${product.quantity <= 5 ? "text-red-500" : ""} text-sm font-semibold text-black/80`}
           >
             Quantity: {product.quantity}
+          </Text>
+          <Text className="text-sm font-semibold text-black/80">
+            Price: {product.price} MRU
           </Text>
         </View>
       </View>

@@ -1,23 +1,22 @@
 import { Product } from "@/src/types/product";
-import { Entypo, Ionicons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-import React, { useState } from "react";
+import React from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 
 type Props = {
   title: string;
   data: Product[];
+  listType?: string;
 };
 
-const LowStockList = ({ title, data }: Props) => {
-  const [showLowList, setShowLowList] = useState(false);
-
+const List = ({ title, data }: Props) => {
   if (!data) return null;
 
   return (
     <FlatList
       className=" mx-1 px-3 py-2 rounded-2xl bg-white  shadow-gray-300 mb-8 "
-      data={showLowList ? data : []}
+      data={data}
       scrollEnabled={false}
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
@@ -38,20 +37,18 @@ const LowStockList = ({ title, data }: Props) => {
         </TouchableOpacity>
       )}
       ListHeaderComponent={
-        <TouchableOpacity
-          onPress={() => setShowLowList(!showLowList)}
-          className=" p-4 text-xl flex flex-row justify-between items-center text-black/80 font-medium "
-        >
+        <View className=" px-4 py-6 text-xl flex flex-row justify-between items-center text-black/80 font-medium ">
           <Text className="font-medium">{title}</Text>
-          <Entypo
-            name={showLowList ? "chevron-down" : "chevron-right"}
-            size={22}
-            color="gray"
-          />
-        </TouchableOpacity>
+          <TouchableOpacity
+            className="bg-zinc-50 p-1 rounded-full"
+            onPress={() => router.back()}
+          >
+            <Ionicons name="close" size={24} color={"black"} />
+          </TouchableOpacity>
+        </View>
       }
     />
   );
 };
 
-export default LowStockList;
+export default List;

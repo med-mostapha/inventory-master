@@ -1,7 +1,6 @@
-import { Ionicons } from "@expo/vector-icons";
 import { Stack, useRouter } from "expo-router";
 import React from "react";
-import { StatusBar, TouchableOpacity } from "react-native";
+import { StatusBar } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import "../global.css";
 
@@ -13,14 +12,8 @@ export default function RootLayout() {
       <StatusBar />
       <Stack
         screenOptions={{
-          headerShown: false,
+          headerShown: true,
           animation: "slide_from_right",
-
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => router.back()}>
-              <Ionicons className="mr-3" name="arrow-back" size={24} />
-            </TouchableOpacity>
-          ),
         }}
       >
         <Stack.Screen
@@ -35,7 +28,10 @@ export default function RootLayout() {
           name="products/details"
           options={{ headerShown: true, title: "Product Detalis" }}
         />
-        <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+        <Stack.Screen
+          name="modal"
+          options={{ presentation: "modal", title: "lowlist" }}
+        />
       </Stack>
     </SafeAreaProvider>
   );
