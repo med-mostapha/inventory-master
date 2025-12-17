@@ -17,7 +17,7 @@ export default function Index() {
         <SummaryCard
           title={"Products"}
           result={analytics.totalProducts}
-          iconName={"file-tray-stacked-outline"}
+          iconName={"cube-outline"}
           color={colors.violet[600]}
           onPress={() =>
             router.push({
