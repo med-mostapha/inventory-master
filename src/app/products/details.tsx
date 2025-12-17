@@ -145,7 +145,7 @@ const DetalisProductsScreen = () => {
             });
           }}
         />
-        <PrButton title="Delete" thems={"delete"} onPress={() => {}} />
+        <PrButton title="Delete" thems={"destructive"} onPress={() => {}} />
       </View>
     </ScrollView>
   );

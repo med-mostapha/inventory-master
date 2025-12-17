@@ -1,10 +1,11 @@
-import React from "react";
-import { Text, View } from "react-native";
+import ProductsForm from "@/src/components/products/ProductsForm";
+import { router } from "expo-router";
+import { View } from "react-native";
 
 const AddProductsScreen = () => {
   return (
-    <View className="flex-1 items-center justify-center">
-      <Text className="text-black font-bold text-xl">Add Product screen</Text>
+    <View className="flex-1 p-4 bg-white/90">
+      <ProductsForm onSubmit={() => router.back()} />
     </View>
   );
 };

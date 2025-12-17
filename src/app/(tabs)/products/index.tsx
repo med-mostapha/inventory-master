@@ -82,7 +82,9 @@ export default function ProductScreen() {
           )}
           ListEmptyComponent={
             <View className="flex-1 items-center">
-              <Text className="text-zinc-500/50 ">No products found!</Text>
+              <Text className="text-zinc-500/50 ">
+                No results match your search
+              </Text>
             </View>
           }
         />

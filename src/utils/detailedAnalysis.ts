@@ -2,6 +2,7 @@ import { products } from "@/src/data/products";
 import { categories } from "../data/categoris";
 
 import { Categorie } from "../types/  categori";
+import { enListTypes } from "../types/enums";
 import { Product } from "../types/product";
 
 export const analytics = {
@@ -26,40 +27,33 @@ export const analytics = {
       )
       .toFixed(2)
   ),
-  // LowProductsStock: products
-  // .filter((p) => p.quantity <= 5)
-  // .map((p) => ({
-  //   id: p.id,
-  //   name: p.name,
-  //   value: p.quantity
-  // })),
 
-  // totalPriceList  lowStockList  totalStockList categoris products
+  // type = {totalPriceList  ,lowStockList , totalStockList, categoris ,products}
 
   getList(type: string) {
     switch (type) {
-      case "products":
-        return products.map((p) => ({
-          id: p.id,
-          name: p.name,
-          value: p.price,
-        }));
-
-      case "categoris":
-        return categories.map((c) => ({
-          id: c.id,
-          name: c.name,
-          value: c.count,
-        }));
-
-      case "totalStockList":
+      case enListTypes.Products:
         return products.map((p) => ({
           id: p.id,
           name: p.name,
           value: p.quantity,
         }));
 
-      case "lowStockList":
+      case enListTypes.Categories:
+        return categories.map((c) => ({
+          id: c.id,
+          name: c.name,
+          value: c.count,
+        }));
+
+      case enListTypes.TotalStock:
+        return products.map((p) => ({
+          id: p.id,
+          name: p.name,
+          value: p.quantity,
+        }));
+
+      case enListTypes.LowStockProducts:
         return products
           .filter((p) => p.quantity <= 5)
           .map((p) => ({
@@ -68,7 +62,7 @@ export const analytics = {
             value: p.quantity,
           }));
 
-      case "totalPriceList":
+      case enListTypes.TotalPriceList:
         return products.map((p) => ({
           id: p.id,
           name: p.categoryName ?? "Categoris",

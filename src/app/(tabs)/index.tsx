@@ -1,6 +1,7 @@
 import CharView from "@/src/components/dashboard/CharView";
 import Header from "@/src/components/dashboard/Header";
 import SummaryCard from "@/src/components/dashboard/SummaryCard";
+import { enListTypes } from "@/src/types/enums";
 import { analytics } from "@/src/utils/detailedAnalysis";
 import { router } from "expo-router";
 import { ScrollView, View } from "react-native";
@@ -19,7 +20,10 @@ export default function Index() {
           iconName={"file-tray-stacked-outline"}
           color={colors.violet[600]}
           onPress={() =>
-            router.push({ pathname: "/fastview", params: { type: "products" } })
+            router.push({
+              pathname: "/fastview",
+              params: { type: enListTypes.Products },
+            })
           }
         />
         <SummaryCard
@@ -30,7 +34,7 @@ export default function Index() {
           onPress={() =>
             router.push({
               pathname: "/fastview",
-              params: { type: "categoris" },
+              params: { type: enListTypes.Categories },
             })
           }
         />
@@ -43,7 +47,7 @@ export default function Index() {
           onPress={() =>
             router.push({
               pathname: "/fastview",
-              params: { type: "totalStockList" },
+              params: { type: enListTypes.TotalStock },
             })
           }
         />
@@ -55,7 +59,7 @@ export default function Index() {
           onPress={() =>
             router.push({
               pathname: "/fastview",
-              params: { type: "lowStockList" },
+              params: { type: enListTypes.LowStockProducts },
             })
           }
         />
@@ -68,7 +72,7 @@ export default function Index() {
           onPress={() =>
             router.push({
               pathname: "/fastview",
-              params: { type: "totalPriceList" },
+              params: { type: enListTypes.TotalPriceList },
             })
           }
         />

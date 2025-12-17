@@ -1,31 +1,43 @@
-import { Ionicons } from "@expo/vector-icons";
+import { styles } from "@/src/styles/ProductsForm";
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
+import colors from "tailwindcss/colors";
 
 type Props = {
   title: string;
-  thems?: "delete";
+  thems?: "destructive" | "secodery";
   onPress: () => void;
 };
 
 const PrButton = ({ title, thems, onPress }: Props) => {
-  if (thems === "delete") {
+  if (thems === "destructive") {
     return (
       <TouchableOpacity
         onPress={onPress}
-        className="bg-red-500/95 py-3 flex flex-row gap-2 rounded-md flex-grow items-center justify-center"
+        style={[{ ...styles.button, backgroundColor: colors.red[600] }]}
       >
-        <Text className="text-white font-medium text-center">{title}</Text>
-        <Ionicons name="trash" size={16} color={"white"} />
+        <Text style={styles.text}>{title}</Text>
       </TouchableOpacity>
     );
   }
   return (
     <TouchableOpacity
       onPress={onPress}
-      className="bg-blue-500/95  py-2 rounded-md flex-grow items-center justify-center"
+      style={
+        thems !== "secodery"
+          ? styles.button
+          : [{ ...styles.button, backgroundColor: colors.gray[200] }]
+      }
     >
-      <Text className="text-white font-medium text-center">{title}</Text>
+      <Text
+        style={
+          thems !== "secodery"
+            ? styles.text
+            : [{ ...styles.text, color: "black" }]
+        }
+      >
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 };
