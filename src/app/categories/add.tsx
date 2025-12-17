@@ -12,3 +12,4 @@ const AddCategoriesScreen = () => {
 };
 
 export default AddCategoriesScreen;
+// Create ProductsForm and style Products/add screen
