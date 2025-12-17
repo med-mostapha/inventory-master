@@ -13,8 +13,8 @@ function IconButton({ icon, label, onPress }: Props) {
       className="flex flex-row gap-3 border-[1px] border-gray-300 bg-gray-200/50  p-4 rounded-xl justify-center items-center"
       onPress={onPress}
     >
-      <MaterialIcons name={icon} size={24} color={"black"}></MaterialIcons>
-      <Text className="black">{label}</Text>
+      <MaterialIcons name={icon} size={22} color={"black"}></MaterialIcons>
+      <Text className="font-medium">{label}</Text>
     </TouchableOpacity>
   );
 }

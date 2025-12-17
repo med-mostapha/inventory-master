@@ -45,7 +45,7 @@ const FastViewScreen = () => {
   const config = listConfig[type];
 
   return (
-    <ScrollView className="flex-1 mb-10">
+    <ScrollView className="flex-1 mb-10 bg-white/90">
       <List
         title={config.title}
         itemName={config.itemName}

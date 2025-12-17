@@ -246,7 +246,7 @@ export const products: Product[] = [
     name: "Wall Clock",
     categoryId: "c6",
     categoryName: "Home",
-    price: 900,
+    price: 970,
     quantity: 16,
     image:
       "https://images.pexels.com/photos/707582/pexels-photo-707582.jpeg?auto=compress&cs=tinysrgb&w=",

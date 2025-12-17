@@ -1,6 +1,8 @@
 import { enListTypes } from "@/src/types/enums";
+import { Ionicons } from "@expo/vector-icons";
 import React from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import colors from "tailwindcss/colors";
 
 type ListItem = {
   id: string;
@@ -17,6 +19,39 @@ type Props = {
 };
 
 const List = ({ title, data, itemName, itemValue, type }: Props) => {
+  const unit = (type: enListTypes) => {
+    switch (type) {
+      case enListTypes.TotalPriceList:
+        return <Text className="text-gray-700">MRU</Text>;
+
+      case enListTypes.Products:
+        return (
+          <Ionicons name="cube-outline" color={colors.gray[400]} size={16} />
+        );
+
+      case enListTypes.Categories:
+        return (
+          <Ionicons
+            name="file-tray-stacked-outline"
+            color={colors.gray[400]}
+            size={16}
+          />
+        );
+      // case enListTypes.TotalStock:
+      case enListTypes.LowStockProducts:
+        return (
+          <Ionicons
+            name="trending-down-sharp"
+            color={colors.red[500]}
+            size={16}
+          />
+        );
+
+      default:
+        break;
+    }
+  };
+
   if (!data || data.length === 0) {
     return (
       <View className="flex-1 items-center h-screen justify-center bg-white/80">
@@ -38,7 +73,7 @@ const List = ({ title, data, itemName, itemValue, type }: Props) => {
           <Text className="text-base text-black">{item.name}</Text>
           <View className="flex-row items-center gap-2">
             <Text className="text-base text-gray-700">{item.value}</Text>
-            {type === enListTypes.TotalPriceList && <Text>MRU</Text>}
+            {type && unit(type)}
           </View>
         </TouchableOpacity>
       )}
