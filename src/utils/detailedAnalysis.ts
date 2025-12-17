@@ -26,7 +26,59 @@ export const analytics = {
       )
       .toFixed(2)
   ),
-  LowProductsStock: products.filter((p) => p.quantity <= 5),
+  // LowProductsStock: products
+  // .filter((p) => p.quantity <= 5)
+  // .map((p) => ({
+  //   id: p.id,
+  //   name: p.name,
+  //   value: p.quantity
+  // })),
+
+  // totalPriceList  lowStockList  totalStockList categoris products
+
+  getList(type: string) {
+    switch (type) {
+      case "products":
+        return products.map((p) => ({
+          id: p.id,
+          name: p.name,
+          value: p.price,
+        }));
+
+      case "categoris":
+        return categories.map((c) => ({
+          id: c.id,
+          name: c.name,
+          value: c.count,
+        }));
+
+      case "totalStockList":
+        return products.map((p) => ({
+          id: p.id,
+          name: p.name,
+          value: p.quantity,
+        }));
+
+      case "lowStockList":
+        return products
+          .filter((p) => p.quantity <= 5)
+          .map((p) => ({
+            id: p.id,
+            name: p.name,
+            value: p.quantity,
+          }));
+
+      case "totalPriceList":
+        return products.map((p) => ({
+          id: p.id,
+          name: p.categoryName ?? "Categoris",
+          value: Number((p.price * p.quantity).toFixed(2)),
+        }));
+
+      default:
+        return [];
+    }
+  },
 };
 
 export const categoriesLabels: string[] = categories.map((cat: Categorie) =>

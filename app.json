@@ -1,15 +1,17 @@
 {
   "expo": {
-    "name": "inventoryapp",
+    "name": "Inventory",
     "slug": "inventoryapp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/checklist.png",
     "scheme": "wahterapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yourname.inventoryapp",
+      "icon": "./assets/images/checklist.png"
     },
     "android": {
       "adaptiveIcon": {

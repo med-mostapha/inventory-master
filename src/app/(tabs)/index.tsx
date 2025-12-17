@@ -1,6 +1,5 @@
 import CharView from "@/src/components/dashboard/CharView";
 import Header from "@/src/components/dashboard/Header";
-import LowStockList from "@/src/components/dashboard/LowStockList";
 import SummaryCard from "@/src/components/dashboard/SummaryCard";
 import { analytics } from "@/src/utils/detailedAnalysis";
 import { router } from "expo-router";
@@ -19,13 +18,21 @@ export default function Index() {
           result={analytics.totalProducts}
           iconName={"file-tray-stacked-outline"}
           color={colors.violet[600]}
-          //
+          onPress={() =>
+            router.push({ pathname: "/fastview", params: { type: "products" } })
+          }
         />
         <SummaryCard
-          title={"Gategoris"}
+          title={"Categoris"}
           result={analytics.totalCategories}
           iconName={"pricetags-outline"}
           color={colors.stone[600]}
+          onPress={() =>
+            router.push({
+              pathname: "/fastview",
+              params: { type: "categoris" },
+            })
+          }
         />
         {/* <ion-icon name="invert-mode-outline"></ion-icon> */}
         <SummaryCard
@@ -33,20 +40,37 @@ export default function Index() {
           result={analytics.totalStock}
           iconName={"invert-mode-outline"}
           color={colors.orange[400]}
+          onPress={() =>
+            router.push({
+              pathname: "/fastview",
+              params: { type: "totalStockList" },
+            })
+          }
         />
         <SummaryCard
           title={"Low stock"}
           result={analytics.lowStockCount}
           iconName={"trending-down-sharp"}
           color={colors.red[500]}
-          onPress={() => router.push("/fastview")}
+          onPress={() =>
+            router.push({
+              pathname: "/fastview",
+              params: { type: "lowStockList" },
+            })
+          }
         />
         <SummaryCard
-          title={"Total products prices"}
+          title={"Total price of products "}
           result={analytics.totalPrice}
           iconName={"cash-outline"}
           color={colors.green[600]}
           unit={"MRU"}
+          onPress={() =>
+            router.push({
+              pathname: "/fastview",
+              params: { type: "totalPriceList" },
+            })
+          }
         />
       </View>
       {/* Chart */}
@@ -56,12 +80,12 @@ export default function Index() {
       </ScrollView>
 
       {/* Low List */}
-      <View className="shadow-xl shadow-black/10">
+      {/* <View className="shadow-xl shadow-black/10">
         <LowStockList
           title={"Low Quantity Pruducts"}
           data={analytics.LowProductsStock}
         />
-      </View>
+      </View> */}
     </ScrollView>
   );
 }

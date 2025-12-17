@@ -1,12 +1,10 @@
-import { Product } from "@/src/types/product";
-import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import React from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 
 type Props = {
   title: string;
-  data: Product[];
+  data: { id: string; name: string; value: number }[];
   listType?: string;
 };
 
@@ -31,8 +29,8 @@ const List = ({ title, data }: Props) => {
         >
           <Text className="">{item.name}</Text>
           <View className="flex flex-row gap-2 items-center">
-            <Text>{item.quantity}</Text>
-            <Ionicons name="arrow-down" size={14} color={"red"} />
+            <Text>{item.value}</Text>
+            {/* <Ionicons name="arrow-down" size={14} color={"red"} /> */}
           </View>
         </TouchableOpacity>
       )}
