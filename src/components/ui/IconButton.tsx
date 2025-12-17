@@ -10,7 +10,7 @@ type Props = {
 function IconButton({ icon, label, onPress }: Props) {
   return (
     <TouchableOpacity
-      className="flex flex-row gap-3 border-2 border-gray-200 bg-gray-200/50  p-4 rounded-xl justify-center items-center"
+      className="flex flex-row gap-3 border-[1px] border-gray-300 bg-gray-200/50  p-4 rounded-xl justify-center items-center"
       onPress={onPress}
     >
       <MaterialIcons name={icon} size={24} color={"black"}></MaterialIcons>

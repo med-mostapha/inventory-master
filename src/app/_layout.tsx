@@ -40,7 +40,7 @@ export default function RootLayout() {
         {/* Categories */}
         <Stack.Screen
           name="categories/add"
-          options={{ title: "Add Category" }}
+          options={{ title: "Add Category", presentation: "modal" }}
         />
 
         <Stack.Screen

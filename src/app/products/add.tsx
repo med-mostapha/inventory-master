@@ -4,7 +4,7 @@ import { View } from "react-native";
 
 const AddProductsScreen = () => {
   return (
-    <View className="flex-1 p-4 bg-white/90">
+    <View className="flex-1  p-2 bg-white/90">
       <ProductsForm onSubmit={() => router.back()} />
     </View>
   );

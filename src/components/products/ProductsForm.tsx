@@ -5,7 +5,7 @@ import IconButton from "../ui/IconButton";
 import PrButton from "./PrButton";
 
 type Props = {
-  onSubmit: () => {};
+  onSubmit: () => void;
 };
 
 const ProductsForm = ({ onSubmit }: Props) => {
