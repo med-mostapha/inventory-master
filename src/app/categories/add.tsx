@@ -1,15 +1,13 @@
 import CategorisForm from "@/src/components/categories/CategoriesForm";
-import { router } from "expo-router";
 import React from "react";
 import { View } from "react-native";
 
 const AddCategoriesScreen = () => {
   return (
     <View className="flex-1  p-2 bg-white/90">
-      <CategorisForm onSubmit={() => router.back()} />
+      <CategorisForm />
     </View>
   );
 };
 
 export default AddCategoriesScreen;
-// Create ProductsForm and style Products/add screen

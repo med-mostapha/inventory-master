@@ -1,6 +1,7 @@
+import { Categorie } from "../types/  categori";
 import { products } from "./products";
 
-export const categories = [
+export const categories: Categorie[] = [
   {
     id: "c4",
     name: "Electronics",

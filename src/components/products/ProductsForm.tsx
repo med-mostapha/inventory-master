@@ -1,14 +1,71 @@
 import { styles } from "@/src/styles/ProductsForm";
 import { router } from "expo-router";
-import { Text, TextInput, View } from "react-native";
+import { useState } from "react";
+import { Alert, Text, TextInput, View } from "react-native";
 import IconButton from "../ui/IconButton";
 import PrButton from "./PrButton";
 
-type Props = {
-  onSubmit: () => void;
-};
+const ProductsForm = () => {
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [categories, setCategories] = useState("");
+  const [description, setDescription] = useState("");
+  const [errors, setErrors] = useState({
+    name: "",
+    price: "",
+    quantity: "",
+    image: "",
+    categories: "",
+    description: "",
+  });
 
-const ProductsForm = ({ onSubmit }: Props) => {
+  const handleSubmit = () => {
+    let valide = true;
+    let newErrors = {
+      name: "",
+      price: "",
+      quantity: "",
+      image: "",
+      categories: "",
+      description: "",
+    };
+
+    if (!name.trim()) {
+      newErrors.name = "Name is required";
+      valide;
+      false;
+    }
+
+    if (!price) {
+      newErrors.price = "Price is reuired";
+      valide = false;
+    }
+
+    if (!quantity) {
+      newErrors.quantity = "Quantity is reuired";
+      valide = false;
+    }
+
+    if (!categories) {
+      newErrors.categories = "Categories is reuired";
+      valide = false;
+    }
+
+    if (!description.trim()) {
+      newErrors.description = "Description is reuired";
+      valide = false;
+    }
+
+    setErrors(newErrors);
+
+    if (valide) {
+      Alert.alert("Success", "Product added successfully");
+
+      router.back();
+    }
+  };
+
   return (
     <View style={styles.container}>
       {/* <Text className="text-2xl text-center font-medium">Add New Products</Text> */}
@@ -18,11 +75,20 @@ const ProductsForm = ({ onSubmit }: Props) => {
           Name
         </Text>
         <TextInput
+          value={name}
+          onChangeText={setName}
+          keyboardType="ascii-capable"
           maxLength={25}
-          style={styles.input}
+          style={{
+            ...styles.input,
+            borderColor: errors.name ? "red" : styles.input.borderColor,
+          }}
           placeholder="Enter product name"
           placeholderTextColor={styles.placeholder.color}
         />
+        {errors.name ? (
+          <Text className="text-red-500 pl-1">{errors.name}</Text>
+        ) : null}
       </View>
 
       {/* two input in the same row */}
@@ -32,25 +98,41 @@ const ProductsForm = ({ onSubmit }: Props) => {
             Price
           </Text>
           <TextInput
+            value={price}
+            onChangeText={setPrice}
+            keyboardType="ascii-capable"
             maxLength={6}
-            keyboardType="numeric"
-            style={styles.input}
+            style={{
+              ...styles.input,
+              borderColor: errors.name ? "red" : styles.input.borderColor,
+            }}
             placeholder="Enter product price"
             placeholderTextColor={styles.placeholder.color}
           />
+          {errors.price ? (
+            <Text className="text-red-500 pl-1">{errors.price}</Text>
+          ) : null}
         </View>
 
-        <View style={styles.field} className="flex-grow">
+        <View style={styles.field} className="flex-grow ">
           <Text style={styles.label} className="font-medium">
             Quantity
           </Text>
           <TextInput
+            value={quantity}
+            onChangeText={setQuantity}
             maxLength={5}
             keyboardType="numeric"
-            style={styles.input}
+            style={{
+              ...styles.input,
+              borderColor: errors.name ? "red" : styles.input.borderColor,
+            }}
             placeholder="Enter product quantity"
             placeholderTextColor={styles.placeholder.color}
           />
+          {errors.quantity ? (
+            <Text className="text-red-500 pl-1">{errors.quantity}</Text>
+          ) : null}
         </View>
       </View>
 
@@ -73,11 +155,19 @@ const ProductsForm = ({ onSubmit }: Props) => {
           Categories
         </Text>
         <TextInput
+          value={categories}
+          onChangeText={setCategories}
           maxLength={25}
-          style={styles.input}
+          style={{
+            ...styles.input,
+            borderColor: errors.name ? "red" : styles.input.borderColor,
+          }}
           placeholder="Choose a category"
           placeholderTextColor={styles.placeholder.color}
         />
+        {errors.quantity ? (
+          <Text className="text-red-500 pl-1">{errors.quantity}</Text>
+        ) : null}
       </View>
 
       <View style={styles.field}>
@@ -85,15 +175,24 @@ const ProductsForm = ({ onSubmit }: Props) => {
           Description
         </Text>
         <TextInput
-          style={styles.input}
+          value={description}
+          onChangeText={setDescription}
+          style={{
+            ...styles.input,
+            borderColor: errors.name ? "red" : styles.input.borderColor,
+          }}
+          keyboardType="ascii-capable"
           maxLength={50}
           placeholder="Enter description"
           placeholderTextColor={styles.placeholder.color}
         />
+        {errors.quantity ? (
+          <Text className="text-red-500 pl-1">{errors.quantity}</Text>
+        ) : null}
       </View>
 
       <View className="flex flex-row gap-3">
-        <PrButton title={"Add"} onPress={onSubmit} />
+        <PrButton title={"Add"} onPress={handleSubmit} />
         <PrButton
           title={"Cancel"}
           thems="secodery"
