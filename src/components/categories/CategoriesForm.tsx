@@ -1,13 +1,26 @@
 import { styles } from "@/src/styles/ProductsForm";
+import { Category } from "@/src/types/  categori";
 import { router } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Alert, Text, TextInput, View } from "react-native";
 import PrButton from "../products/PrButton";
 
-const CategorisForm = () => {
+type Props = {
+  category?: Category;
+};
+
+const CategorisForm = ({ category }: Props) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [errors, setErrors] = useState({ name: "", description: "" });
+
+  useEffect(() => {
+    if (category) {
+      const { name, description, count } = category;
+      setName(name);
+      setDescription(description ?? "");
+    }
+  }, []);
 
   const handleSubmit = () => {
     let valide = true;

@@ -29,13 +29,13 @@ export default function RootLayout() {
           />
           <Stack.Screen
             name="products/edit"
-            options={{ title: "Edit Product" }}
+            options={{ title: "Edit Product", presentation: "modal" }}
           />
           <Stack.Screen
             name="products/details"
             options={({ route }) => ({
               title: (route.params as any)?.name ?? "Details",
-              presentation: "modal",
+              // presentation: "modal",
             })}
           />
 
@@ -45,6 +45,10 @@ export default function RootLayout() {
             options={{ title: "Add Category", presentation: "modal" }}
           />
 
+          <Stack.Screen
+            name="categories/edit"
+            options={{ title: "Add Category", presentation: "modal" }}
+          />
           <Stack.Screen
             name="fastview"
             options={{

@@ -1,11 +1,16 @@
 import { styles } from "@/src/styles/ProductsForm";
+import { Product } from "@/src/types/product";
 import { router } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Alert, Text, TextInput, View } from "react-native";
 import IconButton from "../ui/IconButton";
 import PrButton from "./PrButton";
 
-const ProductsForm = () => {
+type Props = {
+  product?: Product;
+};
+
+const ProductsForm = ({ product }: Props) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
@@ -19,6 +24,18 @@ const ProductsForm = () => {
     categories: "",
     description: "",
   });
+
+  useEffect(() => {
+    if (product) {
+      const { name, price, quantity, image, categoryName, description } =
+        product;
+      setName(name);
+      setPrice(price.toString());
+      setQuantity(quantity.toString());
+      setCategories(categoryName ?? "");
+      setDescription(description ?? "");
+    }
+  }, []);
 
   const handleSubmit = () => {
     let valide = true;
