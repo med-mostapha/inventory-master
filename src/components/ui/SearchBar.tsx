@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { useColorScheme } from "nativewind";
 import { useRef, useState } from "react";
 import { TextInput, TouchableOpacity, View } from "react-native";
 
@@ -8,6 +9,9 @@ type Props = {
 };
 
 const SearchBar = ({ placeholder, onChange }: Props) => {
+  const { colorScheme } = useColorScheme();
+  const isDark = colorScheme === "dark";
+
   const [text, setText] = useState("");
   const inputRef = useRef<TextInput>(null);
 
@@ -23,29 +27,33 @@ const SearchBar = ({ placeholder, onChange }: Props) => {
   };
 
   return (
-    <View className="rounded-full bg-white px-4 flex flex-row items-center  my-2 elevation-lg shadow-sm">
-      <Ionicons name="search" size={18} color={"gray"} />
+    <View className="rounded-full bg-white dark:bg-gray-800 px-4 flex flex-row items-center  my-2 elevation-lg shadow-sm">
+      <Ionicons name="search" size={18} color={isDark ? "white" : "gray"} />
       <TextInput
         ref={inputRef}
         value={text}
         onChangeText={handleChangeText}
-        className=" flex-1 p-4"
+        className=" flex-1 p-4 dark:text-white"
         placeholder={placeholder}
-        placeholderTextColor={"gray"}
+        placeholderTextColor={isDark ? "gray" : "gray"}
         keyboardType="default"
       />
 
       {text.length > 0 && (
         <TouchableOpacity
           onPress={clearText}
-          className="mr-1 bg-gray-100 rounded-full"
+          className="mr-1 bg-gray-100 dark:bg-gray-600 rounded-full"
         >
-          <Ionicons name="close" size={18} color="gray" />
+          <Ionicons name="close" size={18} color={isDark ? "white" : "gray"} />
         </TouchableOpacity>
       )}
 
       <TouchableOpacity onPress={() => {}} className="ml-2">
-        <Ionicons name="swap-vertical" size={18} color={"gray"} />
+        <Ionicons
+          name="swap-vertical"
+          size={18}
+          color={isDark ? "white" : "gray"}
+        />
       </TouchableOpacity>
     </View>
   );

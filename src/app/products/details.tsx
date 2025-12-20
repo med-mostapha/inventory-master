@@ -2,6 +2,7 @@ import { products } from "@/src/data/products";
 import { Product } from "@/src/types/product";
 import { Ionicons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
+import { useColorScheme } from "nativewind";
 import React, { useState } from "react";
 import { Animated, Image, ScrollView, Text, View } from "react-native";
 import PrButton from "../../components/products/PrButton";
@@ -12,6 +13,9 @@ const DetalisProductsScreen = () => {
 
   const [loading, setLoading] = useState(true);
   const pulseAnim = new Animated.Value(0.3);
+
+  const { colorScheme } = useColorScheme();
+  const isDark = colorScheme === "dark";
 
   Animated.loop(
     Animated.sequence([
@@ -36,12 +40,12 @@ const DetalisProductsScreen = () => {
     );
   }
   return (
-    <ScrollView className="flex-1  bg-white/80  ">
+    <ScrollView className="flex-1  bg-white/80 dark:bg-gray-900 ">
       <View className="w-full aspect-square  overflow-hidden relative">
         {loading && (
           <Animated.View
             style={{ opacity: pulseAnim }}
-            className="absolute inset-0 bg-gray-300 "
+            className="absolute inset-0 bg-gray-300 dark:bg-gray-600"
           />
         )}
 
@@ -53,21 +57,25 @@ const DetalisProductsScreen = () => {
           onLoadEnd={() => setLoading(false)}
         />
       </View>
-      <View className="p-4 my-3 bg-white rounded-2xl shadow-sm gap-4">
+      <View className="p-4 my-3 bg-white dark:bg-gray-800 rounded-2xl shadow-sm gap-4">
         {/*  Info */}
         <View className="gap-1">
-          <Text className="text-2xl font-bold text-zinc-900">{item.name}</Text>
-          <Text className="text-zinc-500 leading-5">{item.description}</Text>
+          <Text className="text-2xl font-bold text-zinc-900 dark:text-gray-100">
+            {item.name}
+          </Text>
+          <Text className="text-zinc-500 leading-5 dark:text-gray-200">
+            {item.description}
+          </Text>
         </View>
 
-        <View className="h-[1px] bg-zinc-200" />
+        <View className="h-[1px] bg-zinc-200 dark:bg-gray-600" />
 
         <View className="gap-2">
           {/* Date */}
 
           <View className="flex-row justify-between my-1">
-            <Text className="text-zinc-600">Create At</Text>
-            <Text className="">
+            <Text className="text-zinc-600 dark:text-gray-200">Create At</Text>
+            <Text className="dark:text-gray-200">
               {new Date(item.createdAt).toLocaleDateString("fr-FR", {
                 year: "numeric",
                 month: "long",
@@ -79,28 +87,32 @@ const DetalisProductsScreen = () => {
           </View>
 
           <View className="flex-row justify-between my-1">
-            <Text className="text-zinc-600">Last Update</Text>
-            <Text>
+            <Text className="text-zinc-600 dark:text-gray-200">
+              Last Update
+            </Text>
+            <Text className="dark:text-gray-200">
               {new Date(item.createdAt).toLocaleDateString("fr-FR", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
               })}
               {", "}
-              <Text>{new Date(item.createdAt).toLocaleTimeString()}</Text>
+              <Text className="dark:text-gray-200">
+                {new Date(item.createdAt).toLocaleTimeString()}
+              </Text>
             </Text>
           </View>
 
           <View className="flex-row justify-between my-1">
-            <Text className="text-zinc-600">Category</Text>
-            <Text className="font-semibold text-zinc-900">
+            <Text className="text-zinc-600 dark:text-gray-200">Category</Text>
+            <Text className="font-semibold text-zinc-900 dark:text-gray-200">
               {item.categoryName}
             </Text>
           </View>
 
           {/* Price Quantity */}
           <View className="flex-row justify-between my-1">
-            <Text className="text-zinc-600">Quantity</Text>
+            <Text className="text-zinc-600 dark:text-gray-200">Quantity</Text>
             <View
               className={`${item.quantity <= 5 ? "text-red-500" : "text-zinc-900"} font-semibold flex flex-row `}
             >
@@ -120,8 +132,10 @@ const DetalisProductsScreen = () => {
           </View>
 
           <View className="flex-row justify-between">
-            <Text className="text-zinc-600">Price / unit</Text>
-            <Text className="font-semibold text-zinc-900">
+            <Text className="text-zinc-600 dark:text-gray-200">
+              Price / unit
+            </Text>
+            <Text className="font-semibold text-zinc-900 dark:text-gray-200">
               {item.price} MRU
             </Text>
           </View>

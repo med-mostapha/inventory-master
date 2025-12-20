@@ -38,7 +38,7 @@ export default function ProductScreen() {
   }, []);
 
   return (
-    <View className="flex-1 bg-white/80 ">
+    <View className="flex-1 bg-white/80 dark:bg-gray-900">
       <View className="px-3 pt-3">
         <SearchBar
           placeholder="products..."

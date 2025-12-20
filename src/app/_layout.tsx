@@ -4,11 +4,15 @@ import { StatusBar } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { CategorieProvider } from "../contexts/CategoriesContext";
 
+import { useColorScheme } from "nativewind";
+import colors from "tailwindcss/colors";
 import { ThemeProvider } from "../contexts/ThemeContext";
 import "../global.css";
 
 export default function RootLayout() {
   const router = useRouter();
+  const { colorScheme } = useColorScheme();
+  const isDark = colorScheme === "dark";
 
   return (
     <CategorieProvider>
@@ -19,6 +23,11 @@ export default function RootLayout() {
             screenOptions={{
               animation: "slide_from_right",
               headerTitleAlign: "center",
+              headerStyle: {
+                backgroundColor: isDark ? colors.gray[800] : "",
+              },
+
+              headerTintColor: isDark ? "white" : "",
             }}
           >
             <Stack.Screen

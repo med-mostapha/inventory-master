@@ -28,14 +28,14 @@ const ProductCard = ({ product, onPress }: Props) => {
 
   return (
     <TouchableOpacity
-      className="bg-white p-2 mb-2 w-1/2 rounded-2xl elevation-lg shadow-sm"
+      className="bg-white dark:bg-gray-800 p-2 mb-2 w-1/2 rounded-2xl elevation-lg shadow-sm"
       onPress={onPress}
     >
       <View className="w-full aspect-square rounded-xl overflow-hidden relative">
         {loading && (
           <Animated.View
             style={{ opacity: pulseAnim }}
-            className="absolute inset-0 bg-gray-200"
+            className="absolute inset-0 bg-gray-100 dark:bg-gray-700"
           />
         )}
 
@@ -50,21 +50,27 @@ const ProductCard = ({ product, onPress }: Props) => {
 
       <View className="mt-2 flex-1 p-2 justify-between">
         <View className="gap-1">
-          <Text className="font-bold text-black/80" numberOfLines={1}>
+          <Text
+            className="font-bold text-black/80 dark:text-white"
+            numberOfLines={1}
+          >
             {product.name}
           </Text>
-          <Text className="text-sm text-gray-500" numberOfLines={2}>
+          <Text
+            className="text-sm text-gray-500 dark-text-gray-300"
+            numberOfLines={2}
+          >
             {product.description}
           </Text>
         </View>
 
         <View className="mt-2 flex gap-1">
           <Text
-            className={`${product.quantity <= 5 ? "text-red-500" : ""} text-sm font-semibold text-black/80`}
+            className={`${product.quantity <= 5 ? "text-red-600 dark:text-red-500" : "dark:text-gray-100"} text-sm font-semibold text-black/80 `}
           >
             Quantity: {product.quantity}
           </Text>
-          <Text className="text-sm font-semibold text-black/80">
+          <Text className="text-sm font-semibold text-black/80 dark:text-gray-300">
             Price: {product.price} MRU
           </Text>
         </View>
