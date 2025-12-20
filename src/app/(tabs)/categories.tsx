@@ -23,14 +23,16 @@ export default function CategoriesScreen() {
   //   });
   // }, [selectedCategory, searchQuery]);
   return (
-    <View className="p-2 flex-1 bg-white/90">
+    <View className="px-3 pt-3 flex-1 bg-white/90 dark:bg-gray-900">
       <View className="">
         <SearchBar placeholder="Categoris..." onChange={() => {}} />
       </View>
       <View className="px-3 py-3 flex flex-row  items-center justify-between">
         <View className="flex flex-row gap-3 items-center ">
           <MaterialIcons name="category" size={20} color={colors.blue[500]} />
-          <Text className="text-lg">{categories.length}</Text>
+          <Text className="text-lg dark:text-gray-100">
+            {categories.length}
+          </Text>
         </View>
         <View className="w-1/3">
           <PrButton

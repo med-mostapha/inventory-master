@@ -9,10 +9,10 @@ import colors from "tailwindcss/colors";
 
 export default function Index() {
   return (
-    <ScrollView className=" bg-white/80 dark:bg-gray-900">
+    <ScrollView className="bg-white/80 dark:bg-gray-900">
       {/* Header */}
       <Header />
-      <View className="flex-row flex-wrap gap-3">
+      <View className="flex-row flex-wrap gap-3 px-3">
         <SummaryCard
           title={"Products"}
           result={analytics.totalProducts}

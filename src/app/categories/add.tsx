@@ -4,7 +4,7 @@ import { View } from "react-native";
 
 const AddCategoriesScreen = () => {
   return (
-    <View className="flex-1  p-2 bg-white/90">
+    <View className="flex-1  p-2 bg-white/90 dark:bg-gray-900">
       <CategorisForm />
     </View>
   );

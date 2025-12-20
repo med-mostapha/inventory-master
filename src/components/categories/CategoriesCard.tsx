@@ -17,14 +17,16 @@ const CategoriesCard = ({ categorie }: Props) => {
   };
 
   return (
-    <View className="bg-white rounded-xl px-6 py-4 mb-4 elevation-lg shadow-sm flex flex-row justify-between items-center">
+    <View className="bg-white dark:bg-gray-800 rounded-xl px-6 py-4 mb-4 elevation-lg shadow-sm flex flex-row justify-between items-center">
       <View className="w-10/12 gap-1">
-        <Text className="text-lg font-medium">{categorie.name}</Text>
-        <Text className="text-base text-gray-600 ">
+        <Text className="text-lg font-medium dark:text-gray-100">
+          {categorie.name}
+        </Text>
+        <Text className="text-base text-gray-600 dark:text-gray-400 ">
           {categorie.description}
         </Text>
         <View className="flex flex-row gap-1">
-          <Text>{categorie.count}</Text>
+          <Text className="dark:text-gray-100">{categorie.count}</Text>
           <Ionicons name="cube-outline" size={16} color={colors.gray[500]} />
         </View>
       </View>

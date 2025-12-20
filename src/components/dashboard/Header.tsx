@@ -6,7 +6,7 @@ const Header = () => {
   const router = useRouter();
 
   return (
-    <View className="w-full flex flex-row justify-around gap-1 items-center  py-4">
+    <View className="w-full flex flex-row justify-around gap-1 items-center px-2  py-4">
       <HeaderCard
         NavigateTo={"products/add"}
         icon={"add"}
