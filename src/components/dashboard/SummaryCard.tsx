@@ -42,6 +42,10 @@ const SummaryCard = ({
     };
   }, []);
 
+  const formater = (num: number) => {
+    return new Intl.NumberFormat("fr-DZ").format(num);
+  };
+
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -55,7 +59,9 @@ const SummaryCard = ({
       />
       <View className="flex items-center">
         <View className="flex flex-row gap-1">
-          <Text className="text-2xl">{displayValue}</Text>
+          <Text className="text-2xl">
+            {unit === "MRU" ? formater(displayValue) : displayValue}
+          </Text>
           {unit && <Text className="text-zinc-500">{unit}</Text>}
         </View>
         <Text className="text-sm text-gray-500">{title}</Text>

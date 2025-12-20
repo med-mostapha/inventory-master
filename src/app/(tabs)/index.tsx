@@ -8,6 +8,8 @@ import { ScrollView, View } from "react-native";
 import colors from "tailwindcss/colors";
 
 export default function Index() {
+  //   const formatted = new Intl.NumberFormat("de-DE").format();
+  // console.log(formatted); // 3.433.442
   return (
     <ScrollView className=" bg-white/80">
       {/* Header */}
