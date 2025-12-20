@@ -78,6 +78,9 @@ export const categoriesLabels: string[] = categories.map((cat: Category) =>
   cat.name.trim()
 );
 
+export const categoriesPicker: { label: string; value: string }[] =
+  categories.map((c) => ({ label: c.name, value: c.name }));
+
 const getCategoryTotalStock = (categoryName: string) => {
   const total = products.reduce(
     (sum: number, product: Product) =>

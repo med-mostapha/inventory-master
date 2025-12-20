@@ -29,16 +29,16 @@ const CharView = () => {
             },
           ],
         }}
-        width={Dimensions.get("window").width} // from react-native
+        width={Dimensions.get("window").width + 30}
         height={220}
         yAxisLabel=""
         yAxisSuffix=""
-        yAxisInterval={1} // optional, defaults to 1
+        yAxisInterval={1} //
         chartConfig={{
           backgroundColor: "#1E6DC9",
           backgroundGradientFrom: "#fff",
           backgroundGradientTo: "#fff",
-          decimalPlaces: 2, // optional, defaults to 2dp
+          decimalPlaces: 2, // optional
           color: (opacity = 0.8) => `rgba(10, 100, 250, ${opacity})`,
           labelColor: (opacity = 1) => `rgba(10, 100, 255, ${opacity})`,
           style: {

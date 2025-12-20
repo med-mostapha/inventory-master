@@ -1,7 +1,6 @@
 import { styles } from "@/src/styles/ProductsForm";
-import { Feather, Ionicons } from "@expo/vector-icons";
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import colors from "tailwindcss/colors";
 
 type Props = {
@@ -15,15 +14,9 @@ const PrButton = ({ title, thems, onPress }: Props) => {
     return (
       <TouchableOpacity
         onPress={onPress}
-        style={[{ ...styles.button, backgroundColor: colors.red[500] }]}
+        style={[{ ...styles.button, backgroundColor: colors.red[600] }]}
       >
-        {/* <Text style={styles.text}>{title}</Text> */}
-        <Ionicons
-          className="text-center"
-          size={16}
-          color={"white"}
-          name="trash"
-        />
+        <Text style={styles.text}>{title}</Text>
       </TouchableOpacity>
     );
   }
@@ -43,26 +36,21 @@ const PrButton = ({ title, thems, onPress }: Props) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      // style={
-      //   thems !== "secodery"
-      //     ? styles.button
-      //     : [{ ...styles.button, backgroundColor: colors.gray[200] }]
-      // }
-      className="flex-grow items-center justify-center rounded-xl border-[1px] border-blue-500"
+      style={
+        thems !== "secodery"
+          ? styles.button
+          : [{ ...styles.button, backgroundColor: colors.gray[200] }]
+      }
     >
-      <View className="flex flex-row gap-2 items-center">
-        <Text
-          className="text-sky-600 text-lg"
-          // style={
-          //   thems !== "secodery"
-          //     ? styles.text
-          //     : [{ ...styles.text, color: "black" }]
-          // }
-        >
-          {title}
-        </Text>
-        <Feather name="edit" size={16} color={colors.blue[500]} />
-      </View>
+      <Text
+        style={
+          thems !== "secodery"
+            ? styles.text
+            : [{ ...styles.text, color: "black" }]
+        }
+      >
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 };

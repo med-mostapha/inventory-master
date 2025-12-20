@@ -1,8 +1,10 @@
 import { styles } from "@/src/styles/ProductsForm";
 import { Product } from "@/src/types/product";
+import { categoriesPicker } from "@/src/utils/detailedAnalysis";
 import { router } from "expo-router";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Text, TextInput, View } from "react-native";
+import DropDownPicker from "react-native-dropdown-picker";
 import IconButton from "../ui/IconButton";
 import PrButton from "./PrButton";
 
@@ -14,7 +16,6 @@ const ProductsForm = ({ product }: Props) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [categories, setCategories] = useState("");
   const [description, setDescription] = useState("");
   const [errors, setErrors] = useState({
     name: "",
@@ -24,6 +25,12 @@ const ProductsForm = ({ product }: Props) => {
     categories: "",
     description: "",
   });
+
+  // Picker
+  const [open, setOpen] = useState(false);
+  const [categories, setCategories] = useState("");
+
+  const [items, setItems] = useState(categoriesPicker);
 
   useEffect(() => {
     if (product) {
@@ -171,7 +178,24 @@ const ProductsForm = ({ product }: Props) => {
         <Text style={styles.label} className="font-medium">
           Categories
         </Text>
-        <TextInput
+        <DropDownPicker
+          open={open}
+          value={categories}
+          items={items}
+          style={{
+            ...styles.input,
+            borderColor: errors.name ? "red" : styles.input.borderColor,
+          }}
+          setOpen={setOpen}
+          setValue={(callback) => {
+            setCategories(callback(categories));
+          }}
+          setItems={setItems}
+          placeholder="Select an item"
+          // Other props for styling, searching, etc.
+        />
+
+        {/* <TextInput
           value={categories}
           onChangeText={setCategories}
           maxLength={25}
@@ -181,7 +205,7 @@ const ProductsForm = ({ product }: Props) => {
           }}
           placeholder="Choose a category"
           placeholderTextColor={styles.placeholder.color}
-        />
+        /> */}
         {errors.quantity ? (
           <Text className="text-red-500 pl-1">{errors.quantity}</Text>
         ) : null}

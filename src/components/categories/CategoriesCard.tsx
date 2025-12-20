@@ -18,7 +18,7 @@ const CategoriesCard = ({ categorie }: Props) => {
 
   return (
     <View className="bg-white rounded-xl px-6 py-4 mb-4 elevation-lg shadow-sm flex flex-row justify-between items-center">
-      <View className="w-10/12">
+      <View className="w-10/12 gap-1">
         <Text className="text-lg font-medium">{categorie.name}</Text>
         <Text className="text-base text-gray-600 ">
           {categorie.description}
