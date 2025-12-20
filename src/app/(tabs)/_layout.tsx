@@ -14,11 +14,11 @@ export default function TabsLayout() {
         tabBarActiveTintColor: isDark ? colors.sky[500] : colors.blue[500],
         tabBarInactiveTintColor: "#999",
         headerTitleAlign: "center",
-        headerTintColor: isDark ? "white" : "",
+        headerTintColor: isDark ? "white" : "black",
         // headerShadowVisible: true,
 
         headerStyle: {
-          backgroundColor: isDark ? colors.gray[800] : "",
+          backgroundColor: isDark ? colors.gray[800] : colors.gray[50],
         },
         tabBarStyle: {
           backgroundColor: isDark ? colors.gray[900] : "",

@@ -47,6 +47,10 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "splash": {
+      "image": "./assets/images/checklist.png",
+      "backgroundColor": "gray"
     }
   }
 }

@@ -17,7 +17,7 @@ export default function Index() {
           title={"Products"}
           result={analytics.totalProducts}
           iconName={"cube-outline"}
-          color={colors.violet[600]}
+          color={colors.fuchsia[600]}
           onPress={() =>
             router.push({
               pathname: "/fastview",
@@ -29,7 +29,7 @@ export default function Index() {
           title={"Categoris"}
           result={analytics.totalCategories}
           iconName={"pricetags-outline"}
-          color={colors.stone[600]}
+          color={colors.teal[600]}
           onPress={() =>
             router.push({
               pathname: "/fastview",

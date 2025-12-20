@@ -11,7 +11,7 @@ export default function SettingsScreen() {
   ];
 
   return (
-    <View className="flex-1 bg-white dark:bg-black p-6">
+    <View className="flex-1 bg-white dark:bg-gray-900 p-6">
       <Text className="text-2xl font-bold text-black dark:text-white mb-6">
         Theme
       </Text>

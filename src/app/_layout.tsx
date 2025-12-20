@@ -65,7 +65,6 @@ export default function RootLayout() {
               name="fastview"
               options={{
                 presentation: "modal",
-                title: "List",
               }}
             />
           </Stack>

@@ -55,7 +55,7 @@ const SummaryCard = ({
         name={iconName}
         size={size}
         color={color}
-        className="bg-gray-100 dark:bg-white/25  p-2 rounded-full"
+        className="bg-gray-100 dark:bg-white/10  p-2 rounded-full"
       />
       <View className="flex items-center">
         <View className="flex flex-row gap-1">
