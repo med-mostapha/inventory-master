@@ -49,22 +49,24 @@ const SummaryCard = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      className="bg-white w-5/12 flex-grow rounded-2xl flex flex-row items-center justify-between px-6 py-5 elevation-lg shadow-sm"
+      className="bg-white dark:bg-gray-800 w-5/12 flex-grow rounded-2xl flex flex-row items-center justify-between px-6 py-5 elevation-lg shadow-sm"
     >
       <Ionicons
         name={iconName}
         size={size}
         color={color}
-        className="bg-gray-100  p-2 rounded-full"
+        className="bg-gray-100 dark:bg-white/25  p-2 rounded-full"
       />
       <View className="flex items-center">
         <View className="flex flex-row gap-1">
-          <Text className="text-2xl">
+          <Text className="text-2xl dark:text-white">
             {unit === "MRU" ? formater(displayValue) : displayValue}
           </Text>
           {unit && <Text className="text-zinc-500">{unit}</Text>}
         </View>
-        <Text className="text-sm text-gray-500">{title}</Text>
+        <Text className="text-sm text-gray-500 dark:text-gray-400">
+          {title}
+        </Text>
       </View>
     </TouchableOpacity>
   );

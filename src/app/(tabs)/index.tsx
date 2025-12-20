@@ -4,17 +4,14 @@ import SummaryCard from "@/src/components/dashboard/SummaryCard";
 import { enListTypes } from "@/src/types/enums";
 import { analytics } from "@/src/utils/detailedAnalysis";
 import { router } from "expo-router";
-import { ScrollView, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import colors from "tailwindcss/colors";
 
 export default function Index() {
-  //   const formatted = new Intl.NumberFormat("de-DE").format();
-  // console.log(formatted); // 3.433.442
   return (
-    <ScrollView className=" bg-white/80">
+    <ScrollView className=" bg-white/80 dark:bg-gray-900">
       {/* Header */}
       <Header />
-      {/* <Text className=" text-2xl font-bold">Dashboard home Screen</Text> */}
       <View className="flex-row flex-wrap gap-3">
         <SummaryCard
           title={"Products"}
@@ -81,9 +78,14 @@ export default function Index() {
       </View>
       {/* Chart */}
 
-      <ScrollView horizontal className="mt-4">
-        <CharView />
-      </ScrollView>
+      <View className="flex mt-5">
+        <Text className="text-bold text-black/80  dark:text-white ml-2 font-medium text-xl">
+          Bezier Line Chart
+        </Text>
+        <ScrollView horizontal className="mt-4">
+          <CharView />
+        </ScrollView>
+      </View>
 
       {/* Low List */}
       {/* <View className="shadow-xl shadow-black/10">

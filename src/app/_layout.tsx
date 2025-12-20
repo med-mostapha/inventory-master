@@ -3,6 +3,8 @@ import React from "react";
 import { StatusBar } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { CategorieProvider } from "../contexts/CategoriesContext";
+
+import { ThemeProvider } from "../contexts/ThemeContext";
 import "../global.css";
 
 export default function RootLayout() {
@@ -11,52 +13,54 @@ export default function RootLayout() {
   return (
     <CategorieProvider>
       <SafeAreaProvider>
-        <StatusBar />
-        <Stack
-          screenOptions={{
-            animation: "slide_from_right",
-            headerTitleAlign: "center",
-          }}
-        >
-          <Stack.Screen
-            name="(tabs)"
-            options={{ headerShown: false, title: "Add Product" }}
-          />
-          {/* Products */}
-          <Stack.Screen
-            name="products/add"
-            options={{ title: "Add Product", presentation: "modal" }}
-          />
-          <Stack.Screen
-            name="products/edit"
-            options={{ title: "Edit Product", presentation: "modal" }}
-          />
-          <Stack.Screen
-            name="products/details"
-            options={({ route }) => ({
-              title: (route.params as any)?.name ?? "Details",
-              // presentation: "modal",
-            })}
-          />
-
-          {/* Categories */}
-          <Stack.Screen
-            name="categories/add"
-            options={{ title: "Add Category", presentation: "modal" }}
-          />
-
-          <Stack.Screen
-            name="categories/edit"
-            options={{ title: "Add Category", presentation: "modal" }}
-          />
-          <Stack.Screen
-            name="fastview"
-            options={{
-              presentation: "modal",
-              title: "List",
+        <ThemeProvider>
+          <StatusBar />
+          <Stack
+            screenOptions={{
+              animation: "slide_from_right",
+              headerTitleAlign: "center",
             }}
-          />
-        </Stack>
+          >
+            <Stack.Screen
+              name="(tabs)"
+              options={{ headerShown: false, title: "Add Product" }}
+            />
+            {/* Products */}
+            <Stack.Screen
+              name="products/add"
+              options={{ title: "Add Product", presentation: "modal" }}
+            />
+            <Stack.Screen
+              name="products/edit"
+              options={{ title: "Edit Product", presentation: "modal" }}
+            />
+            <Stack.Screen
+              name="products/details"
+              options={({ route }) => ({
+                title: (route.params as any)?.name ?? "Details",
+                // presentation: "modal",
+              })}
+            />
+
+            {/* Categories */}
+            <Stack.Screen
+              name="categories/add"
+              options={{ title: "Add Category", presentation: "modal" }}
+            />
+
+            <Stack.Screen
+              name="categories/edit"
+              options={{ title: "Add Category", presentation: "modal" }}
+            />
+            <Stack.Screen
+              name="fastview"
+              options={{
+                presentation: "modal",
+                title: "List",
+              }}
+            />
+          </Stack>
+        </ThemeProvider>
       </SafeAreaProvider>
     </CategorieProvider>
   );

@@ -1,18 +1,36 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs, useRouter } from "expo-router";
+import { useColorScheme } from "nativewind";
+import colors from "tailwindcss/colors";
 
 export default function TabsLayout() {
   const router = useRouter();
+  const { colorScheme } = useColorScheme();
+  const isDark = colorScheme === "dark";
   return (
     <Tabs
       screenOptions={{
         headerShown: true,
-        tabBarActiveTintColor: "#007AFF",
+        tabBarActiveTintColor: isDark ? colors.sky[500] : colors.blue[500],
         tabBarInactiveTintColor: "#999",
         headerTitleAlign: "center",
+        headerTintColor: isDark ? "white" : "",
+        // headerShadowVisible: true,
+
+        headerStyle: {
+          backgroundColor: isDark ? colors.gray[800] : "",
+        },
+        tabBarStyle: {
+          backgroundColor: isDark ? colors.gray[900] : "",
+        },
 
         headerRight: () => (
-          <Ionicons className="mr-3" name="notifications-outline" size={22} />
+          <Ionicons
+            className="mr-3"
+            name="notifications-outline"
+            size={22}
+            color={isDark ? "white" : "black"}
+          />
         ),
       }}
     >
