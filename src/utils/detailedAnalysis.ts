@@ -1,6 +1,6 @@
 import { products } from "@/src/data/products";
 import { categories } from "../data/categoris";
-import { Categorie } from "../types/  categori";
+import { Category } from "../types/  categori";
 import { enListTypes } from "../types/enums";
 import { Product } from "../types/product";
 
@@ -74,7 +74,7 @@ export const analytics = {
   },
 };
 
-export const categoriesLabels: string[] = categories.map((cat: Categorie) =>
+export const categoriesLabels: string[] = categories.map((cat: Category) =>
   cat.name.trim()
 );
 
