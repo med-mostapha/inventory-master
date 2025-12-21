@@ -26,14 +26,11 @@ export default function RootLayout() {
               headerStyle: {
                 backgroundColor: isDark ? colors.gray[800] : "",
               },
-
+              headerShown: false,
               headerTintColor: isDark ? "white" : "",
             }}
           >
-            <Stack.Screen
-              name="(tabs)"
-              options={{ headerShown: false, title: "Add Product" }}
-            />
+            <Stack.Screen name="(tabs)" options={{ title: "Add Product" }} />
             {/* Products */}
             <Stack.Screen
               name="products/add"
@@ -65,6 +62,13 @@ export default function RootLayout() {
               name="fastview"
               options={{
                 presentation: "modal",
+              }}
+            />
+
+            <Stack.Screen
+              name="(onboarding)/index"
+              options={{
+                headerShown: false,
               }}
             />
           </Stack>

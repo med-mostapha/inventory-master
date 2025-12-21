@@ -8,11 +8,11 @@ import { Text, View } from "react-native";
 export default function OnboardingIndex() {
   const imgSource = require("../../../assets/utils/image.png");
   return (
-    <View className="flex-1 flex-colo  bg-[#263a96c4]">
+    <View className="flex-1 flex-colo  bg-blue-900">
       <View className="flex-[0.45] items-center justify-center">
         <ImageView imgSource={imgSource} width={300} height={190} />
       </View>
-      <View className="bg-[#FFFFFF] flex-[0.55] rounded-t-[50px] ">
+      <View className="bg-white dark:bg-gray-900 flex-[0.55] rounded-t-[50px] ">
         <View className="  flex-[0.4] items-center   text-center justify-center gap-6 mt-12">
           <Text className="text-blue-800 text-3xl font-bold">
             Bienvenue à Inventory Master
