@@ -64,7 +64,7 @@ const List = ({ title, data, itemName, itemValue, type }: Props) => {
 
   return (
     <FlatList
-      className="flex-1 px-2 py-2 bg-white dark:bg-gray-800 shadow-lg"
+      className="flex-1 h-screen px-2 py-2 bg-white dark:bg-gray-800 shadow-lg"
       data={data}
       scrollEnabled={false}
       keyExtractor={(item) => item.id.toString()}

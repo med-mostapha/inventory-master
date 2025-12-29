@@ -1,47 +1,55 @@
 import Button from "@/src/components/Button";
 import ImageView from "@/src/components/onboarding/ImageView";
 import NavPoint from "@/src/components/onboarding/NavPoint";
+import TextTemplate from "@/src/components/onboarding/TextTemplate";
 import { useRouter } from "expo-router";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StatusBar, View } from "react-native";
 
 export default function OnboardingStepOne() {
   const router = useRouter();
   const imgSource = require("../../../assets/utils/step1.png");
+
   return (
-    <View className="flex-1  bg-[#263a96c4]">
-      <View className="flex-[0.45] items-center justify-center">
-        <ImageView imgSource={imgSource} width={280} height={240} />
-      </View>
-      <View className="bg-[#FFFFFF] flex-[0.55] rounded-t-[50px] ">
-        <View className="  flex-[0.4] items-center   text-center justify-center gap-6 mt-12">
-          <Text className="text-blue-800 text-3xl font-bold">
-            Suivi des stocks simplifié
-          </Text>
-          <Text className="text-[#9586A8] text-center mx-4">
-            Recevez des alertes pour les produits en rupture de stock et
-            visualisez instantanément les niveaux de vos stocks.
-          </Text>
+    <View className="flex-1 bg-blue-500">
+      <StatusBar barStyle="light-content" />
+
+      {/* Gradient Background - Image Section */}
+      <View className="flex-[0.5] bg-gradient-to-br from-blue-600 to-blue-800 items-center justify-end pb-12">
+        <View className=" backdrop-blur-sm rounded-3xl p-8 shadow-2xl">
+          <ImageView imgSource={imgSource} width={280} height={240} />
         </View>
+      </View>
 
-        <View className="flex-[0.7] items-center justify-center gap-1">
-          <NavPoint total={3} active={1} />
+      {/* Content Card Section */}
+      <View className="flex-[0.5] bg-white rounded-t-[40px] shadow-2xl">
+        <View className="flex-1 px-8 pt-12 pb-8 justify-between">
+          {/* Text Content */}
+          <TextTemplate
+            title="Suivi des stocks simplifié"
+            body="Recevez des alertes pour les produits en rupture de stock et visualisez instantanément les niveaux de vos stocks."
+          />
 
-          <Button
-            title="Next"
-            onPress={() => router.push("/(onboarding)/step2")}
-          />
-          <Button
-            title="back"
-            thems="second"
-            onPress={() => {
-              router.back();
-            }}
-          />
+          {/* Navigation Points */}
+          <View className="items-center py-6">
+            <NavPoint total={3} active={1} />
+          </View>
+
+          {/* Action Buttons */}
+          <View className="gap-3 px-4 mb-12">
+            <Button
+              title="Suivant"
+              onPress={() => router.push("/(onboarding)/step2")}
+              variant="primary"
+            />
+            <Button
+              title="Retour"
+              variant="secondary"
+              onPress={() => router.back()}
+            />
+          </View>
         </View>
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({});

@@ -24,44 +24,69 @@ export default function RootLayout() {
               animation: "slide_from_right",
               headerTitleAlign: "center",
               headerStyle: {
-                backgroundColor: isDark ? colors.gray[800] : "",
+                backgroundColor: isDark ? colors.gray[800] : "white",
               },
               headerShown: false,
               headerTintColor: isDark ? "white" : "",
+              contentStyle: {
+                backgroundColor: "",
+              },
             }}
           >
             <Stack.Screen name="(tabs)" options={{ title: "Add Product" }} />
             {/* Products */}
             <Stack.Screen
               name="products/add"
-              options={{ title: "Add Product", presentation: "modal" }}
+              options={{
+                title: "Add Product",
+                presentation: "modal",
+                headerShown: true,
+              }}
             />
             <Stack.Screen
               name="products/edit"
-              options={{ title: "Edit Product", presentation: "modal" }}
+              options={{
+                title: "Edit Product",
+                presentation: "modal",
+                headerShown: true,
+              }}
             />
             <Stack.Screen
               name="products/details"
               options={({ route }) => ({
                 title: (route.params as any)?.name ?? "Details",
-                // presentation: "modal",
+
+                headerShown: true,
               })}
             />
 
             {/* Categories */}
             <Stack.Screen
               name="categories/add"
-              options={{ title: "Add Category", presentation: "modal" }}
+              options={{
+                title: "Add Category",
+                presentation: "modal",
+                headerShown: true,
+              }}
             />
 
             <Stack.Screen
               name="categories/edit"
-              options={{ title: "Add Category", presentation: "modal" }}
+              options={{
+                title: "Add Category",
+                presentation: "modal",
+                headerShown: true,
+              }}
             />
             <Stack.Screen
               name="fastview"
               options={{
                 presentation: "modal",
+                animation: "fade",
+                headerShown: true,
+                contentStyle: {
+                  backgroundColor: "#121212",
+                },
               }}
             />
 
@@ -69,6 +94,23 @@ export default function RootLayout() {
               name="(onboarding)/index"
               options={{
                 headerShown: false,
+                animation: "none",
+              }}
+            />
+
+            <Stack.Screen
+              name="(onboarding)/step1"
+              options={{
+                headerShown: false,
+                animation: "none",
+              }}
+            />
+
+            <Stack.Screen
+              name="(onboarding)/step2"
+              options={{
+                headerShown: false,
+                animation: "none",
               }}
             />
           </Stack>

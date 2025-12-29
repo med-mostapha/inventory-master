@@ -1,20 +1,37 @@
-import { Image, ImageSourcePropType, StyleSheet } from "react-native";
+import {
+  Image,
+  ImageSourcePropType,
+  StyleSheet,
+  View,
+  ViewStyle,
+} from "react-native";
 
 type Props = {
   imgSource: ImageSourcePropType;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
 };
 
 const ImageView = ({ imgSource, width, height }: Props) => {
-  return <Image source={imgSource} style={{ width: width, height: height }} />;
+  const containerStyle: ViewStyle = {
+    justifyContent: "center",
+    alignItems: "center",
+    ...(width ? { width } : {}),
+    ...(height ? { height } : {}),
+  };
+
+  return (
+    <View style={containerStyle}>
+      <Image source={imgSource} style={styles.image} resizeMode="contain" />
+    </View>
+  );
 };
 
 export default ImageView;
 
 const styles = StyleSheet.create({
   image: {
-    width: 280,
-    height: 240,
+    width: "100%",
+    height: "100%",
   },
 });

@@ -21,7 +21,7 @@ export default function TabsLayout() {
           backgroundColor: isDark ? colors.gray[800] : colors.gray[50],
         },
         tabBarStyle: {
-          backgroundColor: isDark ? colors.gray[900] : "",
+          backgroundColor: isDark ? colors.gray[900] : "white",
         },
 
         headerRight: () => (
