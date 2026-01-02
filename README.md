@@ -60,4 +60,3 @@ Voici les fonctionnalités clés proposées dans l'application :
 
 ---
 
-✨ _Prêt à être publié sur GitHub comme présentation propre et professionnelle !_
