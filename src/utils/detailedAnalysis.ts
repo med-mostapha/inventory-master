@@ -1,4 +1,4 @@
-import { products } from "@/src/data/products";
+import { products } from "@/data/products";
 import { categories } from "../data/categoris";
 import { Category } from "../types/  categori";
 import { enListTypes } from "../types/enums";

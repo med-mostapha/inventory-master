@@ -1,6 +1,6 @@
 // src/hooks/useProducts.ts
-import { products as productsData } from "@/src/data/products";
-import { Product } from "@/src/types/product";
+import { products as productsData } from "@/data/products";
+import { Product } from "@/types/product";
 import { useEffect, useState } from "react";
 
 export function useProducts() {
