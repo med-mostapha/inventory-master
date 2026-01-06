@@ -6,6 +6,10 @@ node_modules/
 .expo-shared/
 dist/
 web-build/
+src/hooks
+src/services
+scr/data
+src/types
 
 # Build
 build/
