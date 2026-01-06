@@ -1,4 +1,4 @@
-import ProductsForm from "@/src/components/products/ProductsForm";
+import ProductsForm from "@/components/products/ProductsForm";
 import { View } from "react-native";
 
 const AddProductsScreen = () => {

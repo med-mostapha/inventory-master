@@ -1,5 +1,5 @@
-import ProductsForm from "@/src/components/products/ProductsForm";
-import { products } from "@/src/data/products";
+import ProductsForm from "@/components/products/ProductsForm";
+import { products } from "@/data/products";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
 import { View } from "react-native";

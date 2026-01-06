@@ -1,5 +1,5 @@
-import { products } from "@/src/data/products";
-import { Product } from "@/src/types/product";
+import { products } from "@/data/products";
+import { Product } from "@/types/product";
 import { Ionicons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
 import { useColorScheme } from "nativewind";

@@ -1,5 +1,5 @@
-import CategorisForm from "@/src/components/categories/CategoriesForm";
-import { categories } from "@/src/data/categoris";
+import CategorisForm from "@/components/categories/CategoriesForm";
+import { categories } from "@/data/categoris";
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
 import { Text, View } from "react-native";

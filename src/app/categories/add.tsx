@@ -1,4 +1,4 @@
-import CategorisForm from "@/src/components/categories/CategoriesForm";
+import CategorisForm from "@/components/categories/CategoriesForm";
 import React from "react";
 import { View } from "react-native";
 
