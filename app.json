@@ -6,6 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/images/checklist.png",
     "scheme": "wahterapp",
+
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -46,7 +47,8 @@
     ],
     "experiments": {
       "typedRoutes": true,
-      "reactCompiler": true
+      "reactCompiler": true,
+      "tsconfigPaths": true
     },
     "splash": {
       "image": "./assets/images/checklist.png",

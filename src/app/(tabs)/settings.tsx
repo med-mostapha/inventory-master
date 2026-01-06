@@ -1,4 +1,4 @@
-import { useTheme } from "@/src/contexts/ThemeContext";
+import { useTheme } from "@/contexts/ThemeContext";
 import { Pressable, Text, View } from "react-native";
 
 export default function SettingsScreen() {

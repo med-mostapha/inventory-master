@@ -1,7 +1,7 @@
-import Button from "@/src/components/Button";
-import ImageView from "@/src/components/onboarding/ImageView";
-import NavPoint from "@/src/components/onboarding/NavPoint";
-import TextTemplate from "@/src/components/onboarding/TextTemplate";
+import Button from "@/components/Button";
+import ImageView from "@/components/onboarding/ImageView";
+import NavPoint from "@/components/onboarding/NavPoint";
+import TextTemplate from "@/components/onboarding/TextTemplate";
 import { router } from "expo-router";
 import React from "react";
 import { StatusBar, View } from "react-native";

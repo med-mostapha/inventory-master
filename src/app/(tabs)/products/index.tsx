@@ -1,9 +1,9 @@
-import AddProductButton from "@/src/components/products/AddProductButton";
-import ProductCard from "@/src/components/products/ProductCard";
-import ProductsFilterNav from "@/src/components/products/ProductsFilterNav";
-import SearchBar from "@/src/components/ui/SearchBar";
-import { categories } from "@/src/data/categoris";
-import { products } from "@/src/data/products";
+import AddProductButton from "@/components/products/AddProductButton";
+import ProductCard from "@/components/products/ProductCard";
+import ProductsFilterNav from "@/components/products/ProductsFilterNav";
+import SearchBar from "@/components/ui/SearchBar";
+import { categories } from "@/data/categoris";
+import { products } from "@/data/products";
 import { useRouter } from "expo-router";
 import React, { useMemo, useState } from "react";
 import { FlatList, Text, View } from "react-native";

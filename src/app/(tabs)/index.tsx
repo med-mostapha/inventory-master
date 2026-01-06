@@ -1,8 +1,8 @@
-import CharView from "@/src/components/dashboard/CharView";
-import Header from "@/src/components/dashboard/Header";
-import SummaryCard from "@/src/components/dashboard/SummaryCard";
-import { enListTypes } from "@/src/types/enums";
-import { analytics } from "@/src/utils/detailedAnalysis";
+import CharView from "@/components/dashboard/CharView";
+import Header from "@/components/dashboard/Header";
+import SummaryCard from "@/components/dashboard/SummaryCard";
+import { enListTypes } from "@/types/enums";
+import { analytics } from "@/utils/detailedAnalysis";
 import { router } from "expo-router";
 import { ScrollView, Text, View } from "react-native";
 import colors from "tailwindcss/colors";

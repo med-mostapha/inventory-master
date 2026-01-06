@@ -1,10 +1,11 @@
-import CategoriesCard from "@/src/components/categories/CategoriesCard";
-import PrButton from "@/src/components/products/PrButton";
-import SearchBar from "@/src/components/ui/SearchBar";
-import { categories } from "@/src/data/categoris";
+import CategoriesCard from "@/components/categories/CategoriesCard";
+import PrButton from "@/components/products/PrButton";
+import SearchBar from "@/components/ui/SearchBar";
+import { categories } from "@/data/categoris";
 import { MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { FlatList, Text, View } from "react-native";
+
 import colors from "tailwindcss/colors";
 
 export default function CategoriesScreen() {
