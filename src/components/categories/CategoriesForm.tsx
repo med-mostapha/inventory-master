@@ -1,5 +1,5 @@
-import { styles } from "@/src/styles/ProductsForm";
-import { Category } from "@/src/types/  categori";
+import { styles } from "@/styles/ProductsForm";
+import { Category } from "@/types/  categori";
 import { router } from "expo-router";
 import { useColorScheme } from "nativewind";
 import { useEffect, useState } from "react";

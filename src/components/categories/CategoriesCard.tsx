@@ -1,4 +1,4 @@
-import { Category } from "@/src/types/  categori";
+import { Category } from "@/types/  categori";
 import { Ionicons } from "@expo/vector-icons";
 import Feather from "@expo/vector-icons/Feather";
 import { router } from "expo-router";

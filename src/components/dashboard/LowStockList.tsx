@@ -1,4 +1,4 @@
-import { Product } from "@/src/types/product";
+import { Product } from "@/types/product";
 import { Entypo, Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import React, { useState } from "react";

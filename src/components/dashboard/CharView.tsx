@@ -1,7 +1,4 @@
-import {
-  categoriesLabels,
-  categoriesStock,
-} from "@/src/utils/detailedAnalysis";
+import { categoriesLabels, categoriesStock } from "@/utils/detailedAnalysis";
 import { useColorScheme } from "nativewind";
 import { Dimensions, View } from "react-native";
 import { LineChart } from "react-native-chart-kit";
