@@ -1,4 +1,4 @@
-import { Product } from "@/src/types/product";
+import { Product } from "@/types/product";
 import React, { useState } from "react";
 import { Animated, Image, Text, TouchableOpacity, View } from "react-native";
 

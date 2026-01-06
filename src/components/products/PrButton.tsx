@@ -1,4 +1,4 @@
-import { styles } from "@/src/styles/ProductsForm";
+import { styles } from "@/styles/ProductsForm";
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 import colors from "tailwindcss/colors";

@@ -1,4 +1,4 @@
-import { Category } from "@/src/types/  categori";
+import { Category } from "@/types/  categori";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
 type Props = {

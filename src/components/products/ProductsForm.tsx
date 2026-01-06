@@ -1,6 +1,6 @@
-import { styles } from "@/src/styles/ProductsForm";
-import { Product } from "@/src/types/product";
-import { categoriesPicker } from "@/src/utils/detailedAnalysis";
+import { styles } from "@/styles/ProductsForm";
+import { Product } from "@/types/product";
+import { categoriesPicker } from "@/utils/detailedAnalysis";
 import { router } from "expo-router";
 import { useColorScheme } from "nativewind";
 import React, { useEffect, useState } from "react";
