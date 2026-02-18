@@ -2,8 +2,7 @@ import AddProductButton from "@/components/products/AddProductButton";
 import ProductCard from "@/components/products/ProductCard";
 import ProductsFilterNav from "@/components/products/ProductsFilterNav";
 import SearchBar from "@/components/ui/SearchBar";
-import { categories } from "@/data/categoris";
-import { products } from "@/data/products";
+import { Category } from "@/types/  categori";
 import { useRouter } from "expo-router";
 import React, { useMemo, useState } from "react";
 import { FlatList, Text, View } from "react-native";
@@ -13,29 +12,33 @@ export default function ProductScreen() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredProducts = useMemo(() => {
-    return products.filter((product) => {
-      const matchCategory =
-        selectedCategory === "all" || product.categoryId === selectedCategory;
+  const filteredProducts: ArrayLike<any> | null | undefined = [];
 
-      const matchSearch = product.name
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase());
+  // const filteredProducts = useMemo(() => {
+  //   return products.filter((product) => {
+  //     const matchCategory =
+  //       selectedCategory === "all" || product.categoryId === selectedCategory;
 
-      return matchCategory && matchSearch;
-    });
-  }, [selectedCategory, searchQuery]);
+  //     const matchSearch = product.name
+  //       .toLowerCase()
+  //       .includes(searchQuery.toLowerCase());
 
-  const categoriesWithAll = useMemo(() => {
-    return [
-      {
-        id: "all",
-        name: "All",
-        count: products.length,
-      },
-      ...categories,
-    ];
-  }, []);
+  //     return matchCategory && matchSearch;
+  //   });
+  // }, [selectedCategory, searchQuery]);
+
+  const categoriesWithAll: Category[] = [];
+
+  // const categoriesWithAll = useMemo(() => {
+  //   return [
+  //     {
+  //       id: "all",
+  //       name: "All",
+  //       count: products.length,
+  //     },
+  //     ...categories,
+  //   ];
+  // }, []);
 
   return (
     <View className="flex-1 bg-white/80 dark:bg-gray-900">

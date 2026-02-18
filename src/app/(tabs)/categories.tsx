@@ -1,7 +1,6 @@
 import CategoriesCard from "@/components/categories/CategoriesCard";
 import PrButton from "@/components/products/PrButton";
 import SearchBar from "@/components/ui/SearchBar";
-import { categories } from "@/data/categoris";
 import { MaterialIcons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { FlatList, Text, View } from "react-native";
@@ -9,20 +8,8 @@ import { FlatList, Text, View } from "react-native";
 import colors from "tailwindcss/colors";
 
 export default function CategoriesScreen() {
-  // const [searchQuery, setSearchQuery] = useState("");
+  const categories: ArrayLike<any> | null | undefined = [];
 
-  // const filteredProducts = useMemo(() => {
-  //   return categories.filter((categoriy) => {
-  //     const matchCategory =
-  //      categoriy.categoryId === selectedCategory;
-
-  //     const matchSearch = categoriy.name
-  //       .toLowerCase()
-  //       .includes(searchQuery.toLowerCase());
-
-  //     return matchCategory && matchSearch;
-  //   });
-  // }, [selectedCategory, searchQuery]);
   return (
     <View className="px-3 pt-3 flex-1 bg-white/90 dark:bg-gray-900">
       <View className="">
@@ -31,9 +18,7 @@ export default function CategoriesScreen() {
       <View className="px-3 py-3 flex flex-row  items-center justify-between">
         <View className="flex flex-row gap-3 items-center ">
           <MaterialIcons name="category" size={20} color={colors.blue[500]} />
-          <Text className="text-lg dark:text-gray-100">
-            {categories.length}
-          </Text>
+          <Text className="text-lg dark:text-gray-100">{0}</Text>
         </View>
         <View className="w-1/3">
           <PrButton
