@@ -30,7 +30,7 @@ const CharView = () => {
           yAxisInterval={1} //
           chartConfig={{
             backgroundColor: "#1E6DC9",
-            backgroundGradientFrom: isDark ? colors.gray[800] : "trasparent",
+            backgroundGradientFrom: isDark ? colors.gray[800] : "",
             backgroundGradientTo: isDark ? colors.gray[800] : "#fff",
             decimalPlaces: 2, // optional
             color: (opacity = 0.8) =>

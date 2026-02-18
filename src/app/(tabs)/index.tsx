@@ -2,7 +2,6 @@ import CharView from "@/components/dashboard/CharView";
 import Header from "@/components/dashboard/Header";
 import SummaryCard from "@/components/dashboard/SummaryCard";
 import { enListTypes } from "@/types/enums";
-import { analytics } from "@/utils/detailedAnalysis";
 import { router } from "expo-router";
 import { ScrollView, Text, View } from "react-native";
 import colors from "tailwindcss/colors";
@@ -15,7 +14,7 @@ export default function Index() {
       <View className="flex-row flex-wrap gap-3 px-3">
         <SummaryCard
           title={"Products"}
-          result={analytics.totalProducts}
+          result={0}
           iconName={"cube-outline"}
           color={colors.fuchsia[600]}
           onPress={() =>
@@ -27,7 +26,7 @@ export default function Index() {
         />
         <SummaryCard
           title={"Categoris"}
-          result={analytics.totalCategories}
+          result={0}
           iconName={"pricetags-outline"}
           color={colors.teal[600]}
           onPress={() =>
@@ -40,7 +39,7 @@ export default function Index() {
         {/* <ion-icon name="invert-mode-outline"></ion-icon> */}
         <SummaryCard
           title={"Total stock"}
-          result={analytics.totalStock}
+          result={0}
           iconName={"invert-mode-outline"}
           color={colors.orange[400]}
           onPress={() =>
@@ -52,7 +51,7 @@ export default function Index() {
         />
         <SummaryCard
           title={"Low stock"}
-          result={analytics.lowStockCount}
+          result={0}
           iconName={"trending-down-sharp"}
           color={colors.red[500]}
           onPress={() =>
@@ -64,7 +63,7 @@ export default function Index() {
         />
         <SummaryCard
           title={"Total price of products "}
-          result={analytics.totalPrice}
+          result={0}
           iconName={"cash-outline"}
           color={colors.green[600]}
           unit={"MRU"}

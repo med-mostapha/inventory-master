@@ -45,7 +45,7 @@ export const products: Product[] = [
     name: "Portable Speaker",
     categoryId: "c4",
     categoryName: "Electronics",
-    price: 89.99,
+    price: 809.99,
     quantity: 22,
     image:
       "https://images.pexels.com/photos/3394664/pexels-photo-3394664.jpeg?auto=compress&cs=tinysrgb&w=",
