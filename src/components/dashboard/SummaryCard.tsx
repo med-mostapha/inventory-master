@@ -57,9 +57,9 @@ const SummaryCard = ({
         color={color}
         className="bg-gray-100 dark:bg-white/10  p-2 rounded-full"
       />
-      <View className="flex items-center">
-        <View className="flex flex-row gap-1">
-          <Text className="text-2xl dark:text-white">
+      <View className="flex items-end">
+        <View className="flex flex-row gap-1 ">
+          <Text className="text-2xl dark:text-white ">
             {unit === "MRU" ? formater(displayValue) : displayValue}
           </Text>
           {unit && <Text className="text-zinc-500">{unit}</Text>}

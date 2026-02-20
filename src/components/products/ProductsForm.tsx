@@ -39,12 +39,10 @@ const ProductsForm = ({ product }: Props) => {
 
   useEffect(() => {
     if (product) {
-      const { name, price, quantity, image, categoryName, description } =
-        product;
+      const { name, price, quantity } = product;
       setName(name);
       setPrice(price.toString());
       setQuantity(quantity.toString());
-      setCategories(categoryName ?? "");
       setDescription(description ?? "");
     }
   }, []);
@@ -168,8 +166,8 @@ const ProductsForm = ({ product }: Props) => {
         </View>
       </View>
 
-      {/* image pucker */}
-      <View style={styles.field}>
+      {/* image pucker  (not importent now)*/}
+      {/* <View style={styles.field}>
         <Text style={styles.label} className="font-medium dark:text-white">
           Image
         </Text>
@@ -180,7 +178,7 @@ const ProductsForm = ({ product }: Props) => {
             onPress={() => {}}
           />
         </View>
-      </View>
+      </View> */}
 
       <View style={styles.field}>
         <Text style={styles.label} className="font-medium dark:text-white">
@@ -204,28 +202,6 @@ const ProductsForm = ({ product }: Props) => {
           placeholder="Select an item"
         />
 
-        {errors.quantity ? (
-          <Text className="text-red-500 pl-1">{errors.quantity}</Text>
-        ) : null}
-      </View>
-
-      <View style={styles.field}>
-        <Text style={styles.label} className="font-medium dark:text-white">
-          Description
-        </Text>
-        <TextInput
-          value={description}
-          onChangeText={setDescription}
-          style={{
-            ...styles.input,
-            color: isDark ? "white" : "black",
-            borderColor: errors.name ? "red" : styles.input.borderColor,
-          }}
-          keyboardType="ascii-capable"
-          maxLength={50}
-          placeholder="Enter description"
-          placeholderTextColor={styles.placeholder.color}
-        />
         {errors.quantity ? (
           <Text className="text-red-500 pl-1">{errors.quantity}</Text>
         ) : null}

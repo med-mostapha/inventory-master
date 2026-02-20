@@ -1,98 +1,139 @@
-import CharView from "@/components/dashboard/CharView";
+import { useCallback, useState } from "react";
+import {
+  ScrollView,
+  Text,
+  View,
+  ActivityIndicator,
+  RefreshControl,
+} from "react-native";
+import { useFocusEffect } from "expo-router";
+
+import BarView from "@/components/dashboard/BarView";
 import Header from "@/components/dashboard/Header";
 import SummaryCard from "@/components/dashboard/SummaryCard";
-import { enListTypes } from "@/types/enums";
-import { router } from "expo-router";
-import { ScrollView, Text, View } from "react-native";
+import { api } from "@/utils/api";
+import { DashboardResponse } from "@/types/dashboard";
 import colors from "tailwindcss/colors";
 
 export default function Index() {
+  const [dashboard, setDashboard] = useState<DashboardResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const fetchDashboard = async () => {
+    try {
+      const response = await api.get<DashboardResponse>("/dashboard/");
+
+      setDashboard(response.data);
+    } catch (error) {
+      console.log("DASHBOARD ERROR:", error);
+    }
+  };
+
+  // Auto refresh when screen gains focus
+  useFocusEffect(
+    useCallback(() => {
+      let isActive = true;
+
+      const load = async () => {
+        if (isActive) {
+          setLoading(true);
+          await fetchDashboard();
+          setLoading(false);
+        }
+      };
+
+      load();
+
+      return () => {
+        isActive = false;
+      };
+    }, []),
+  );
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await fetchDashboard();
+    setRefreshing(false);
+  };
+
+  if (loading && !dashboard) {
+    return (
+      <View className="flex-1 items-center justify-center bg-white dark:bg-gray-900">
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+
   return (
-    <ScrollView className="bg-white/80 dark:bg-gray-900">
-      {/* Header */}
+    <ScrollView
+      className="bg-white/80 dark:bg-gray-900"
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+    >
       <Header />
+
       <View className="flex-row flex-wrap gap-3 px-3">
         <SummaryCard
-          title={"Products"}
-          result={0}
+          title={"Total Products"}
+          result={dashboard?.counts.total_products ?? 0}
           iconName={"cube-outline"}
           color={colors.fuchsia[600]}
-          onPress={() =>
-            router.push({
-              pathname: "/fastview",
-              params: { type: enListTypes.Products },
-            })
-          }
         />
+
         <SummaryCard
-          title={"Categoris"}
-          result={0}
+          title={"Categories"}
+          result={dashboard?.counts.total_categories ?? 0}
           iconName={"pricetags-outline"}
           color={colors.teal[600]}
-          onPress={() =>
-            router.push({
-              pathname: "/fastview",
-              params: { type: enListTypes.Categories },
-            })
-          }
         />
-        {/* <ion-icon name="invert-mode-outline"></ion-icon> */}
+
         <SummaryCard
-          title={"Total stock"}
-          result={0}
+          title={"Total Stock"}
+          result={dashboard?.stock.total_stock ?? 0}
           iconName={"invert-mode-outline"}
           color={colors.orange[400]}
-          onPress={() =>
-            router.push({
-              pathname: "/fastview",
-              params: { type: enListTypes.TotalStock },
-            })
-          }
         />
+
         <SummaryCard
-          title={"Low stock"}
+          title={"Low Stock"}
+          result={dashboard?.counts.low_stock ?? 0}
+          iconName={"trending-down-sharp"}
+          color={colors.red[500]}
+        />
+
+        {/* <SummaryCard
+          title={"ok"}
           result={0}
           iconName={"trending-down-sharp"}
           color={colors.red[500]}
-          onPress={() =>
-            router.push({
-              pathname: "/fastview",
-              params: { type: enListTypes.LowStockProducts },
-            })
-          }
         />
+
         <SummaryCard
-          title={"Total price of products "}
-          result={0}
+          title={"Expired Products"}
+          result={dashboard?.counts.expired_products ?? 0}
+          iconName={"infinite"}
+          color={colors.rose[500]}
+        /> */}
+        <SummaryCard
+          title={"Total Inventory Value"}
+          result={dashboard?.financial.total_inventory_value ?? 0}
           iconName={"cash-outline"}
           color={colors.green[600]}
           unit={"MRU"}
-          onPress={() =>
-            router.push({
-              pathname: "/fastview",
-              params: { type: enListTypes.TotalPriceList },
-            })
-          }
         />
       </View>
-      {/* Chart */}
 
       <View className="flex mt-5">
-        <Text className="text-bold text-black/80  dark:text-white ml-2 font-medium text-xl">
-          Bezier Line Chart
+        <Text className="text-black/80 dark:text-white ml-2 font-medium text-xl">
+          Value by Category
         </Text>
+
         <ScrollView horizontal className="mt-4">
-          <CharView />
+          <BarView rawData={dashboard?.analytics.value_by_category ?? []} />
         </ScrollView>
       </View>
-
-      {/* Low List */}
-      {/* <View className="shadow-xl shadow-black/10">
-        <LowStockList
-          title={"Low Quantity Pruducts"}
-          data={analytics.LowProductsStock}
-        />
-      </View> */}
     </ScrollView>
   );
 }

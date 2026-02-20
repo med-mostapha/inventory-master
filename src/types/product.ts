@@ -1,15 +1,12 @@
 export interface Product {
-  id: string;
+  id: number;
   name: string;
-  categoryId: string;
-  categoryName?: string;
-
-  price: number;
+  price: string; // keep as string to match backend
   quantity: number;
-
-  image?: string;
-  description?: string;
-
-  createdAt: string;
-  updatedAt: string;
+  min_threshold: number;
+  expiration_date: string | null;
+  category: number;
+  is_low_stock: boolean;
+  has_expiry: boolean;
+  created_at: string;
 }
