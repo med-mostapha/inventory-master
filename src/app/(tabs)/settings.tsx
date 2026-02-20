@@ -36,35 +36,38 @@ export default function SettingsScreen() {
         {themeOptions.map((option) => {
           const isActive = mode === option;
           return (
-            <Pressable
-              key={option}
-              onPress={() => setMode(option)}
-              className={`
-                flex-col justify-between items-center rounded-full border-[0.5px] border-gray-600
-                p-4 mb-3 w-[25%]
+            <View key={option} className="flex items-center gap-2">
+              <Text className="text-black dark:text-white">{option}</Text>
+              <Pressable
+                key={option}
+                onPress={() => setMode(option)}
+                className={`
+                 rounded-full border-[0.5px] border-gray-600 w-8 h-8
+                 mb-3 
                 ${isActive ? "bg-blue-500" : "bg-gray-200 dark:bg-gray-800"}
               `}
-            >
-              <Text
-                className={`
+              >
+                <Text
+                  className={`
                   text-sm font-medium
                   ${isActive ? "text-white" : "text-black dark:text-white"}
                 `}
-              >
-                {option.charAt(0).toUpperCase() + option.slice(1)}
-              </Text>
-            </Pressable>
+                >
+                  {/* {option.charAt(0).toUpperCase() + option.slice(1)} */}
+                </Text>
+              </Pressable>
+            </View>
           );
         })}
       </View>
 
-      {/* 🔥 Logout Section */}
+      {/* Logout Section */}
       <View className="mt-10">
         <Pressable
           onPress={handleLogout}
-          className="bg-red-500 p-4 rounded-xl items-center"
+          className="bg-red-400 p-4 rounded-xl items-center "
         >
-          <Text className="text-white font-semibold">Logout</Text>
+          <Text className="font-semibold text-white">Logout</Text>
         </Pressable>
       </View>
     </View>
