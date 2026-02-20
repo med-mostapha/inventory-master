@@ -1,6 +1,6 @@
 import { products } from "@/data/products";
 import { categories } from "../data/categoris";
-import { Category } from "../types/  categori";
+import { Category } from "../types/category";
 import { enListTypes } from "../types/enums";
 import { Product } from "../types/product";
 
@@ -11,7 +11,7 @@ export const analytics = {
 
   totalStock: products.reduce(
     (sum: number, product: Product) => sum + product.quantity,
-    0
+    0,
   ),
 
   lowStockCount: products.filter((product: Product) => product.quantity <= 5)
@@ -22,9 +22,9 @@ export const analytics = {
       .reduce(
         (sum: number, product: Product) =>
           sum + product.price * product.quantity,
-        0
+        0,
       )
-      .toFixed(2)
+      .toFixed(2),
   ),
 
   // type = {totalPriceList  ,lowStockList , totalStockList, categoris ,products}
@@ -75,7 +75,7 @@ export const analytics = {
 };
 
 export const categoriesLabels: string[] = categories.map((cat: Category) =>
-  cat.name.trim()
+  cat.name.trim(),
 );
 
 export const categoriesPicker: { label: string; value: string }[] =
@@ -87,13 +87,13 @@ const getCategoryTotalStock = (categoryName: string) => {
       product.categoryName?.trim() === categoryName
         ? sum + product.quantity
         : sum,
-    0
+    0,
   );
 
   return total;
 };
 export const categoriesStock: number[] = categoriesLabels.map(
-  getCategoryTotalStock
+  getCategoryTotalStock,
 );
 
 export const getCategoryTotalPrice = (categoryName: string): number => {
@@ -102,13 +102,13 @@ export const getCategoryTotalPrice = (categoryName: string): number => {
       product.categoryName?.trim() === categoryName
         ? sum + product.price * product.quantity
         : sum,
-    0
+    0,
   );
 
   return Number(total.toFixed(2));
 };
 export const categoriesData: number[] = categoriesLabels.map(
-  getCategoryTotalPrice
+  getCategoryTotalPrice,
 );
 
 export const getCategoryStock = (categoryName: string): number =>
@@ -117,12 +117,12 @@ export const getCategoryStock = (categoryName: string): number =>
       product.categoryName?.trim() === categoryName
         ? sum + product.quantity
         : sum,
-    0
+    0,
   );
 
 export const getCategoryProductCount = (categoryName: string): number =>
   products.filter(
-    (product: Product) => product.categoryName?.trim() === categoryName
+    (product: Product) => product.categoryName?.trim() === categoryName,
   ).length;
 
 export const formatPrice = (value: number): number => Number(value.toFixed(2));
@@ -135,5 +135,5 @@ export const totalPriceByCategory = products.reduce<Record<string, number>>(
 
     return acc;
   },
-  {}
+  {},
 );

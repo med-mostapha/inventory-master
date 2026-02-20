@@ -1,220 +1,157 @@
-import { styles } from "@/styles/ProductsForm";
 import { Product } from "@/types/product";
-import { categoriesPicker } from "@/utils/detailedAnalysis";
+import { Category } from "@/types/category";
 import { router } from "expo-router";
 import { useColorScheme } from "nativewind";
 import React, { useEffect, useState } from "react";
-import { Alert, Text, TextInput, View } from "react-native";
+import { Text, TextInput, View } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
-import colors from "tailwindcss/colors";
-import IconButton from "../ui/IconButton";
 import PrButton from "./PrButton";
 
 type Props = {
   product?: Product;
+  categories: Category[];
+  onSubmit: (data: {
+    name: string;
+    price: string;
+    quantity: number;
+    min_threshold: number;
+    expiration_date: string | null;
+    category: number;
+  }) => Promise<void>;
 };
 
-const ProductsForm = ({ product }: Props) => {
+const ProductsForm = ({ product, categories, onSubmit }: Props) => {
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === "dark";
+
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [description, setDescription] = useState("");
-  const [errors, setErrors] = useState({
-    name: "",
-    price: "",
-    quantity: "",
-    image: "",
-    categories: "",
-    description: "",
-  });
+  const [minThreshold, setMinThreshold] = useState("");
+  const [expirationDate, setExpirationDate] = useState<string | null>(null);
+  const [category, setCategory] = useState<number | null>(null);
 
-  const inputText = { color: isDark ? "white" : "black" };
-  // Picker
   const [open, setOpen] = useState(false);
-  const [categories, setCategories] = useState("");
+  const [items, setItems] = useState(
+    categories.map((c) => ({
+      label: c.name,
+      value: c.id,
+    })),
+  );
 
-  const [items, setItems] = useState(categoriesPicker);
+  const [errors, setErrors] = useState<any>({});
 
   useEffect(() => {
     if (product) {
-      const { name, price, quantity } = product;
-      setName(name);
-      setPrice(price.toString());
-      setQuantity(quantity.toString());
-      setDescription(description ?? "");
+      setName(product.name);
+      setPrice(product.price);
+      setQuantity(product.quantity.toString());
+      setMinThreshold(product.min_threshold.toString());
+      setExpirationDate(product.expiration_date);
+      setCategory(product.category);
     }
-  }, []);
+  }, [product]);
 
-  const handleSubmit = () => {
-    let valide = true;
-    let newErrors = {
-      name: "",
-      price: "",
-      quantity: "",
-      image: "",
-      categories: "",
-      description: "",
-    };
+  const validate = () => {
+    let newErrors: any = {};
 
-    if (!name.trim()) {
-      newErrors.name = "Name is required";
-      valide;
-      false;
-    }
-
-    if (!price) {
-      newErrors.price = "Price is reuired";
-      valide = false;
-    }
-
-    if (!quantity) {
-      newErrors.quantity = "Quantity is reuired";
-      valide = false;
-    }
-
-    if (!categories) {
-      newErrors.categories = "Categories is reuired";
-      valide = false;
-    }
-
-    if (!description.trim()) {
-      newErrors.description = "Description is reuired";
-      valide = false;
-    }
+    if (!name.trim()) newErrors.name = "Required";
+    if (!price) newErrors.price = "Required";
+    if (!quantity) newErrors.quantity = "Required";
+    if (!minThreshold) newErrors.min_threshold = "Required";
+    if (!category) newErrors.category = "Required";
 
     setErrors(newErrors);
 
-    if (valide) {
-      Alert.alert("Success", "Product added successfully");
+    return Object.keys(newErrors).length === 0;
+  };
 
-      router.back();
-    }
+  const handleSubmit = async () => {
+    if (!validate()) return;
+
+    await onSubmit({
+      name: name.trim(),
+      price,
+      quantity: Number(quantity),
+      min_threshold: Number(minThreshold),
+      expiration_date: expirationDate,
+      category: category!,
+    });
   };
 
   return (
-    <View style={styles.container}>
-      {/* <Text className="text-2xl text-center font-medium">Add New Products</Text> */}
-
-      <View style={styles.field}>
-        <Text style={styles.label} className="font-medium dark:text-white">
-          Name
-        </Text>
+    <View className="gap-4 p-3">
+      <View>
+        <Text className="dark:text-white">Name</Text>
         <TextInput
           value={name}
           onChangeText={setName}
-          keyboardType="ascii-capable"
-          maxLength={25}
-          style={{
-            ...styles.input,
-            color: isDark ? "white" : "black",
-            borderColor: errors.name ? "red" : styles.input.borderColor,
-          }}
-          placeholder="Enter product name"
-          placeholderTextColor={styles.placeholder.color}
+          className="border p-2 rounded dark:text-white"
         />
-        {errors.name ? (
-          <Text className="text-red-500 pl-1">{errors.name}</Text>
-        ) : null}
+        {errors.name && <Text className="text-red-500">{errors.name}</Text>}
       </View>
 
-      {/* two input in the same row */}
-      <View className="flex flex-row gap-3">
-        <View style={styles.field} className="flex-grow">
-          <Text style={styles.label} className="font-medium dark:text-white">
-            Price
-          </Text>
+      <View className="flex-row gap-3">
+        <View className="flex-1">
+          <Text className="dark:text-white">Price</Text>
           <TextInput
             value={price}
             onChangeText={setPrice}
             keyboardType="numeric"
-            maxLength={6}
-            style={{
-              ...styles.input,
-              color: isDark ? "white" : "black",
-              borderColor: errors.name ? "red" : styles.input.borderColor,
-            }}
-            placeholder="Enter product price"
-            placeholderTextColor={styles.placeholder.color}
+            className="border p-2 rounded dark:text-white"
           />
-          {errors.price ? (
-            <Text className="text-red-500 pl-1">{errors.price}</Text>
-          ) : null}
+          {errors.price && <Text className="text-red-500">{errors.price}</Text>}
         </View>
 
-        <View style={styles.field} className="flex-grow ">
-          <Text style={styles.label} className="font-medium dark:text-white">
-            Quantity
-          </Text>
+        <View className="flex-1">
+          <Text className="dark:text-white">Quantity</Text>
           <TextInput
             value={quantity}
             onChangeText={setQuantity}
-            maxLength={5}
             keyboardType="numeric"
-            style={{
-              ...styles.input,
-              color: isDark ? "white" : "black",
-              borderColor: errors.name ? "red" : styles.input.borderColor,
-            }}
-            placeholder="Enter product quantity"
-            placeholderTextColor={styles.placeholder.color}
+            className="border p-2 rounded dark:text-white"
           />
-          {errors.quantity ? (
-            <Text className="text-red-500 pl-1">{errors.quantity}</Text>
-          ) : null}
+          {errors.quantity && (
+            <Text className="text-red-500">{errors.quantity}</Text>
+          )}
         </View>
       </View>
 
-      {/* image pucker  (not importent now)*/}
-      {/* <View style={styles.field}>
-        <Text style={styles.label} className="font-medium dark:text-white">
-          Image
-        </Text>
-        <View>
-          <IconButton
-            icon={"filter"}
-            label={"Choose a photo"}
-            onPress={() => {}}
-          />
-        </View>
-      </View> */}
+      <View>
+        <Text className="dark:text-white">Min Threshold</Text>
+        <TextInput
+          value={minThreshold}
+          onChangeText={setMinThreshold}
+          keyboardType="numeric"
+          className="border p-2 rounded dark:text-white"
+        />
+        {errors.min_threshold && (
+          <Text className="text-red-500">{errors.min_threshold}</Text>
+        )}
+      </View>
 
-      <View style={styles.field}>
-        <Text style={styles.label} className="font-medium dark:text-white">
-          Categories
-        </Text>
+      <View>
+        <Text className="dark:text-white">Category</Text>
         <DropDownPicker
           open={open}
-          value={categories}
+          value={category}
           items={items}
-          style={{
-            ...styles.input,
-
-            borderColor: errors.name ? "red" : styles.input.borderColor,
-            backgroundColor: colors.gray[100],
-          }}
           setOpen={setOpen}
-          setValue={(callback) => {
-            setCategories(callback(categories));
-          }}
+          setValue={setCategory}
           setItems={setItems}
-          placeholder="Select an item"
+          placeholder="Select category"
         />
-
-        {errors.quantity ? (
-          <Text className="text-red-500 pl-1">{errors.quantity}</Text>
-        ) : null}
+        {errors.category && (
+          <Text className="text-red-500">{errors.category}</Text>
+        )}
       </View>
 
-      <View className="flex flex-row gap-3">
-        <PrButton title={"Add"} onPress={handleSubmit} />
+      <View className="flex-row gap-3 mt-4">
+        <PrButton title="Save" onPress={handleSubmit} />
         <PrButton
-          title={"Cancel"}
+          title="Cancel"
           thems="secodery"
-          onPress={() => {
-            router.back();
-          }}
+          onPress={() => router.back()}
         />
       </View>
     </View>

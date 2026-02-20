@@ -1,6 +1,6 @@
 import { Product } from "@/types/product";
-import React, { useState } from "react";
-import { Animated, Image, Text, TouchableOpacity, View } from "react-native";
+import React from "react";
+import { Text, TouchableOpacity, View } from "react-native";
 
 type Props = {
   product: Product;
@@ -8,72 +8,34 @@ type Props = {
 };
 
 const ProductCard = ({ product, onPress }: Props) => {
-  const [loading, setLoading] = useState(true);
-  const pulseAnim = new Animated.Value(0.3);
-
-  Animated.loop(
-    Animated.sequence([
-      Animated.timing(pulseAnim, {
-        toValue: 1,
-        duration: 600,
-        useNativeDriver: true,
-      }),
-      Animated.timing(pulseAnim, {
-        toValue: 0.3,
-        duration: 1500,
-        useNativeDriver: true,
-      }),
-    ])
-  ).start();
+  const isLowStock = product.quantity <= product.min_threshold;
 
   return (
     <TouchableOpacity
-      className="bg-white dark:bg-gray-800 p-2 mb-2 w-1/2 rounded-2xl elevation-lg shadow-sm"
+      className="bg-white dark:bg-gray-800 p-3 mb-3 w-1/2 rounded-2xl shadow-sm"
       onPress={onPress}
     >
-      <View className="w-full aspect-square rounded-xl overflow-hidden relative">
-        {loading && (
-          <Animated.View
-            style={{ opacity: pulseAnim }}
-            className="absolute inset-0 bg-gray-100 dark:bg-gray-700"
-          />
-        )}
+      <View className="gap-2">
+        <Text
+          className="font-bold text-black/80 dark:text-white text-base"
+          numberOfLines={1}
+        >
+          {product.name}
+        </Text>
 
-        <Image
-          source={{ uri: `${product.image}400` }}
-          className="w-full h-full rounded-xl"
-          resizeMode="cover"
-          onLoadStart={() => setLoading(true)}
-          onLoadEnd={() => setLoading(false)}
-        />
-      </View>
+        <Text className="text-sm font-semibold text-black/80 dark:text-gray-300">
+          Price: {product.price} MRU
+        </Text>
 
-      <View className="mt-2 flex-1 p-2 justify-between">
-        <View className="gap-1">
-          <Text
-            className="font-bold text-black/80 dark:text-white"
-            numberOfLines={1}
-          >
-            {product.name}
-          </Text>
-          <Text
-            className="text-sm text-gray-500 dark-text-gray-300"
-            numberOfLines={2}
-          >
-            {product.description}
-          </Text>
-        </View>
-
-        <View className="mt-2 flex gap-1">
-          <Text
-            className={`${product.quantity <= 5 ? "text-red-600 dark:text-red-500" : "dark:text-gray-100"} text-sm font-semibold text-black/80 `}
-          >
-            Quantity: {product.quantity}
-          </Text>
-          <Text className="text-sm font-semibold text-black/80 dark:text-gray-300">
-            Price: {product.price} MRU
-          </Text>
-        </View>
+        <Text
+          className={`text-sm font-semibold ${
+            isLowStock
+              ? "text-red-600 dark:text-red-500"
+              : "text-black/80 dark:text-gray-100"
+          }`}
+        >
+          Quantity: {product.quantity}
+        </Text>
       </View>
     </TouchableOpacity>
   );

@@ -1,7 +1,7 @@
 export interface Product {
   id: number;
   name: string;
-  price: string; // keep as string to match backend
+  price: string;
   quantity: number;
   min_threshold: number;
   expiration_date: string | null;

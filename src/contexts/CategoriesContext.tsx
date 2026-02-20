@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useState } from "react";
 import { categories } from "../data/categoris";
-import { Category } from "../types/  categori";
+import { Category } from "../types/category";
 
 type CategoriesContextType = {
   categoriesList: Category[];

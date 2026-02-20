@@ -2,60 +2,105 @@ import AddProductButton from "@/components/products/AddProductButton";
 import ProductCard from "@/components/products/ProductCard";
 import ProductsFilterNav from "@/components/products/ProductsFilterNav";
 import SearchBar from "@/components/ui/SearchBar";
-import { Category } from "@/types/  categori";
-import { useRouter } from "expo-router";
-import React, { useMemo, useState } from "react";
-import { FlatList, Text, View } from "react-native";
+import { Product } from "@/types/product";
+import { Category } from "@/types/category";
+import { api } from "@/utils/api";
+import { useFocusEffect, useRouter } from "expo-router";
+import React, { useCallback, useMemo, useState } from "react";
+import { ActivityIndicator, FlatList, Text, View } from "react-native";
 
 export default function ProductScreen() {
   const router = useRouter();
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+
+  const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<number | "all">(
+    "all",
+  );
   const [searchQuery, setSearchQuery] = useState("");
 
-  const filteredProducts: ArrayLike<any> | null | undefined = [];
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  // const filteredProducts = useMemo(() => {
-  //   return products.filter((product) => {
-  //     const matchCategory =
-  //       selectedCategory === "all" || product.categoryId === selectedCategory;
+  // Fetch data when screen is focused
+  useFocusEffect(
+    useCallback(() => {
+      const fetchData = async () => {
+        try {
+          setLoading(true);
+          setError(null);
 
-  //     const matchSearch = product.name
-  //       .toLowerCase()
-  //       .includes(searchQuery.toLowerCase());
+          const [productsRes, categoriesRes] = await Promise.all([
+            api.get("/products/"),
+            api.get("/categories/"),
+          ]);
 
-  //     return matchCategory && matchSearch;
-  //   });
-  // }, [selectedCategory, searchQuery]);
+          setProducts(productsRes.data);
+          setCategories(categoriesRes.data);
+        } catch (err) {
+          setError("Failed to load data");
+        } finally {
+          setLoading(false);
+        }
+      };
 
-  const categoriesWithAll: Category[] = [];
+      fetchData();
+    }, []),
+  );
 
-  // const categoriesWithAll = useMemo(() => {
-  //   return [
-  //     {
-  //       id: "all",
-  //       name: "All",
-  //       count: products.length,
-  //     },
-  //     ...categories,
-  //   ];
-  // }, []);
+  // Add "All" category
+  const categoriesWithAll = useMemo(() => {
+    return [
+      { id: 0, name: "All", description: "", created_at: "" },
+      ...categories,
+    ];
+  }, [categories]);
+
+  // Filtering logic
+  const filteredProducts = useMemo(() => {
+    return products.filter((product) => {
+      const matchCategory =
+        selectedCategory === "all" || product.category === selectedCategory;
+
+      const matchSearch = product.name
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
+
+      return matchCategory && matchSearch;
+    });
+  }, [products, selectedCategory, searchQuery]);
+
+  // if (loading) {
+  //   return (
+  //     <View className="flex-1 justify-center items-center">
+  //       <ActivityIndicator size="large" />
+  //     </View>
+  //   );
+  // }
+
+  if (error) {
+    return (
+      <View className="flex-1 justify-center items-center">
+        <Text className="text-red-500">{error}</Text>
+      </View>
+    );
+  }
 
   return (
     <View className="flex-1 bg-white/80 dark:bg-gray-900">
       <View className="px-3 pt-3">
         <SearchBar
-          placeholder="products..."
+          placeholder="Search products..."
           onChange={(text) => setSearchQuery(text)}
         />
 
         <View className="flex flex-row items-center rounded-xl">
-          <View className="">
-            <AddProductButton
-              onPress={() => {
-                router.push("/products/add");
-              }}
-            />
-          </View>
+          <AddProductButton
+            onPress={() => {
+              router.push("/products/add");
+            }}
+          />
+
           <ProductsFilterNav
             categoris={categoriesWithAll}
             selectedCategory={selectedCategory}
@@ -63,34 +108,38 @@ export default function ProductScreen() {
           />
         </View>
       </View>
-      {/* <Text className="text-2xl left-3 font-bold">Product List</Text> */}
-      <View className="flex-1 justify-center ">
-        <FlatList
-          className="p-2"
-          data={filteredProducts}
-          numColumns={2}
-          keyExtractor={(item) => item.id}
-          columnWrapperStyle={{ gap: 10 }}
-          contentContainerStyle={{ padding: 10 }}
-          renderItem={({ item }) => (
-            <ProductCard
-              product={item}
-              onPress={() =>
-                router.push({
-                  pathname: "/products/details",
-                  params: { id: item.id, name: item.name },
-                })
-              }
-            />
-          )}
-          ListEmptyComponent={
-            <View className="flex-1 items-center">
-              <Text className="text-zinc-500/50 ">
-                No results match your search
-              </Text>
-            </View>
-          }
-        />
+
+      <View className="flex-1">
+        {loading ? (
+          <View className="flex-1 justify-center items-center">
+            <ActivityIndicator size="large" />
+          </View>
+        ) : (
+          <FlatList
+            className="p-2"
+            data={filteredProducts}
+            numColumns={2}
+            keyExtractor={(item) => item.id.toString()}
+            columnWrapperStyle={{ gap: 10 }}
+            contentContainerStyle={{ padding: 10 }}
+            renderItem={({ item }) => (
+              <ProductCard
+                product={item}
+                onPress={() =>
+                  router.push({
+                    pathname: "/products/details",
+                    params: { id: item.id.toString() },
+                  })
+                }
+              />
+            )}
+            ListEmptyComponent={
+              <View className="flex-1 items-center justify-center mt-10">
+                <Text className="text-zinc-500">No products found</Text>
+              </View>
+            }
+          />
+        )}
       </View>
     </View>
   );
