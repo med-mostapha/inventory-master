@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { router } from "expo-router";
+import { api } from "@/utils/api";
 
 interface RegisterResponse {
   id: number;
@@ -29,6 +30,11 @@ export default function RegisterScreen() {
       return;
     }
 
+    if (!email.includes("@") || !email.includes(".")) {
+      Alert.alert("Error", "Email not valide");
+      return;
+    }
+
     if (password !== confirmPassword) {
       Alert.alert("Error", "Passwords do not match");
       return;
@@ -37,29 +43,22 @@ export default function RegisterScreen() {
     try {
       setLoading(true);
 
-      const response = await fetch("YOUR_BASE_URL/api/register/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username,
-          email,
-          password,
-        }),
+      const response = await api.post<RegisterResponse>("/register/", {
+        username,
+        email,
+        password,
       });
 
-      const data: RegisterResponse = await response.json();
-
-      if (!response.ok) {
-        Alert.alert("Error", "Registration failed");
-        return;
-      }
+      const data = response.data; // <-- Axios gives parsed JSON here
 
       Alert.alert("Success", "Account created successfully");
       router.replace("/(auth)/login");
-    } catch (error) {
-      Alert.alert("Error", "Network error");
+    } catch (error: any) {
+      console.log("REGISTER ERROR:", error.response?.data);
+
+      const message = error.response?.data?.error || "Registration failed";
+
+      Alert.alert("Error", message);
     } finally {
       setLoading(false);
     }
@@ -75,14 +74,17 @@ export default function RegisterScreen() {
         placeholder="Username"
         value={username}
         onChangeText={setUsername}
-        className="border p-4 rounded-lg mb-4 text-black dark:text-white"
+        className="border border-gray-300 dark:border-gray-700 p-4 rounded-lg mb-4 text-black dark:text-white"
+
+        // className="border p-4 border-gray-500 rounded-lg mb-4 text-black dark:text-white"
       />
 
       <TextInput
         placeholder="Email"
         value={email}
         onChangeText={setEmail}
-        className="border p-4 rounded-lg mb-4 text-black dark:text-white"
+        // className="border p-4 rounded-lg mb-4 text-black dark:text-white"
+        className="border border-gray-300 dark:border-gray-700 p-4 rounded-lg mb-4 text-black dark:text-white"
       />
 
       <TextInput
@@ -90,7 +92,8 @@ export default function RegisterScreen() {
         secureTextEntry
         value={password}
         onChangeText={setPassword}
-        className="border p-4 rounded-lg mb-4 text-black dark:text-white"
+        // className="border p-4 rounded-lg mb-4 text-black dark:text-white"
+        className="border border-gray-300 dark:border-gray-700 p-4 rounded-lg mb-4 text-black dark:text-white"
       />
 
       <TextInput
@@ -98,7 +101,8 @@ export default function RegisterScreen() {
         secureTextEntry
         value={confirmPassword}
         onChangeText={setConfirmPassword}
-        className="border p-4 rounded-lg mb-6 text-black dark:text-white"
+        // className="border p-4 rounded-lg mb-6 text-black dark:text-white"
+        className="border border-gray-300 dark:border-gray-700 p-4 rounded-lg mb-4 text-black dark:text-white"
       />
 
       <Pressable
@@ -113,7 +117,7 @@ export default function RegisterScreen() {
         )}
       </Pressable>
 
-      <Pressable onPress={() => router.push("/(auth)/login")} className="mt-4">
+      <Pressable onPress={() => router.back()} className="mt-4">
         <Text className="text-center text-blue-500">
           Already have an account? Login
         </Text>
