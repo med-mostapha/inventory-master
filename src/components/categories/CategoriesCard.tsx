@@ -1,41 +1,53 @@
 import { Category } from "@/types/category";
-import { Ionicons } from "@expo/vector-icons";
 import Feather from "@expo/vector-icons/Feather";
-import { router } from "expo-router";
-import { Text, TouchableOpacity, View } from "react-native";
+import { useRouter } from "expo-router";
+import { Alert, Text, TouchableOpacity, View } from "react-native";
 import colors from "tailwindcss/colors";
 
 type Props = {
-  categorie: Category;
+  category: Category;
+  onDelete: (id: number) => void;
 };
-const CategoriesCard = ({ categorie }: Props) => {
-  const onPressEdit = (id: string) => {
-    router.push({
-      pathname: "/categories/edit",
-      params: { id: categorie.id },
-    });
+
+const CategoriesCard = ({ category, onDelete }: Props) => {
+  const router = useRouter();
+
+  const confirmDelete = () => {
+    Alert.alert("Delete Category", "Are you sure?", [
+      { text: "Cancel", style: "cancel" },
+      {
+        text: "Delete",
+        style: "destructive",
+        onPress: () => onDelete(category.id),
+      },
+    ]);
   };
 
   return (
-    <View className="bg-white dark:bg-gray-800 rounded-xl px-6 py-4 mb-4 elevation-lg shadow-sm flex flex-row justify-between items-center">
+    <View className="bg-white dark:bg-gray-800 rounded-xl px-6 py-4 mb-4 flex flex-row justify-between items-center shadow-sm">
       <View className="w-10/12 gap-1">
         <Text className="text-lg font-medium dark:text-gray-100">
-          {categorie.name}
+          {category.name}
         </Text>
-        <Text className="text-base text-gray-600 dark:text-gray-400 ">
-          {categorie.description}
+        <Text className="text-base text-gray-600 dark:text-gray-400">
+          {category.description}
         </Text>
-        <View className="flex flex-row gap-1">
-          <Text className="dark:text-gray-100">{categorie.count}</Text>
-          <Ionicons name="cube-outline" size={16} color={colors.gray[500]} />
-        </View>
       </View>
-      <View className="gap-2%">
+
+      <View className="flex-row gap-4">
         <TouchableOpacity
-          className=""
-          onPress={() => onPressEdit(categorie.id)}
+          onPress={() =>
+            router.push({
+              pathname: "/categories/edit",
+              params: { id: category.id.toString() },
+            })
+          }
         >
-          <Feather name="edit" size={24} color={colors.blue[500]} />
+          <Feather name="edit" size={22} color={colors.blue[500]} />
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={confirmDelete}>
+          <Feather name="trash-2" size={22} color="red" />
         </TouchableOpacity>
       </View>
     </View>

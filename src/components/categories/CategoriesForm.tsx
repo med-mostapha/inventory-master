@@ -1,85 +1,66 @@
-import { styles } from "@/styles/ProductsForm";
 import { Category } from "@/types/category";
 import { router } from "expo-router";
 import { useColorScheme } from "nativewind";
 import { useEffect, useState } from "react";
-import { Alert, Text, TextInput, View } from "react-native";
+import { Text, TextInput, View } from "react-native";
 import PrButton from "../products/PrButton";
+import { styles } from "@/styles/ProductsForm";
 
 type Props = {
   category?: Category;
+  onSubmit: (data: { name: string; description: string }) => Promise<void>;
 };
 
-const CategorisForm = ({ category }: Props) => {
+const CategorisForm = ({ category, onSubmit }: Props) => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [errors, setErrors] = useState({ name: "", description: "" });
+  const [errors, setErrors] = useState<{ name?: string }>({});
   const { colorScheme } = useColorScheme();
   const isDark = colorScheme === "dark";
 
   useEffect(() => {
     if (category) {
-      const { name, description } = category;
-      setName(name);
-      setDescription(description ?? "");
+      setName(category.name);
+      setDescription(category.description ?? "");
     }
-  }, []);
+  }, [category]);
 
-  const handleSubmit = () => {
-    let valide = true;
-    let newErrors = { name: "", description: "" };
-
-    if (!name.trim()) {
-      newErrors.name = "Name is required";
-      valide;
-      false;
-    }
-
-    if (!description.trim()) {
-      newErrors.description = "Description is reuired";
-      valide = false;
-    }
+  const validate = () => {
+    let newErrors: any = {};
+    if (!name.trim()) newErrors.name = "Required";
 
     setErrors(newErrors);
-
-    if (valide) {
-      Alert.alert("Success", "Category added successfully");
-
-      router.back();
-    }
+    return Object.keys(newErrors).length === 0;
   };
-  return (
-    <View style={styles.container}>
-      {/* <Text className="text-2xl text-center font-medium">Add New Products</Text> */}
 
-      <View style={styles.field}>
-        <Text style={styles.label} className="font-medium dark:text-gray-100">
-          Name
-        </Text>
+  const handleSubmit = async () => {
+    if (!validate()) return;
+
+    await onSubmit({
+      name: name.trim(),
+      description: description.trim(),
+    });
+  };
+
+  return (
+    <View className="gap-4 p-3">
+      <View>
+        <Text className="dark:text-white">Name</Text>
         <TextInput
           value={name}
           onChangeText={setName}
-          keyboardType="ascii-capable"
-          maxLength={25}
           style={{
             ...styles.input,
             color: isDark ? "white" : "black",
             borderColor: errors.name ? "red" : styles.input.borderColor,
           }}
-          placeholder="Enter product name"
-          placeholderTextColor={styles.placeholder.color}
         />
-        {errors.name ? (
-          <Text className="text-red-500 pl-1">{errors.name}</Text>
-        ) : null}
+        {errors.name && <Text className="text-red-500">{errors.name}</Text>}
       </View>
 
-      <View style={styles.field}>
-        <Text style={styles.label} className="font-medium dark:text-gray-100">
-          Description
-        </Text>
+      <View>
+        <Text className="dark:text-white">Description</Text>
         <TextInput
-          keyboardType="ascii-capable"
           value={description}
           onChangeText={setDescription}
           style={{
@@ -87,23 +68,15 @@ const CategorisForm = ({ category }: Props) => {
             color: isDark ? "white" : "black",
             borderColor: errors.name ? "red" : styles.input.borderColor,
           }}
-          maxLength={50}
-          placeholder="Enter description"
-          placeholderTextColor={styles.placeholder.color}
         />
-        {errors.description ? (
-          <Text className="text-red-500 pl-1">{errors.description}</Text>
-        ) : null}
       </View>
 
-      <View className="flex flex-row gap-3">
-        <PrButton title={"Add"} onPress={handleSubmit} />
+      <View className="flex-row gap-3 mt-4">
+        <PrButton title="Save" onPress={handleSubmit} />
         <PrButton
-          title={"Cancel"}
+          title="Cancel"
           thems="secodery"
-          onPress={() => {
-            router.back();
-          }}
+          onPress={() => router.back()}
         />
       </View>
     </View>

@@ -27,47 +27,49 @@ export default function SettingsScreen() {
   };
 
   return (
-    <View className="flex-1 bg-white-[0.7] dark:bg-gray-900 p-6">
-      <Text className="text-2xl font-bold text-black dark:text-white mb-6">
-        Theme
+    <View className="flex-1 bg-gray-100 dark:bg-gray-950 p-6">
+      {/* ===== THEME SECTION ===== */}
+      <Text className="text-sm text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">
+        Appearance
       </Text>
 
-      <View className="flex-row justify-around items-center bg-white elevation-lg shadow-black dark:bg-gray-800 p-4 rounded-xl">
-        {themeOptions.map((option) => {
+      <View className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm">
+        {themeOptions.map((option, index) => {
           const isActive = mode === option;
+
           return (
-            <View key={option} className="flex items-center gap-2">
-              <Text className="text-black dark:text-white">{option}</Text>
-              <Pressable
-                key={option}
-                onPress={() => setMode(option)}
-                className={`
-                 rounded-full border-[0.5px] border-gray-600 w-8 h-8
-                 mb-3 
-                ${isActive ? "bg-blue-500" : "bg-gray-200 dark:bg-gray-800"}
-              `}
-              >
-                <Text
-                  className={`
-                  text-sm font-medium
-                  ${isActive ? "text-white" : "text-black dark:text-white"}
-                `}
-                >
-                  {/* {option.charAt(0).toUpperCase() + option.slice(1)} */}
-                </Text>
-              </Pressable>
-            </View>
+            <Pressable
+              key={option}
+              onPress={() => setMode(option)}
+              className={`flex-row items-center justify-between px-5 py-4 ${
+                index !== themeOptions.length - 1
+                  ? "border-b border-gray-200 dark:border-gray-800"
+                  : ""
+              }`}
+            >
+              <Text className="text-base text-black dark:text-white capitalize">
+                {option}
+              </Text>
+
+              {isActive && (
+                <View className="w-3 h-3 rounded-full bg-blue-500" />
+              )}
+            </Pressable>
           );
         })}
       </View>
 
-      {/* Logout Section */}
+      {/* ===== LOGOUT SECTION ===== */}
       <View className="mt-10">
+        <Text className="text-sm text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">
+          Account
+        </Text>
+
         <Pressable
           onPress={handleLogout}
-          className="bg-red-400 p-4 rounded-xl items-center "
+          className="bg-white dark:bg-gray-900 px-5 py-4 rounded-2xl"
         >
-          <Text className="font-semibold text-white">Logout</Text>
+          <Text className="text-red-500 font-semibold">Logout</Text>
         </Pressable>
       </View>
     </View>
