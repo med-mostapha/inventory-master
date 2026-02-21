@@ -1,11 +1,5 @@
 import { Redirect } from "expo-router";
 
 export default function Index() {
-  // const hasSeenOnboarding = false;
-
-  // if (!hasSeenOnboarding) {
-  //   return <Redirect href="/(onboarding)" />;
-  // }
-
-  return <Redirect href="/login" />;
+  return <Redirect href="/(tabs)" />;
 }

@@ -1,168 +1,138 @@
-import { products } from "@/data/products";
 import { Product } from "@/types/product";
-import { Ionicons } from "@expo/vector-icons";
-import { router, useLocalSearchParams } from "expo-router";
-import { useColorScheme } from "nativewind";
-import React, { useState } from "react";
-import { Animated, Image, ScrollView, Text, View } from "react-native";
-import PrButton from "../../components/products/PrButton";
+import { api } from "@/utils/api";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import React, { useEffect, useState } from "react";
+import {
+  ActivityIndicator,
+  Alert,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
-const DetalisProductsScreen = () => {
-  const params = useLocalSearchParams<{ id: string }>();
-  const item: Product | undefined = products.find((p) => p.id === params.id);
+const ProductDetailsScreen = () => {
+  const { id } = useLocalSearchParams();
+  const router = useRouter();
 
+  const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
-  const pulseAnim = new Animated.Value(0.3);
 
-  const { colorScheme } = useColorScheme();
-  const isDark = colorScheme === "dark";
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const res = await api.get(`/products/${id}/`);
+        setProduct(res.data);
+      } catch (error) {
+        console.error("Failed to fetch product");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  Animated.loop(
-    Animated.sequence([
-      Animated.timing(pulseAnim, {
-        toValue: 1,
-        duration: 600,
-        useNativeDriver: true,
-      }),
-      Animated.timing(pulseAnim, {
-        toValue: 0.3,
-        duration: 1500,
-        useNativeDriver: true,
-      }),
-    ])
-  ).start();
+    if (id) {
+      fetchProduct();
+    }
+  }, [id]);
 
-  if (item === undefined) {
+  const handleDelete = () => {
+    Alert.alert(
+      "Delete Product",
+      "Are you sure you want to delete this product?",
+      [
+        { text: "Cancel", style: "cancel" },
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: async () => {
+            try {
+              await api.delete(`/products/${id}/`);
+              router.back();
+            } catch (error) {
+              console.error("Failed to delete product");
+            }
+          },
+        },
+      ],
+    );
+  };
+
+  if (loading) {
     return (
       <View className="flex-1 justify-center items-center">
-        <Text className="text-xl">Product not found!</Text>
+        <ActivityIndicator size="large" />
       </View>
     );
   }
+
+  if (!product) {
+    return (
+      <View className="flex-1 justify-center items-center">
+        <Text className="text-red-500">Product not found</Text>
+      </View>
+    );
+  }
+
+  const isLowStock = product.quantity <= product.min_threshold;
+
   return (
-    <ScrollView className="flex-1  bg-white/80 dark:bg-gray-900 ">
-      <View className="w-full aspect-square  overflow-hidden relative">
-        {loading && (
-          <Animated.View
-            style={{ opacity: pulseAnim }}
-            className="absolute inset-0 bg-gray-300 dark:bg-gray-600"
-          />
-        )}
+    <View className="flex-1 p-4 bg-white dark:bg-gray-900">
+      <View className="gap-4">
+        <Text className="text-2xl font-bold dark:text-white">
+          {product.name}
+        </Text>
 
-        <Image
-          source={{ uri: `${item.image}800` }}
-          className="w-full h-full "
-          resizeMode="cover"
-          onLoadStart={() => setLoading(true)}
-          onLoadEnd={() => setLoading(false)}
-        />
-      </View>
-      <View className="p-4 my-3 bg-white dark:bg-gray-800 rounded-2xl shadow-sm gap-4">
-        {/*  Info */}
-        <View className="gap-1">
-          <Text className="text-2xl font-bold text-zinc-900 dark:text-gray-100">
-            {item.name}
-          </Text>
-          <Text className="text-zinc-500 leading-5 dark:text-gray-200">
-            {item.description}
-          </Text>
-        </View>
+        <Text className="dark:text-gray-300 text-lg">
+          Price: {product.price} MRU
+        </Text>
 
-        <View className="h-[1px] bg-zinc-200 dark:bg-gray-600" />
+        <Text
+          className={`text-lg font-semibold ${
+            isLowStock ? "text-red-600 dark:text-red-500" : "dark:text-gray-200"
+          }`}
+        >
+          Quantity: {product.quantity}
+        </Text>
 
-        <View className="gap-2">
-          {/* Date */}
+        <Text className="dark:text-gray-300">
+          Min Threshold: {product.min_threshold}
+        </Text>
 
-          <View className="flex-row justify-between my-1">
-            <Text className="text-zinc-600 dark:text-gray-200">Create At</Text>
-            <Text className="dark:text-gray-200">
-              {new Date(item.createdAt).toLocaleDateString("fr-FR", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-              {", "}
-              <Text>{new Date(item.updatedAt).toLocaleTimeString()}</Text>
+        <Text className="dark:text-gray-300">
+          Expiration Date:{" "}
+          {product.expiration_date
+            ? product.expiration_date
+            : "No expiration date"}
+        </Text>
+
+        <Text className="dark:text-gray-300">
+          Category ID: {product.category}
+        </Text>
+
+        <View className="flex-row gap-3 mt-6">
+          <TouchableOpacity
+            onPress={() =>
+              router.push({
+                pathname: "/products/edit",
+                params: { id: product.id.toString() },
+              })
+            }
+            className="flex-1 bg-blue-600 p-3 rounded-xl"
+          >
+            <Text className="text-white text-center font-semibold">
+              Edit Product
             </Text>
-          </View>
+          </TouchableOpacity>
 
-          <View className="flex-row justify-between my-1">
-            <Text className="text-zinc-600 dark:text-gray-200">
-              Last Update
-            </Text>
-            <Text className="dark:text-gray-200">
-              {new Date(item.createdAt).toLocaleDateString("fr-FR", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-              {", "}
-              <Text className="dark:text-gray-200">
-                {new Date(item.createdAt).toLocaleTimeString()}
-              </Text>
-            </Text>
-          </View>
-
-          <View className="flex-row justify-between my-1">
-            <Text className="text-zinc-600 dark:text-gray-200">Category</Text>
-            <Text className="font-semibold text-zinc-900 dark:text-gray-200">
-              {item.categoryName}
-            </Text>
-          </View>
-
-          {/* Price Quantity */}
-          <View className="flex-row justify-between my-1">
-            <Text className="text-zinc-600 dark:text-gray-200">Quantity</Text>
-            <View
-              className={`${item.quantity <= 5 ? "text-red-500" : "text-zinc-900"} font-semibold flex flex-row `}
-            >
-              {item.quantity <= 5 && (
-                <View className="flex flex-row gap-2 items-center ">
-                  <Ionicons name="warning-sharp" size={14} color={"orange"} />
-
-                  <Text className="text-red-500 font-medium pr-5">
-                    Low Stock
-                  </Text>
-                </View>
-              )}
-              <Text className={`${item.quantity <= 5 ? "text-red-500" : ""}`}>
-                {item.quantity}
-              </Text>
-            </View>
-          </View>
-
-          <View className="flex-row justify-between">
-            <Text className="text-zinc-600 dark:text-gray-200">
-              Price / unit
-            </Text>
-            <Text className="font-semibold text-zinc-900 dark:text-gray-200">
-              {item.price} MRU
-            </Text>
-          </View>
-
-          <View className="flex-row justify-between mt-2 pt-2 border-t border-zinc-100">
-            <Text className="text-base font-semibold text-zinc-800">Total</Text>
-            <Text className="text-lg font-bold text-green-600">
-              {(item.price * item.quantity).toFixed(2)} MRU
-            </Text>
-          </View>
+          <TouchableOpacity
+            onPress={handleDelete}
+            className="flex-1 bg-red-600 p-3 rounded-xl"
+          >
+            <Text className="text-white text-center font-semibold">Delete</Text>
+          </TouchableOpacity>
         </View>
       </View>
-      {/* Action */}
-      <View className="flex flex-row gap-2 px-2 mb-20">
-        <PrButton
-          title="Edit"
-          onPress={() => {
-            router.push({
-              pathname: "/products/edit",
-              params: { id: params.id },
-            });
-          }}
-        />
-        <PrButton title="Delete" thems={"destructive"} onPress={() => {}} />
-      </View>
-    </ScrollView>
+    </View>
   );
 };
 
-export default DetalisProductsScreen;
+export default ProductDetailsScreen;

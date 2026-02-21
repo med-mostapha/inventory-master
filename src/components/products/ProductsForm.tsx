@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { Text, TextInput, View } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import PrButton from "./PrButton";
+import { styles } from "@/styles/ProductsForm";
 
 type Props = {
   product?: Product;
@@ -86,7 +87,11 @@ const ProductsForm = ({ product, categories, onSubmit }: Props) => {
         <TextInput
           value={name}
           onChangeText={setName}
-          className="border p-2 rounded dark:text-white"
+          style={{
+            ...styles.input,
+            color: isDark ? "white" : "black",
+            borderColor: errors.name ? "red" : styles.input.borderColor,
+          }}
         />
         {errors.name && <Text className="text-red-500">{errors.name}</Text>}
       </View>
@@ -98,7 +103,11 @@ const ProductsForm = ({ product, categories, onSubmit }: Props) => {
             value={price}
             onChangeText={setPrice}
             keyboardType="numeric"
-            className="border p-2 rounded dark:text-white"
+            style={{
+              ...styles.input,
+              color: isDark ? "white" : "black",
+              borderColor: errors.name ? "red" : styles.input.borderColor,
+            }}
           />
           {errors.price && <Text className="text-red-500">{errors.price}</Text>}
         </View>
@@ -109,7 +118,11 @@ const ProductsForm = ({ product, categories, onSubmit }: Props) => {
             value={quantity}
             onChangeText={setQuantity}
             keyboardType="numeric"
-            className="border p-2 rounded dark:text-white"
+            style={{
+              ...styles.input,
+              color: isDark ? "white" : "black",
+              borderColor: errors.name ? "red" : styles.input.borderColor,
+            }}
           />
           {errors.quantity && (
             <Text className="text-red-500">{errors.quantity}</Text>
@@ -123,7 +136,11 @@ const ProductsForm = ({ product, categories, onSubmit }: Props) => {
           value={minThreshold}
           onChangeText={setMinThreshold}
           keyboardType="numeric"
-          className="border p-2 rounded dark:text-white"
+          style={{
+            ...styles.input,
+            color: isDark ? "white" : "black",
+            borderColor: errors.name ? "red" : styles.input.borderColor,
+          }}
         />
         {errors.min_threshold && (
           <Text className="text-red-500">{errors.min_threshold}</Text>
@@ -131,7 +148,7 @@ const ProductsForm = ({ product, categories, onSubmit }: Props) => {
       </View>
 
       <View>
-        <Text className="dark:text-white">Category</Text>
+        <Text className="dark:text-white m-1">Category</Text>
         <DropDownPicker
           open={open}
           value={category}

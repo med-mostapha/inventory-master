@@ -19,7 +19,7 @@ const CategorisForm = ({ category }: Props) => {
 
   useEffect(() => {
     if (category) {
-      const { name, description, count } = category;
+      const { name, description } = category;
       setName(name);
       setDescription(description ?? "");
     }
