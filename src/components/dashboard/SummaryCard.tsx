@@ -43,13 +43,16 @@ const SummaryCard = ({
   }, []);
 
   const formater = (num: number) => {
-    return new Intl.NumberFormat("fr-DZ").format(num);
+    return new Intl.NumberFormat("fr-MR").format(num);
   };
+
+  const isAlert = title === "Low Stock" && result > 0;
 
   return (
     <TouchableOpacity
       onPress={onPress}
-      className="bg-white dark:bg-gray-800 w-5/12 flex-grow rounded-2xl flex flex-row items-center justify-between px-6 py-5 elevation-lg shadow-sm"
+      // replace w-5/12 flex-grow  by  basis-[48%]
+      className="bg-white dark:bg-gray-800  basis-[48%] rounded-2xl flex flex-row items-center justify-between px-6 py-5 elevation-lg shadow-sm"
     >
       <Ionicons
         name={iconName}

@@ -6,7 +6,7 @@ import {
   ActivityIndicator,
   RefreshControl,
 } from "react-native";
-import { useFocusEffect } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
 
 import BarView from "@/components/dashboard/BarView";
 import Header from "@/components/dashboard/Header";
@@ -101,26 +101,21 @@ export default function Index() {
           result={dashboard?.counts.low_stock ?? 0}
           iconName={"trending-down-sharp"}
           color={colors.red[500]}
-        />
-
-        {/* <SummaryCard
-          title={"ok"}
-          result={0}
-          iconName={"trending-down-sharp"}
-          color={colors.red[500]}
+          onPress={() => router.push("/products?filter=low")}
         />
 
         <SummaryCard
           title={"Expired Products"}
           result={dashboard?.counts.expired_products ?? 0}
-          iconName={"infinite"}
+          iconName={"alert-circle-outline"}
           color={colors.rose[500]}
-        /> */}
+        />
+
         <SummaryCard
-          title={"Total Inventory Value"}
-          result={dashboard?.financial.total_inventory_value ?? 0}
-          iconName={"cash-outline"}
-          color={colors.green[600]}
+          title={"Expired Value"}
+          result={dashboard?.financial.expired_inventory_value ?? 0}
+          iconName={"warning-outline"}
+          color={colors.red[600]}
           unit={"MRU"}
         />
       </View>
@@ -133,6 +128,26 @@ export default function Index() {
         <ScrollView horizontal className="mt-4">
           <BarView rawData={dashboard?.analytics.value_by_category ?? []} />
         </ScrollView>
+      </View>
+
+      <View className="flex-grow gap-2 mb-10">
+        <Text className="text-black/80 dark:text-white ml-2 font-medium text-xl">
+          Final inventory values
+        </Text>
+        <SummaryCard
+          title={"Total Inventory Value"}
+          result={dashboard?.financial.total_inventory_value ?? 0}
+          iconName={"cash-outline"}
+          color={colors.green[600]}
+          unit={"MRU"}
+        />
+        <SummaryCard
+          title={"Real Inventory Value"}
+          result={dashboard?.financial.real_inventory_value ?? 0}
+          iconName={"wallet-outline"}
+          color={colors.emerald[600]}
+          unit={"MRU"}
+        />
       </View>
     </ScrollView>
   );
