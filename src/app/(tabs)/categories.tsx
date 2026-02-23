@@ -50,7 +50,7 @@ export default function CategoriesScreen() {
   }, [categories, search]);
 
   return (
-    <View className="px-3 pt-3 flex-1 bg-white/90 dark:bg-gray-900">
+    <View className="px-3 pt-3 flex-1 bg-white/80 dark:bg-gray-900">
       <SearchBar placeholder="Categories..." onChange={setSearch} />
 
       <View className="px-3 py-3 flex flex-row items-center justify-between">

@@ -40,7 +40,7 @@ export default function OnboardingStepTwo() {
           <View className="gap-3 px-4 mb-12">
             <Button
               title="Commencer"
-              onPress={() => router.replace("/(tabs)")}
+              onPress={() => router.dismissTo("/(tabs)")}
               variant="primary"
             />
             <Button

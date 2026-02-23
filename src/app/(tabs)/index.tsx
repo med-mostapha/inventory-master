@@ -59,7 +59,7 @@ export default function Index() {
 
   if (loading && !dashboard) {
     return (
-      <View className="flex-1 items-center justify-center bg-white dark:bg-gray-900">
+      <View className="flex-1 items-center justify-center bg-white/80 dark:bg-gray-900">
         <ActivityIndicator size="large" />
       </View>
     );

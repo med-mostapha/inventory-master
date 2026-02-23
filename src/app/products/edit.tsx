@@ -37,7 +37,7 @@ const EditProductScreen = () => {
   const handleUpdate = async (data: any) => {
     try {
       await api.put(`/products/${id}/`, data);
-      router.replace("/products");
+      router.dismissTo("/products");
     } catch (error) {
       console.error("Failed to update product");
     }
@@ -52,7 +52,7 @@ const EditProductScreen = () => {
   }
 
   return (
-    <View className="flex-1 p-2 bg-white/90 dark:bg-gray-800">
+    <View className="flex-1 p-2 bg-white/80 dark:bg-gray-800">
       <ProductsForm
         product={product}
         categories={categories}

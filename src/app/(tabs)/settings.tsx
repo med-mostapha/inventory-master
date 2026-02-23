@@ -27,13 +27,13 @@ export default function SettingsScreen() {
   };
 
   return (
-    <View className="flex-1 bg-gray-100 dark:bg-gray-950 p-6">
+    <View className="flex-1 bg-gray-100 dark:bg-gray-900 p-6">
       {/* ===== THEME SECTION ===== */}
       <Text className="text-sm text-gray-500 dark:text-gray-400 mb-2 uppercase tracking-wider">
         Appearance
       </Text>
 
-      <View className="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm">
+      <View className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm">
         {themeOptions.map((option, index) => {
           const isActive = mode === option;
 
@@ -67,7 +67,7 @@ export default function SettingsScreen() {
 
         <Pressable
           onPress={handleLogout}
-          className="bg-white dark:bg-gray-900 px-5 py-4 rounded-2xl"
+          className="bg-white dark:bg-gray-800 px-5 py-4 rounded-2xl"
         >
           <Text className="text-red-500 font-semibold">Logout</Text>
         </Pressable>
